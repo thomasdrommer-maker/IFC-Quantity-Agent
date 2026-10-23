@@ -16,8 +16,8 @@ Dieses Paket prüft das Referenzmodell `Z445_799_ECA_BM_801_3D.ifc` deterministi
 
 ## Voraussetzungen
 
-- Python 3.11 oder neuer
-- IfcOpenShell 0.8.4
+- Python 3.14 für die Windows-Zielumgebung; Python 3.12 wird zusätzlich in CI geprüft
+- IfcOpenShell 0.8.4.post1
 
 Installation:
 
@@ -46,11 +46,13 @@ Exitcode `0` bedeutet: alle Regeln bestanden. Exitcode `1` bedeutet: mindestens 
 
 ### Einfacher Start unter Windows
 
-1. Python 3.12 installieren.
+1. Vorhandene Python-3.14-Installation verwenden.
 2. Das Projektpaket entpacken.
 3. `START_IFC_QUANTITY_AGENT.cmd` doppelklicken.
 
-Der Starter richtet beim ersten Aufruf automatisch eine lokale `.venv` ein, installiert die Abhängigkeiten und öffnet anschließend die Oberfläche im Browser. Git und eine manuelle Aktivierung der virtuellen Umgebung sind dafür nicht erforderlich.
+Der Starter richtet beim ersten Aufruf automatisch eine lokale `.venv314` ein, installiert die Abhängigkeiten und öffnet anschließend die Oberfläche im Browser. Git, Python 3.12 und eine manuelle Aktivierung der virtuellen Umgebung sind dafür nicht erforderlich.
+
+Die Kombination Python 3.14.8 / IfcOpenShell 0.8.4.post1 wurde mit dem Z445-Referenzmodell vollständig geprüft: 15/15 automatisierte Tests und 32/32 Regelresultate bestanden.
 
 ### Manueller Start
 

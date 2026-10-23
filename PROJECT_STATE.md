@@ -2,7 +2,7 @@
 
 **Stand:** 23.10.2026  
 **Entwicklungskonzept:** v1.11  
-**Implementierungspaket:** v0.3.0  
+**Implementierungspaket:** v0.3.1  
 **API-Vertrag:** v1.0.0  
 **Regelpaket:** IQA-M1-Z445-ECA v0.1.0
 
@@ -23,6 +23,9 @@
 - Projektübersicht, filterbarer Prüfbericht, Objektliste und Objekt-Drilldown
 - Mehrfachauswahl über GlobalIds mit vorbereitetem Selektionsereignis `iqa:select-objects`
 - sichtbare Leerzustände für die weiteren Konzeptansichten
+- Windows-Zielbetrieb mit Python 3.14 und IfcOpenShell 0.8.4.post1
+- CI-Kompatibilitätsmatrix für Python 3.12 und 3.14
+- vollständiger Z445-End-to-End-Lauf unter Python 3.14.8: 15/15 Tests und 32/32 Regeln bestanden
 
 ## Bewusste MVP-Grenzen
 

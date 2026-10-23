@@ -19,7 +19,7 @@
 
 ## Entwicklungsregeln
 
-- Python 3.12 und IfcOpenShell 0.8.4 sind die geprüfte Referenzumgebung.
+- Python 3.14 mit IfcOpenShell 0.8.4.post1 ist die Windows-Zielumgebung. Python 3.12 bleibt als zweite CI-Referenz erhalten.
 - Änderungen an Collector, Regeln oder Baseline benötigen Regressionstests.
 - Vor Übergabe ausführen:
   `python -m unittest discover -s tests -v`
