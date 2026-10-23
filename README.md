@@ -50,6 +50,7 @@ python run_api.py
 
 Danach stehen lokal bereit:
 
+- MVP-1-Oberfläche: `http://127.0.0.1:8000/`
 - API: `http://127.0.0.1:8000/api/v1`
 - interaktive OpenAPI-Dokumentation: `http://127.0.0.1:8000/docs`
 - OpenAPI-JSON: `http://127.0.0.1:8000/openapi.json`
@@ -66,6 +67,18 @@ Danach stehen lokal bereit:
 | `GET /api/v1/analyses/{id}/objects/{globalId}` | Objekt-Drilldown |
 
 Die erste API-Fassung verarbeitet den Upload synchron und hält das Analyseergebnis im Arbeitsspeicher. Die IFC-Datei wird nach der Analyse aus dem temporären Uploadspeicher entfernt. Persistenz, Benutzer-/Rechteverwaltung und asynchrone Jobverarbeitung folgen als eigene Architekturbausteine.
+
+### MVP-1-Oberfläche
+
+Die Oberfläche verwendet ausschließlich die versionierte API und zeigt nach dem Upload eines IFC-Modells:
+
+- Projektkennzahlen und Datenabdeckung,
+- filterbare Findings und Regelresultate,
+- eine filterbare Objektliste einschließlich leerer `LV-Ident`-Felder,
+- Objekt-Drilldown mit IFC-Identität, PSets, QTOs und Findings,
+- Mehrfachauswahl über GlobalIds.
+
+Bei jeder Auswahl wird im Browser das Ereignis `iqa:select-objects` ausgelöst. Ein späterer 3D-Viewer kann damit alle gewählten GlobalIds im Modell selektieren, ohne die Quantity Engine zu verändern.
 
 ## Tests ausführen
 

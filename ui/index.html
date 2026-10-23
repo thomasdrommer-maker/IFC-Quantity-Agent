@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>IFC Quantity Agent</title>
+  <link rel="stylesheet" href="/assets/styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">IQ</div>
+        <div><strong>IFC Quantity</strong><span>Agent · MVP 1</span></div>
+      </div>
+      <nav id="main-nav" aria-label="Hauptnavigation">
+        <button class="nav-item active" data-view="overview"><span>01</span>Projektübersicht</button>
+        <button class="nav-item" data-view="audit"><span>02</span>Prüfbericht</button>
+        <button class="nav-item" data-view="objects"><span>03</span>Objekte</button>
+        <button class="nav-item" data-view="quantities"><span>04</span>Mengenübersicht</button>
+        <button class="nav-item" data-view="structure"><span>05</span>Modellstruktur</button>
+        <button class="nav-item" data-view="building"><span>06</span>Bauwerksbuch</button>
+        <button class="nav-item" data-view="materials"><span>07</span>Materialanalyse</button>
+        <button class="nav-item" data-view="quality"><span>08</span>Model Quality Checker</button>
+      </nav>
+      <div class="sidebar-footer">
+        <span class="status-dot"></span>
+        <div><strong>API verbunden</strong><small id="api-version">Verbindung wird geprüft</small></div>
+      </div>
+    </aside>
+
+    <main class="workspace">
+      <header class="topbar">
+        <div>
+          <div class="eyebrow">MODELLZENTRIERTE MENGENPRÜFUNG</div>
+          <h1 id="page-title">Projektübersicht</h1>
+        </div>
+        <div class="top-actions">
+          <div id="model-chip" class="model-chip muted">Kein Modell geladen</div>
+          <button id="upload-trigger" class="button primary">IFC-Modell öffnen</button>
+          <input id="file-input" type="file" accept=".ifc" hidden>
+        </div>
+      </header>
+
+      <section id="upload-panel" class="upload-panel">
+        <div class="upload-icon">IFC</div>
+        <div>
+          <h2>Z445 oder ein anderes IFC-Modell prüfen</h2>
+          <p>Die Datei wird analysiert, danach erscheinen Projektübersicht, Regelresultate, Findings und Objektdetails. Es werden keine fehlenden Werte ergänzt.</p>
+        </div>
+        <button id="upload-panel-trigger" class="button secondary">IFC auswählen</button>
+      </section>
+
+      <div id="loading" class="loading hidden" role="status">
+        <div class="spinner"></div>
+        <div><strong>IFC-Modell wird analysiert</strong><span>Inventur, Regeln und Objektbezüge werden aufgebaut …</span></div>
+      </div>
+      <div id="error-banner" class="error-banner hidden"></div>
+
+      <section id="view-overview" class="view active">
+        <div id="overview-empty" class="empty-state compact">
+          <div class="empty-number">01</div><h2>Projektübersicht bereit</h2><p>Öffne ein IFC-Modell, um belastbare Kennzahlen aus der Quantity Engine zu sehen.</p>
+        </div>
+        <div id="overview-content" class="hidden">
+          <div class="metric-grid" id="metric-grid"></div>
+          <div class="content-grid">
+            <article class="panel span-2"><div class="panel-heading"><div><span class="kicker">DATENABDECKUNG</span><h2>Qualität der Kerndaten</h2></div><span class="badge neutral">Live aus IFC</span></div><div id="coverage-list" class="coverage-list"></div></article>
+            <article class="panel"><div class="panel-heading"><div><span class="kicker">MODELL</span><h2>Erkennung</h2></div></div><dl id="model-facts" class="fact-list"></dl></article>
+            <article class="panel span-2"><div class="panel-heading"><div><span class="kicker">IFC-KLASSEN</span><h2>Häufigste Bauteilklassen</h2></div></div><div id="class-bars" class="bar-list"></div></article>
+            <article class="panel"><div class="panel-heading"><div><span class="kicker">PRÜFSTATUS</span><h2>Regellauf</h2></div></div><div id="rule-donut" class="rule-summary"></div></article>
+          </div>
+        </div>
+      </section>
+
+      <section id="view-audit" class="view">
+        <div class="section-head"><div><span class="kicker">NACHVOLLZIEHBAR BIS ZUM OBJEKT</span><h2>Prüfbericht</h2></div><div class="segmented"><button class="active" data-audit-tab="findings">Findings</button><button data-audit-tab="rules">Regelresultate</button></div></div>
+        <div id="audit-empty" class="empty-state"><h2>Noch kein Prüflauf</h2><p>Nach dem IFC-Upload werden Regelresultate und objektbezogene Findings hier filterbar angezeigt.</p></div>
+        <div id="audit-content" class="panel table-panel hidden">
+          <div class="table-toolbar"><div class="search-wrap"><span>⌕</span><input id="audit-search" placeholder="Prüfbericht durchsuchen …"></div><select id="audit-severity"><option value="">Alle Schweregrade</option><option value="error">Fehler</option><option value="warning">Warnung</option><option value="info">Information</option></select><span id="audit-count" class="result-count"></span></div>
+          <div class="table-scroll"><table><thead id="audit-head"></thead><tbody id="audit-body"></tbody></table></div>
+        </div>
+      </section>
+
+      <section id="view-objects" class="view">
+        <div class="section-head"><div><span class="kicker">GLOBALID ALS DURCHGÄNGIGER SCHLÜSSEL</span><h2>Objektliste</h2></div><div id="selection-status" class="selection-status">0 Objekte gewählt</div></div>
+        <div id="objects-empty" class="empty-state"><h2>Noch keine Objekte</h2><p>Die Liste wird nach der Analyse aus den tatsächlich vorhandenen IFC-Elementen erzeugt.</p></div>
+        <div id="objects-layout" class="object-layout hidden">
+          <article class="panel table-panel">
+            <div class="table-toolbar"><div class="search-wrap"><span>⌕</span><input id="object-search" placeholder="GlobalId, Name, Klasse …"></div><label class="check-filter"><input id="missing-lv" type="checkbox"> LV-Ident leer</label><label class="check-filter"><input id="only-findings" type="checkbox"> Nur mit Findings</label><span id="object-count" class="result-count"></span></div>
+            <div class="table-scroll tall"><table><thead><tr><th class="select-col"><input id="select-all" type="checkbox" aria-label="Alle sichtbaren Objekte wählen"></th><th>IFC-Klasse</th><th>Name</th><th>LV-Ident</th><th>Material</th><th>Findings</th></tr><tr class="column-filters"><th></th><th><input data-field="ifc_class" placeholder="Filtern"></th><th><input data-field="name" placeholder="Filtern"></th><th><select data-field="lv_ident"><option value="">Alle</option><option value="__EMPTY__">(Leer)</option><option value="__FILLED__">(Nicht leer)</option></select></th><th><input data-field="materials" placeholder="Filtern"></th><th></th></tr></thead><tbody id="object-body"></tbody></table></div>
+          </article>
+          <aside id="detail-panel" class="detail-panel"><div class="detail-empty"><div class="detail-glyph">↗</div><h3>Objekt auswählen</h3><p>Klicke eine Tabellenzeile an, um IFC-Attribute, PSets, QTOs und Findings zu prüfen.</p></div></aside>
+        </div>
+      </section>
+
+      <section id="view-quantities" class="view"><div class="empty-state roadmap"><span class="badge planned">MVP‑1 AUSBAU</span><h2>Mengenübersicht</h2><p>Die Navigation ist vorbereitet. Als nächstes werden die API-Mengen nach Bauteilgruppe, Material und Einheit ohne Doppelzählung aggregiert.</p></div></section>
+      <section id="view-structure" class="view"><div class="empty-state roadmap"><span class="badge planned">MVP‑1 AUSBAU</span><h2>Modellstruktur</h2><p>Hier entsteht der Projektbaum aus Teilmodell, Geschoss und Objektgruppe.</p></div></section>
+      <section id="view-building" class="view"><div class="empty-state roadmap"><span class="badge planned">MVP‑1 AUSBAU</span><h2>Bauwerksbuch / Räume</h2><p>GFA- und BSV-Nachweise werden erst angezeigt, sobald die zugehörige Datenquelle implementiert ist.</p></div></section>
+      <section id="view-materials" class="view"><div class="empty-state roadmap"><span class="badge planned">MVP‑1 AUSBAU</span><h2>Materialanalyse</h2><p>Originalmaterial und normalisierte Materialgruppen werden künftig parallel ausgewertet.</p></div></section>
+      <section id="view-quality" class="view"><div class="empty-state roadmap"><span class="badge planned">NACH MVP‑1</span><h2>Model Quality Checker</h2><p>KI-Hinweise und verbindliche EIR-/AIA-Regelprüfungen bleiben klar getrennte Arbeitsbereiche.</p></div></section>
+    </main>
+  </div>
+  <script src="/assets/app.js" defer></script>
+</body>
+</html>

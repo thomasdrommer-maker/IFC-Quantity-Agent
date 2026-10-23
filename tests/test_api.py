@@ -35,6 +35,14 @@ class ApiContractTests(unittest.TestCase):
         self.assertIn("/api/v1/analyses/{analysis_id}/findings", paths)
         self.assertIn("/api/v1/analyses/{analysis_id}/objects/{global_id}", paths)
 
+    def test_ui_shell_is_served(self):
+        response = self.client.get("/")
+        self.assertEqual(response.status_code, 200)
+        self.assertIn("IFC Quantity Agent", response.text)
+        asset = self.client.get("/assets/app.js")
+        self.assertEqual(asset.status_code, 200)
+        self.assertIn("iqa:select-objects", asset.text)
+
     def test_invalid_file_extension_is_rejected(self):
         response = self.client.post(
             "/api/v1/analyses",

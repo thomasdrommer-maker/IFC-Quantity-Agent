@@ -7,6 +7,8 @@ from typing import Any, Literal
 
 from fastapi import FastAPI, File, HTTPException, Query, UploadFile, status
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, ConfigDict, Field
 
 from .service import AnalysisNotFound, AnalysisService, ObjectNotFound
@@ -89,6 +91,8 @@ def default_service() -> AnalysisService:
 
 def create_app(service: AnalysisService | None = None) -> FastAPI:
     analysis_service = service or default_service()
+    package_root = Path(__file__).resolve().parents[2]
+    ui_root = package_root / "ui"
     app = FastAPI(
         title="IFC Quantity Agent MVP-1 API",
         version="1.0.0",
@@ -231,6 +235,13 @@ def create_app(service: AnalysisService | None = None) -> FastAPI:
             raise HTTPException(status_code=404, detail="Analyse nicht gefunden.")
         except ObjectNotFound:
             raise HTTPException(status_code=404, detail="Objekt nicht gefunden.")
+
+    if ui_root.exists():
+        app.mount("/assets", StaticFiles(directory=ui_root / "assets"), name="ui-assets")
+
+        @app.get("/", include_in_schema=False)
+        def user_interface() -> FileResponse:
+            return FileResponse(ui_root / "index.html")
 
     return app
 
