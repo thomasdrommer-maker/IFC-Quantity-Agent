@@ -8,12 +8,15 @@ echo  IFC Quantity Agent - MVP 1
 echo ============================================================
 echo.
 
-py -3.14 -c "import sys; print(sys.version)" >nul 2>nul
+set "IQA_PYTHON=py -3.14"
+py -3.14 -c "import sys; raise SystemExit(0 if sys.version_info[:2] == (3, 14) else 1)" >nul 2>nul
+if errorlevel 1 set "IQA_PYTHON=python"
+%IQA_PYTHON% -c "import sys; raise SystemExit(0 if sys.version_info[:2] == (3, 14) else 1)" >nul 2>nul
 if errorlevel 1 (
   echo Python 3.14 wurde nicht gefunden.
   echo.
   echo Der IFC Quantity Agent benoetigt Python 3.14.
-  echo Bitte pruefen Sie mit: py -3.14 --version
+  echo Bitte pruefen Sie mit: python --version
   echo.
   pause
   exit /b 1
@@ -21,7 +24,7 @@ if errorlevel 1 (
 
 if not exist ".venv314\Scripts\python.exe" (
   echo [1/3] Lokale Python-Umgebung wird eingerichtet ...
-  py -3.14 -m venv .venv314
+  %IQA_PYTHON% -m venv .venv314
   if errorlevel 1 goto :error
 )
 
