@@ -1,0 +1,25 @@
+name: MVP-1 tests
+
+on:
+  push:
+    branches: [main, "feature/**"]
+  pull_request:
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install dependencies
+        run: python -m pip install -r requirements.txt
+      - name: Run tests
+        run: python -m unittest discover -s tests -v
+      - name: Validate OpenAPI export
+        run: |
+          python export_openapi.py
+          git diff --exit-code -- openapi/ifc_quantity_agent_mvp1_openapi_v1.json
+
