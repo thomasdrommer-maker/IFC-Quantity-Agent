@@ -44,6 +44,16 @@ Exitcode `0` bedeutet: alle Regeln bestanden. Exitcode `1` bedeutet: mindestens 
 
 ## API starten
 
+### Einfacher Start unter Windows
+
+1. Python 3.12 installieren.
+2. Das Projektpaket entpacken.
+3. `START_IFC_QUANTITY_AGENT.cmd` doppelklicken.
+
+Der Starter richtet beim ersten Aufruf automatisch eine lokale `.venv` ein, installiert die Abhängigkeiten und öffnet anschließend die Oberfläche im Browser. Git und eine manuelle Aktivierung der virtuellen Umgebung sind dafür nicht erforderlich.
+
+### Manueller Start
+
 ```bash
 python run_api.py
 ```
