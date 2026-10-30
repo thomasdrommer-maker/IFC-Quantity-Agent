@@ -4,14 +4,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>IFC Quantity Agent</title>
-  <link rel="stylesheet" href="/assets/styles.css">
+  <link rel="stylesheet" href="/assets/styles.css?v=0.3.4">
 </head>
 <body>
   <div class="app-shell">
     <aside class="sidebar">
       <div class="brand">
         <div class="brand-mark">IQ</div>
-        <div><strong>IFC Quantity</strong><span>Agent · MVP 1</span></div>
+        <div><strong>IFC Quantity</strong><span>Agent · MVP 1 · UI v0.3.4</span></div>
       </div>
       <nav id="main-nav" aria-label="Hauptnavigation">
         <button class="nav-item active" data-view="overview"><span>01</span>Projektübersicht</button>
@@ -63,6 +63,7 @@
           <div class="empty-number">01</div><h2>Projektübersicht bereit</h2><p>Öffne ein IFC-Modell, um belastbare Kennzahlen aus der Quantity Engine zu sehen.</p>
         </div>
         <div id="overview-content" class="hidden">
+          <div id="ifc-file-summary" class="file-summary"></div>
           <div class="metric-grid" id="metric-grid"></div>
           <div class="content-grid">
             <article class="panel span-2"><div class="panel-heading"><div><span class="kicker">DATENABDECKUNG</span><h2>Qualität der Kerndaten</h2></div><span class="badge neutral">Live aus IFC</span></div><div id="coverage-list" class="coverage-list"></div></article>
@@ -101,6 +102,6 @@
       <section id="view-quality" class="view"><div class="empty-state roadmap"><span class="badge planned">NACH MVP‑1</span><h2>Model Quality Checker</h2><p>KI-Hinweise und verbindliche EIR-/AIA-Regelprüfungen bleiben klar getrennte Arbeitsbereiche.</p></div></section>
     </main>
   </div>
-  <script src="/assets/app.js" defer></script>
+  <script src="/assets/app.js?v=0.3.4" defer></script>
 </body>
 </html>
