@@ -1,8 +1,8 @@
 # IFC Quantity Agent – Projektstatus
 
-**Stand:** 23.10.2026  
+**Stand:** 30.10.2026  
 **Entwicklungskonzept:** v1.11  
-**Implementierungspaket:** v0.3.3  
+**Implementierungspaket:** v0.3.4  
 **API-Vertrag:** v1.0.0  
 **Regelpaket:** IQA-M1-Z445-ECA v0.1.0
 
@@ -45,3 +45,9 @@ MVP-1-UI anhand des Z445-Modells fachlich und visuell prüfen. Danach Mengenübe
 
 `Z445_799_ECA_BM_801_3D.ifc` wird nicht im Repository gespeichert. Für den lokalen End-to-End-Test wird der Pfad über `IFC_MVP1_REFERENCE_MODEL` gesetzt.
 
+
+## UI v0.3.4 – Aktualisierung eindeutig erkennen
+
+- Versionsnummer in der Seitenleiste, versionierte Asset-URLs
+- Schema, IFC-Zeitstempel und Referenzstand direkt oberhalb der Kennzahlen
+- Starter reserviert einen freien Port und öffnet den Browser erst nach Serverbereitschaft; keine Weiterleitung auf einen älteren Prozess
