@@ -62,7 +62,7 @@ python run_api.py
 
 Danach stehen lokal bereit:
 
-- MVP-1-Oberfläche: `http://127.0.0.1:8000/`
+- MVP-1-Oberfläche: `http://127.0.0.1:8000/` (bei belegtem Port automatisch nächster freier Port)
 - API: `http://127.0.0.1:8000/api/v1`
 - interaktive OpenAPI-Dokumentation: `http://127.0.0.1:8000/docs`
 - OpenAPI-JSON: `http://127.0.0.1:8000/openapi.json`
@@ -123,3 +123,7 @@ Die Baseline ist die einzige Quelle der Sollwerte. Der Collector darf keine fehl
 `NetVolume` wird ausschließlich aus nativen `Qto_*BaseQuantities` gelesen. Gleichnamige Properties aus projektspezifischen oder benutzerdefinierten PropertySets werden nicht als IFC-Basisquantity behandelt. Dadurch bleiben Mengenquelle und Semantik reproduzierbar.
 
 
+
+### Update v0.3.4
+
+Links oben steht `UI v0.3.4`. IFC-Schema, Exportzeitpunkt und Referenzstand stehen nach dem Upload oberhalb der Kennzahlen. Der Starter reserviert einen freien Port und öffnet genau diese Instanz. Die im Konsolenfenster angezeigte Browser-Adresse gilt für diese Sitzung.
