@@ -4,7 +4,7 @@ cd /d "%~dp0"
 
 echo.
 echo ============================================================
-echo  IFC Quantity Agent - MVP 1
+echo  IFC Quantity Agent - MVP 1 - UI v0.3.4
 echo ============================================================
 echo.
 
@@ -39,14 +39,14 @@ if not exist ".venv314\.iqa_dependencies_ready" (
 
 echo [3/3] Anwendung wird gestartet ...
 echo.
-echo Browser-Adresse: http://127.0.0.1:8000/
+echo Browser und freier Port werden beim Start automatisch gewaehlt.
 echo Dieses Fenster bitte geoeffnet lassen.
 echo Zum Beenden Strg+C druecken.
 echo.
 
-start "" powershell -NoProfile -WindowStyle Hidden -Command "Start-Sleep -Seconds 2; Start-Process 'http://127.0.0.1:8000/'"
 ".venv314\Scripts\python.exe" run_api.py
-exit /b %errorlevel%
+if errorlevel 1 goto :error
+exit /b 0
 
 :error
 echo.
