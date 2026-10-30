@@ -2,7 +2,7 @@
 
 **Stand:** 23.10.2026  
 **Entwicklungskonzept:** v1.11  
-**Implementierungspaket:** v0.3.2  
+**Implementierungspaket:** v0.3.3  
 **API-Vertrag:** v1.0.0  
 **Regelpaket:** IQA-M1-Z445-ECA v0.1.0
 
@@ -27,6 +27,7 @@
 - CI-Kompatibilitätsmatrix für Python 3.12 und 3.14
 - vollständiger Z445-End-to-End-Lauf unter Python 3.14.8: 15/15 Tests und 32/32 Regeln bestanden
 - UI v0.3.2: SHA-256-Identität und Referenzabweichungen explizit kennzeichnen; Regelquote als Referenzvergleich benennen
+- UI v0.3.3: IFC-Schema und Export-/Erstellungszeitpunkt aus `FILE_NAME.TIME_STAMP` in der Projektübersicht anzeigen, ohne eine Zeitzone anzunehmen
 
 ## Bewusste MVP-Grenzen
 
