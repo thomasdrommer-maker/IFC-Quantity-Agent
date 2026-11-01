@@ -1,0 +1,7 @@
+{
+  "version": "0.2.0",
+  "status": "passed",
+  "checks": 1991,
+  "scope": "Profilgrenzen, Export/JSON-Konsistenz und unveränderte Ursprungsdaten geprüft",
+  "limitation": "40 Profil-Sollfälle in beiden Paketen zusammen sind noch nicht im Quantity Agent ausgeführt."
+}

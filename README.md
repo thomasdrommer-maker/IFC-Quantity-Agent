@@ -1,6 +1,14 @@
 # IFC Quantity Agent – MVP-1-Regressionspaket
 
-Dieses Paket prüft das Referenzmodell `Z445_799_ECA_BM_801_3D.ifc` deterministisch gegen die freigegebene JSON-Baseline. Es setzt die Anforderungen aus dem Entwicklungskonzept v1.11 und der MVP-1-Abnahmebasis in stabile Regel-IDs und automatisierte Regressionstests um.
+Dieses Paket prüft das Referenzmodell `Z445_799_ECA_BM_801_3D.ifc` deterministisch gegen die freigegebene JSON-Baseline. Die implementierte MVP-1-Regression beruht auf dem Entwicklungskonzept v1.11 und der MVP-1-Abnahmebasis. Der aktuelle Gesamtauftrag ist v1.12; die darin ergänzten Kategorien und benutzerdefinierten Profile sind noch nicht implementiert.
+
+## Aktuelle Entwicklungsgrundlagen
+
+- [Verbindlicher Entwicklungsauftrag v1.12](docs/concept/IFC_Quantity_Agent_Entwicklungskonzept_v1.12.md)
+- [Stahlbau- und Betonbau-Übergabepakete v0.2](docs/handover/README.md), einschließlich Excel/JSON, Original-ZIPs und Prüfvermerken
+- [Projektstatus und nächste Schritte](PROJECT_STATE.md)
+
+Die neuen Vorgaben umfassen benutzerdefinierte Kategorieprofile, besonders für Betonstützen, Betonwände und Stahlbleche. Sie sind Entwicklungsumfang für MVP 3/4; die laufende Anwendung bleibt MVP 1.
 
 ## Inhalt
 
@@ -127,3 +135,4 @@ Die Baseline ist die einzige Quelle der Sollwerte. Der Collector darf keine fehl
 ### Update v0.3.4
 
 Links oben steht `UI v0.3.4`. IFC-Schema, Exportzeitpunkt und Referenzstand stehen nach dem Upload oberhalb der Kennzahlen. Der Starter reserviert einen freien Port und öffnet genau diese Instanz. Die im Konsolenfenster angezeigte Browser-Adresse gilt für diese Sitzung.
+

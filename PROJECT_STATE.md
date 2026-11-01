@@ -1,7 +1,7 @@
 # IFC Quantity Agent – Projektstatus
 
-**Stand:** 30.10.2026  
-**Entwicklungskonzept:** v1.11  
+**Stand:** 01.11.2026  
+**Entwicklungskonzept:** [v1.12](docs/concept/IFC_Quantity_Agent_Entwicklungskonzept_v1.12.md)  
 **Implementierungspaket:** v0.3.4  
 **API-Vertrag:** v1.0.0  
 **Regelpaket:** IQA-M1-Z445-ECA v0.1.0
@@ -51,3 +51,13 @@ MVP-1-UI anhand des Z445-Modells fachlich und visuell prüfen. Danach Mengenübe
 - Versionsnummer in der Seitenleiste, versionierte Asset-URLs
 - Schema, IFC-Zeitstempel und Referenzstand direkt oberhalb der Kennzahlen
 - Starter reserviert einen freien Port und öffnet den Browser erst nach Serverbereitschaft; keine Weiterleitung auf einen älteren Prozess
+
+
+## Fachübergabe v0.2 / Auftrag v1.12 – 01.11.2026
+
+- Beide vollständigen Originalpakete in [docs/handover](docs/handover/README.md) übernommen; zehn Dateien mit SHA-256-Manifest und bytegleichen ZIP-Inhalten.
+- Gesamtauftrag auf v1.12 fortgeschrieben; Stahl-/Betonkategorien sowie PR01–PR20 für eigene Profile verbindlich eingeordnet.
+- Schwerpunkt: Stützenquerschnitte/-höhen, Wanddicken/-höhen und Blechdicken/-flächen/-massen; exakte Maße parallel zu Intervallen.
+- Profilengine, API-/UI-Verwaltung und Excel-/JSON-Konfigurationsaustausch sind noch offen. Je Paket 32 fachliche und 20 Profil-Sollfälle sind noch als Integrationstests umzusetzen.
+- Keine Änderung an Collector, Baseline, aktiven MVP-1-Regeln, Anwendungsversion oder OpenAPI. Fachpakete nicht automatisch aktiv laden.
+- Nach MVP-1-Abnahme gemeinsamen Profilkern entwickeln; Integration in Stahlbau MVP 3 und Betonbau MVP 4. Modellcode-Mapping und Mengenquellen des Gesamtauftrags bleiben maßgebend.

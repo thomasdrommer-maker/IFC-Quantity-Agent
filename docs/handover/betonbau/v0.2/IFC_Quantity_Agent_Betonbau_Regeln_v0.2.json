@@ -1,0 +1,2695 @@
+{
+  "schema_version": "1.1.0",
+  "catalog_id": "ifcqa_concrete_categories",
+  "catalog_version": "0.2.0",
+  "date": "2026-11-01",
+  "author": "OpenAI für Tom",
+  "status": "Entwurf zur Projektabstimmung",
+  "scope": [
+    "EFx",
+    "ECx",
+    "kombinierte Modelle nach Projektmapping"
+  ],
+  "ifc_versions": [
+    "IFC4",
+    "IFC4.3 ADD2"
+  ],
+  "categories": [
+    {
+      "code": "EF01",
+      "model_scope": "EFx",
+      "group_de": "Flachgründung",
+      "name_de": "Einzel-/Blockfundament",
+      "quantities_de": "m³; Stk",
+      "geometry_de": "L × B × H; Form",
+      "note_de": "Funktion und Betonmaterial bestätigen; keine Zuordnung allein aus dem Namen.",
+      "status": "Projektvorschlag"
+    },
+    {
+      "code": "EF02",
+      "model_scope": "EFx",
+      "group_de": "Flachgründung",
+      "name_de": "Streifenfundament",
+      "quantities_de": "m³; m; Stk",
+      "geometry_de": "Breite; Höhe; Achslänge",
+      "note_de": "Funktion und Betonmaterial bestätigen; keine Zuordnung allein aus dem Namen.",
+      "status": "Projektvorschlag"
+    },
+    {
+      "code": "EF03",
+      "model_scope": "EFx",
+      "group_de": "Flachgründung",
+      "name_de": "Fundament-/Gründungsplatte",
+      "quantities_de": "m³; m²; Stk",
+      "geometry_de": "Plattendicke; Grundfläche",
+      "note_de": "Gründungsfunktion bestätigen; BASESLAB kann auch bei anderen erdberührten Bodenplatten vorkommen.",
+      "status": "Projektvorschlag"
+    },
+    {
+      "code": "EF04",
+      "model_scope": "EFx",
+      "group_de": "Flachgründung",
+      "name_de": "Kombiniertes Fundament",
+      "quantities_de": "m³; Stk",
+      "geometry_de": "Form; L × B × H",
+      "note_de": "Physischer Fundamentkörper; Fundamentrost als bloße Gruppe hat keine zusätzliche Betonmenge.",
+      "status": "Projektvorschlag"
+    },
+    {
+      "code": "EF05",
+      "model_scope": "EFx",
+      "group_de": "Gründungsverbindung",
+      "name_de": "Freitragender Fundamentbalken",
+      "quantities_de": "m³; m; Stk",
+      "geometry_de": "Breite; Höhe; Achslänge",
+      "note_de": "Zwischen Auflagern frei spannender Gründungsbalken; bodengelagerten Streifen getrennt behandeln.",
+      "status": "Projektvorschlag"
+    },
+    {
+      "code": "EF06",
+      "model_scope": "EFx",
+      "group_de": "Pfahlkopf",
+      "name_de": "Pfahlkopfblock/-platte",
+      "quantities_de": "m³; Stk",
+      "geometry_de": "Dicke/Höhe; Grundfläche",
+      "note_de": "Pfahlkopfbeton separat vom Pfahlschaft; einbetonierte Überlappung nicht doppelt summieren.",
+      "status": "Projektvorschlag"
+    },
+    {
+      "code": "EF07",
+      "model_scope": "EFx",
+      "group_de": "Flachgründung",
+      "name_de": "Köcherfundament",
+      "quantities_de": "m³; Stk",
+      "geometry_de": "Außenmaße; Köcherabmessungen",
+      "note_de": "Köcher ist ein Hohlraum; Beton-Netto berücksichtigt ihn. Verguss separat nur bei eigenem Materialkörper.",
+      "status": "Projektvorschlag"
+    },
+    {
+      "code": "EF08",
+      "model_scope": "EFx",
+      "group_de": "Sonderfundament",
+      "name_de": "Maschinen-/Anlagenfundament",
+      "quantities_de": "m³; Stk",
+      "geometry_de": "Form; Grundfläche; Höhe",
+      "note_de": "Nutzungskontext Maschine/Anlage bestätigen; statische Funktion und Geometrie entscheiden über IFC-Klasse.",
+      "status": "Projektvorschlag"
+    },
+    {
+      "code": "EF11",
+      "model_scope": "EFx",
+      "group_de": "Tiefgründung",
+      "name_de": "Bohrpfahl aus Beton",
+      "quantities_de": "Stk; m; m³",
+      "geometry_de": "Nenn-Ø exakt; Achslänge",
+      "note_de": "Funktion und Betonmaterial bestätigen; keine Zuordnung allein aus dem Namen.",
+      "status": "Projektvorschlag"
+    },
+    {
+      "code": "EF12",
+      "model_scope": "EFx",
+      "group_de": "Tiefgründung",
+      "name_de": "Verdrängungs-/Rammpfahl aus Beton",
+      "quantities_de": "Stk; m; m³",
+      "geometry_de": "Nenn-Ø oder B × H exakt; Achslänge",
+      "note_de": "DRIVEN nur bei tatsächlich gerammtem/gerütteltem Pfahl; Verdrängung ist nicht pauschal DRIVEN.",
+      "status": "Projektvorschlag"
+    },
+    {
+      "code": "EF13",
+      "model_scope": "EFx",
+      "group_de": "Tiefgründung",
+      "name_de": "Sonstiger Betonpfahl",
+      "quantities_de": "Stk; m; m³",
+      "geometry_de": "Querschnitt exakt; Achslänge",
+      "note_de": "Mikropfahl, Injektionskörper und DSV-Säule erst nach Materialklärung; Zementmörtel und Boden-Zement-Gemisch nicht pauschal als Beton erfassen.",
+      "status": "Projektvorschlag"
+    },
+    {
+      "code": "EF14",
+      "model_scope": "EFx",
+      "group_de": "Tiefgründung",
+      "name_de": "Barrette / tragendes Schlitzwandelement",
+      "quantities_de": "m³; m²; Stk",
+      "geometry_de": "Querschnitt; Tiefe; Funktion",
+      "note_de": "Vertikale Lastabtragung, Wand-/Stützfunktion und einzelne Betonlamelle unterscheiden; Exportmapping gesondert prüfen.",
+      "status": "Projektvorschlag"
+    },
+    {
+      "code": "EF15",
+      "model_scope": "EFx",
+      "group_de": "Tiefgründung",
+      "name_de": "Brunnen-/Senkkastengründung",
+      "quantities_de": "m³; Stk",
+      "geometry_de": "Außen-/Innengeometrie; Tiefe",
+      "note_de": "Versionsunterschied: in IFC4.3 eigene Klasse; Betonhülle, Boden und Hohlraum getrennt erfassen.",
+      "status": "Projektvorschlag"
+    },
+    {
+      "code": "EF21",
+      "model_scope": "EFx/ECx",
+      "group_de": "Ergänzungsbeton",
+      "name_de": "Sauberkeitsschicht / Unterbeton",
+      "quantities_de": "m³; m²",
+      "geometry_de": "Dicke; Grundfläche",
+      "note_de": "Unbewehrten Beton einschließen; keine Dämmung, Kiesschicht oder Erdverbesserung als Beton zählen.",
+      "status": "Projektvorschlag"
+    },
+    {
+      "code": "EF22",
+      "model_scope": "EFx/ECx",
+      "group_de": "Fundamentergänzung",
+      "name_de": "Fundament-/Stützensockel",
+      "quantities_de": "m³; Stk",
+      "geometry_de": "Höhe; Querschnitt",
+      "note_de": "Nach Gründungs- oder Stützenfunktion zuordnen; integrierter Sockel nicht zusätzlich zählen.",
+      "status": "Projektvorschlag"
+    },
+    {
+      "code": "EF23",
+      "model_scope": "EFx/ECx",
+      "group_de": "Gründungsrand",
+      "name_de": "Frostschürze",
+      "quantities_de": "m³; m",
+      "geometry_de": "Dicke/Breite; Höhe; Länge",
+      "note_de": "Funktion entscheidet; keine automatische Umklassifizierung bestehender Objekte.",
+      "status": "Projektvorschlag"
+    },
+    {
+      "code": "EF24",
+      "model_scope": "EFx/ECx",
+      "group_de": "Gründungs-/Stützwand",
+      "name_de": "Beton-Gründungswand / Stützwand",
+      "quantities_de": "m³; m²; m",
+      "geometry_de": "Wanddicke; Wandhöhe; Länge",
+      "note_de": "RETAININGWALL ist kein universeller IFC4-Wert; genaue Version prüfen. Bodenplatte und Wand nicht überlappend summieren.",
+      "status": "Projektvorschlag"
+    },
+    {
+      "code": "EC01",
+      "model_scope": "ECx/EFx",
+      "group_de": "Platten",
+      "name_de": "Bodenplatte ohne bestätigte Gründungsfunktion",
+      "quantities_de": "m³; m²",
+      "geometry_de": "Dicke; Grundfläche",
+      "note_de": "Von EF03 über bestätigte Funktion trennen. BASESLAB allein unterscheidet die beiden Kategorien nicht.",
+      "status": "Projektvorschlag"
+    },
+    {
+      "code": "EC02",
+      "model_scope": "ECx",
+      "group_de": "Platten",
+      "name_de": "Geschossdecke",
+      "quantities_de": "m³; m²",
+      "geometry_de": "Dicke; System; Grundfläche",
+      "note_de": "Funktion und Betonmaterial bestätigen; keine Zuordnung allein aus dem Namen.",
+      "status": "Projektvorschlag"
+    },
+    {
+      "code": "EC03",
+      "model_scope": "ECx",
+      "group_de": "Platten",
+      "name_de": "Dachdecke",
+      "quantities_de": "m³; m²",
+      "geometry_de": "Dicke; Neigung; Grundfläche",
+      "note_de": "Funktion und Betonmaterial bestätigen; keine Zuordnung allein aus dem Namen.",
+      "status": "Projektvorschlag"
+    },
+    {
+      "code": "EC04",
+      "model_scope": "ECx",
+      "group_de": "Platten",
+      "name_de": "Balkon-/Kragplatte",
+      "quantities_de": "m³; m²; Stk",
+      "geometry_de": "Dicke; Auskragung; Grundfläche",
+      "note_de": "Balkon/Kragplatte als bestätigte Funktion; keine gemeinsame Volumenzählung mit der durchlaufenden Decke.",
+      "status": "Projektvorschlag"
+    },
+    {
+      "code": "EC11",
+      "model_scope": "ECx",
+      "group_de": "Wände",
+      "name_de": "Betonwand / Wandscheibe",
+      "quantities_de": "m³; m²",
+      "geometry_de": "Dicke; Höhe; Länge; Öffnungen",
+      "note_de": "Tragfunktion separat führen; Sonderkontext Schacht oder Becken als Zusatzmerkmal bzw. bestätigte Unterkategorie.",
+      "status": "Projektvorschlag"
+    },
+    {
+      "code": "EC12",
+      "model_scope": "ECx",
+      "group_de": "Vertikale Bauteile",
+      "name_de": "Wandpfeiler",
+      "quantities_de": "m³; Stk",
+      "geometry_de": "Querschnitt; Höhe",
+      "note_de": "Wand- oder Stützenfunktion entscheidet; keine pauschale Grenze über Seitenverhältnis festlegen.",
+      "status": "Projektvorschlag"
+    },
+    {
+      "code": "EC13",
+      "model_scope": "ECx",
+      "group_de": "Vertikale Bauteile",
+      "name_de": "Betonstütze",
+      "quantities_de": "m³; Stk; m",
+      "geometry_de": "B × H oder Ø exakt; Höhe",
+      "note_de": "Funktion und Betonmaterial bestätigen; keine Zuordnung allein aus dem Namen.",
+      "status": "Projektvorschlag"
+    },
+    {
+      "code": "EC14",
+      "model_scope": "ECx",
+      "group_de": "Balken",
+      "name_de": "Unterzug",
+      "quantities_de": "m³; m; Stk",
+      "geometry_de": "Breite; Gesamthöhe; Unterstand; Länge",
+      "note_de": "Gesamthöhe und Höhe unter Decke unterscheiden; Volumenanteil im Deckenbereich nur einmal zählen.",
+      "status": "Projektvorschlag"
+    },
+    {
+      "code": "EC15",
+      "model_scope": "ECx",
+      "group_de": "Balken",
+      "name_de": "Überzug",
+      "quantities_de": "m³; m; Stk",
+      "geometry_de": "Breite; Gesamthöhe; Überstand; Länge",
+      "note_de": "Überstand oberhalb Decke dokumentieren; gemeinsame Geometrie nur einmal erfassen.",
+      "status": "Projektvorschlag"
+    },
+    {
+      "code": "EC16",
+      "model_scope": "ECx",
+      "group_de": "Balken",
+      "name_de": "Rand-/Ringbalken",
+      "quantities_de": "m³; m; Stk",
+      "geometry_de": "Querschnitt; Achslänge",
+      "note_de": "Geometrisch integrierte Randverstärkung ist keine zusätzliche Menge.",
+      "status": "Projektvorschlag"
+    },
+    {
+      "code": "EC17",
+      "model_scope": "ECx",
+      "group_de": "Balken",
+      "name_de": "Betonsturz",
+      "quantities_de": "m³; m; Stk",
+      "geometry_de": "Querschnitt; Länge",
+      "note_de": "Als eigenes Bauteil nur bei eigenem, abgegrenztem Materialvolumen.",
+      "status": "Projektvorschlag"
+    },
+    {
+      "code": "EC21",
+      "model_scope": "ECx",
+      "group_de": "Treppen",
+      "name_de": "Treppenlauf",
+      "quantities_de": "m³; Stk",
+      "geometry_de": "Laufbreite; Tragplattendicke; Steigung",
+      "note_de": "IfcStair als Gesamttreppe kann Container sein; Läufe und Podeste nicht zusätzlich zur Gesamtmenge addieren.",
+      "status": "Projektvorschlag"
+    },
+    {
+      "code": "EC22",
+      "model_scope": "ECx",
+      "group_de": "Treppen",
+      "name_de": "Treppenpodest",
+      "quantities_de": "m³; m²; Stk",
+      "geometry_de": "Dicke; Grundfläche",
+      "note_de": "Funktion und Betonmaterial bestätigen; keine Zuordnung allein aus dem Namen.",
+      "status": "Projektvorschlag"
+    },
+    {
+      "code": "EC23",
+      "model_scope": "ECx",
+      "group_de": "Rampen",
+      "name_de": "Rampenlauf",
+      "quantities_de": "m³; m²; Stk",
+      "geometry_de": "Dicke normal zur Fläche; Breite; Neigung",
+      "note_de": "Schrägfläche und horizontale Projektion getrennt dokumentieren.",
+      "status": "Projektvorschlag"
+    },
+    {
+      "code": "EC24",
+      "model_scope": "ECx",
+      "group_de": "Rampen",
+      "name_de": "Rampenpodest",
+      "quantities_de": "m³; m²; Stk",
+      "geometry_de": "Dicke; Grundfläche",
+      "note_de": "Funktion und Betonmaterial bestätigen; keine Zuordnung allein aus dem Namen.",
+      "status": "Projektvorschlag"
+    },
+    {
+      "code": "EC31",
+      "model_scope": "ECx/EFx",
+      "group_de": "Ergänzungsbauteile",
+      "name_de": "Aufkantung",
+      "quantities_de": "m³; m",
+      "geometry_de": "Breite/Dicke; Höhe; Länge",
+      "note_de": "Funktion, Lage und physische Abgrenzung prüfen; keine erfundene eigene IFC-Klasse.",
+      "status": "Projektvorschlag"
+    },
+    {
+      "code": "EC32",
+      "model_scope": "ECx",
+      "group_de": "Ergänzungsbauteile",
+      "name_de": "Betonbrüstung",
+      "quantities_de": "m³; m²; m",
+      "geometry_de": "Dicke; Höhe; Länge",
+      "note_de": "Funktion und Betonmaterial bestätigen; keine Zuordnung allein aus dem Namen.",
+      "status": "Projektvorschlag"
+    },
+    {
+      "code": "EC33",
+      "model_scope": "ECx",
+      "group_de": "Ergänzungsbauteile",
+      "name_de": "Betonkonsole",
+      "quantities_de": "m³; Stk",
+      "geometry_de": "Auskragung; Breite; Höhe",
+      "note_de": "Integrierte Konsole als Merkmal des Tragelements; separates Volumen nur bei eindeutiger Abgrenzung.",
+      "status": "Projektvorschlag"
+    },
+    {
+      "code": "EC34",
+      "model_scope": "ECx/EFx",
+      "group_de": "Verstärkungen",
+      "name_de": "Voute / lokale Verdickung",
+      "quantities_de": "m³; Stk",
+      "geometry_de": "Verlauf; minimale/maximale Dicke",
+      "note_de": "Vorzugsweise Zusatzmerkmal; eigene Hauptkategorie nur bei nicht überlappendem separatem Betonobjekt.",
+      "status": "Projektvorschlag"
+    },
+    {
+      "code": "EC35",
+      "model_scope": "ECx/EFx",
+      "group_de": "Schächte",
+      "name_de": "Schacht-/Beckenwand",
+      "quantities_de": "m³; m²",
+      "geometry_de": "Dicke; Höhe; Innen-/Außenform",
+      "note_de": "Spezifische Unterkategorie von Wand; niemals zusätzlich zu EC11 zählen.",
+      "status": "Projektvorschlag"
+    },
+    {
+      "code": "EC36",
+      "model_scope": "ECx/EFx",
+      "group_de": "Schächte",
+      "name_de": "Schacht-/Beckensohle oder Abdeckplatte",
+      "quantities_de": "m³; m²; Stk",
+      "geometry_de": "Dicke; Grundfläche; Lage",
+      "note_de": "Sohle oder Abdeckung als Untertyp festhalten; Hohlraum und kompletten Schachtcontainer nicht als Beton zählen.",
+      "status": "Projektvorschlag"
+    },
+    {
+      "code": "EC41",
+      "model_scope": "ECx/EFx",
+      "group_de": "Sondergeometrien",
+      "name_de": "Betonschale / Faltwerk / Sonderkörper",
+      "quantities_de": "m³; m²; Stk",
+      "geometry_de": "Flächennormale Dicke; Krümmung; Form",
+      "note_de": "Sonderform ist kein Grund für automatische Proxy-Klassifizierung; unbekannte Funktion sichtbar lassen.",
+      "status": "Projektvorschlag"
+    },
+    {
+      "code": "MX01",
+      "model_scope": "EFx/ECx",
+      "group_de": "Ergänzungsbeton",
+      "name_de": "Vergussbeton",
+      "quantities_de": "m³; Stk",
+      "geometry_de": "Geometrie; Einbauort",
+      "note_de": "Nur Beton; Vergussmörtel separat außerhalb der Beton-Standardsumme. Keine implizite Füllung von Köchern.",
+      "status": "Projektvorschlag"
+    },
+    {
+      "code": "MX02",
+      "model_scope": "EFx/ECx",
+      "group_de": "Ergänzungsbeton",
+      "name_de": "Füll-/Ausgleichsbeton",
+      "quantities_de": "m³; m²",
+      "geometry_de": "Dicke; Form; Einbauort",
+      "note_de": "Material bestätigen; Estrich und Mörtel nicht allein über ähnliche Bezeichnungen einschließen.",
+      "status": "Projektvorschlag"
+    },
+    {
+      "code": "UN00",
+      "model_scope": "EFx/ECx",
+      "group_de": "Ungeklärt",
+      "name_de": "Betonobjekt mit ungeklärter Bauteilfunktion",
+      "quantities_de": "m³, soweit bestätigt; Stk",
+      "geometry_de": "Vorhandene Originalmaße erhalten",
+      "note_de": "Auffangstatus, keine fachliche Endzuordnung. Bestätigtes Betonvolumen separat unter ungeklärt zeigen; Materiallücken nicht als Beton bestätigen.",
+      "status": "Projektvorschlag"
+    }
+  ],
+  "ifc_mapping_candidates": [
+    {
+      "code": "EF01",
+      "ifc4_candidate": "IfcFooting / PAD_FOOTING",
+      "ifc43_candidate": "IfcFooting / PAD_FOOTING",
+      "status": "Prüfvorschlag",
+      "note_de": "Funktion und Betonmaterial bestätigen; keine Zuordnung allein aus dem Namen."
+    },
+    {
+      "code": "EF02",
+      "ifc4_candidate": "IfcFooting / STRIP_FOOTING",
+      "ifc43_candidate": "IfcFooting / STRIP_FOOTING",
+      "status": "Prüfvorschlag",
+      "note_de": "Funktion und Betonmaterial bestätigen; keine Zuordnung allein aus dem Namen."
+    },
+    {
+      "code": "EF03",
+      "ifc4_candidate": "IfcSlab / BASESLAB",
+      "ifc43_candidate": "IfcSlab / BASESLAB",
+      "status": "Prüfvorschlag",
+      "note_de": "Gründungsfunktion bestätigen; BASESLAB kann auch bei anderen erdberührten Bodenplatten vorkommen."
+    },
+    {
+      "code": "EF04",
+      "ifc4_candidate": "IfcFooting",
+      "ifc43_candidate": "IfcFooting",
+      "status": "Prüfvorschlag",
+      "note_de": "Physischer Fundamentkörper; Fundamentrost als bloße Gruppe hat keine zusätzliche Betonmenge."
+    },
+    {
+      "code": "EF05",
+      "ifc4_candidate": "IfcFooting / FOOTING_BEAM",
+      "ifc43_candidate": "IfcFooting / FOOTING_BEAM",
+      "status": "Prüfvorschlag",
+      "note_de": "Zwischen Auflagern frei spannender Gründungsbalken; bodengelagerten Streifen getrennt behandeln."
+    },
+    {
+      "code": "EF06",
+      "ifc4_candidate": "IfcFooting / PILE_CAP",
+      "ifc43_candidate": "IfcFooting / PILE_CAP",
+      "status": "Prüfvorschlag",
+      "note_de": "Pfahlkopfbeton separat vom Pfahlschaft; einbetonierte Überlappung nicht doppelt summieren."
+    },
+    {
+      "code": "EF07",
+      "ifc4_candidate": "IfcFooting / PAD_FOOTING",
+      "ifc43_candidate": "IfcFooting / PAD_FOOTING",
+      "status": "Prüfvorschlag",
+      "note_de": "Köcher ist ein Hohlraum; Beton-Netto berücksichtigt ihn. Verguss separat nur bei eigenem Materialkörper."
+    },
+    {
+      "code": "EF08",
+      "ifc4_candidate": "IfcFooting oder IfcSlab",
+      "ifc43_candidate": "IfcFooting oder IfcSlab",
+      "status": "Prüfvorschlag",
+      "note_de": "Nutzungskontext Maschine/Anlage bestätigen; statische Funktion und Geometrie entscheiden über IFC-Klasse."
+    },
+    {
+      "code": "EF11",
+      "ifc4_candidate": "IfcPile / BORED",
+      "ifc43_candidate": "IfcPile / BORED",
+      "status": "Prüfvorschlag",
+      "note_de": "Funktion und Betonmaterial bestätigen; keine Zuordnung allein aus dem Namen."
+    },
+    {
+      "code": "EF12",
+      "ifc4_candidate": "IfcPile",
+      "ifc43_candidate": "IfcPile",
+      "status": "Prüfvorschlag",
+      "note_de": "DRIVEN nur bei tatsächlich gerammtem/gerütteltem Pfahl; Verdrängung ist nicht pauschal DRIVEN."
+    },
+    {
+      "code": "EF13",
+      "ifc4_candidate": "IfcPile",
+      "ifc43_candidate": "IfcPile",
+      "status": "Prüfvorschlag",
+      "note_de": "Mikropfahl, Injektionskörper und DSV-Säule erst nach Materialklärung; Zementmörtel und Boden-Zement-Gemisch nicht pauschal als Beton erfassen."
+    },
+    {
+      "code": "EF14",
+      "ifc4_candidate": "IfcPile oder IfcWall",
+      "ifc43_candidate": "IfcPile oder IfcWall",
+      "status": "Prüfvorschlag",
+      "note_de": "Vertikale Lastabtragung, Wand-/Stützfunktion und einzelne Betonlamelle unterscheiden; Exportmapping gesondert prüfen."
+    },
+    {
+      "code": "EF15",
+      "ifc4_candidate": "IfcFooting / CAISSON_FOUNDATION",
+      "ifc43_candidate": "IfcCaissonFoundation",
+      "status": "Prüfvorschlag",
+      "note_de": "Versionsunterschied: in IFC4.3 eigene Klasse; Betonhülle, Boden und Hohlraum getrennt erfassen."
+    },
+    {
+      "code": "EF21",
+      "ifc4_candidate": "IfcSlab; projektbezogene Typisierung",
+      "ifc43_candidate": "IfcSlab; projektbezogene Typisierung",
+      "status": "Prüfvorschlag",
+      "note_de": "Unbewehrten Beton einschließen; keine Dämmung, Kiesschicht oder Erdverbesserung als Beton zählen."
+    },
+    {
+      "code": "EF22",
+      "ifc4_candidate": "IfcFooting oder IfcColumn",
+      "ifc43_candidate": "IfcFooting oder IfcColumn",
+      "status": "Prüfvorschlag",
+      "note_de": "Nach Gründungs- oder Stützenfunktion zuordnen; integrierter Sockel nicht zusätzlich zählen."
+    },
+    {
+      "code": "EF23",
+      "ifc4_candidate": "IfcFooting oder IfcWall",
+      "ifc43_candidate": "IfcFooting oder IfcWall",
+      "status": "Prüfvorschlag",
+      "note_de": "Funktion entscheidet; keine automatische Umklassifizierung bestehender Objekte."
+    },
+    {
+      "code": "EF24",
+      "ifc4_candidate": "IfcWall",
+      "ifc43_candidate": "IfcWall; RETAININGWALL bei passender Funktion",
+      "status": "Prüfvorschlag",
+      "note_de": "RETAININGWALL ist kein universeller IFC4-Wert; genaue Version prüfen. Bodenplatte und Wand nicht überlappend summieren."
+    },
+    {
+      "code": "EC01",
+      "ifc4_candidate": "IfcSlab",
+      "ifc43_candidate": "IfcSlab",
+      "status": "Prüfvorschlag",
+      "note_de": "Von EF03 über bestätigte Funktion trennen. BASESLAB allein unterscheidet die beiden Kategorien nicht."
+    },
+    {
+      "code": "EC02",
+      "ifc4_candidate": "IfcSlab / FLOOR",
+      "ifc43_candidate": "IfcSlab / FLOOR",
+      "status": "Prüfvorschlag",
+      "note_de": "Funktion und Betonmaterial bestätigen; keine Zuordnung allein aus dem Namen."
+    },
+    {
+      "code": "EC03",
+      "ifc4_candidate": "IfcSlab / ROOF",
+      "ifc43_candidate": "IfcSlab / ROOF",
+      "status": "Prüfvorschlag",
+      "note_de": "Funktion und Betonmaterial bestätigen; keine Zuordnung allein aus dem Namen."
+    },
+    {
+      "code": "EC04",
+      "ifc4_candidate": "IfcSlab",
+      "ifc43_candidate": "IfcSlab",
+      "status": "Prüfvorschlag",
+      "note_de": "Balkon/Kragplatte als bestätigte Funktion; keine gemeinsame Volumenzählung mit der durchlaufenden Decke."
+    },
+    {
+      "code": "EC11",
+      "ifc4_candidate": "IfcWall",
+      "ifc43_candidate": "IfcWall",
+      "status": "Prüfvorschlag",
+      "note_de": "Tragfunktion separat führen; Sonderkontext Schacht oder Becken als Zusatzmerkmal bzw. bestätigte Unterkategorie."
+    },
+    {
+      "code": "EC12",
+      "ifc4_candidate": "IfcWall oder IfcColumn",
+      "ifc43_candidate": "IfcWall oder IfcColumn",
+      "status": "Prüfvorschlag",
+      "note_de": "Wand- oder Stützenfunktion entscheidet; keine pauschale Grenze über Seitenverhältnis festlegen."
+    },
+    {
+      "code": "EC13",
+      "ifc4_candidate": "IfcColumn",
+      "ifc43_candidate": "IfcColumn",
+      "status": "Prüfvorschlag",
+      "note_de": "Funktion und Betonmaterial bestätigen; keine Zuordnung allein aus dem Namen."
+    },
+    {
+      "code": "EC14",
+      "ifc4_candidate": "IfcBeam",
+      "ifc43_candidate": "IfcBeam",
+      "status": "Prüfvorschlag",
+      "note_de": "Gesamthöhe und Höhe unter Decke unterscheiden; Volumenanteil im Deckenbereich nur einmal zählen."
+    },
+    {
+      "code": "EC15",
+      "ifc4_candidate": "IfcBeam",
+      "ifc43_candidate": "IfcBeam",
+      "status": "Prüfvorschlag",
+      "note_de": "Überstand oberhalb Decke dokumentieren; gemeinsame Geometrie nur einmal erfassen."
+    },
+    {
+      "code": "EC16",
+      "ifc4_candidate": "IfcBeam",
+      "ifc43_candidate": "IfcBeam",
+      "status": "Prüfvorschlag",
+      "note_de": "Geometrisch integrierte Randverstärkung ist keine zusätzliche Menge."
+    },
+    {
+      "code": "EC17",
+      "ifc4_candidate": "IfcBeam",
+      "ifc43_candidate": "IfcBeam",
+      "status": "Prüfvorschlag",
+      "note_de": "Als eigenes Bauteil nur bei eigenem, abgegrenztem Materialvolumen."
+    },
+    {
+      "code": "EC21",
+      "ifc4_candidate": "IfcStairFlight",
+      "ifc43_candidate": "IfcStairFlight",
+      "status": "Prüfvorschlag",
+      "note_de": "IfcStair als Gesamttreppe kann Container sein; Läufe und Podeste nicht zusätzlich zur Gesamtmenge addieren."
+    },
+    {
+      "code": "EC22",
+      "ifc4_candidate": "IfcSlab / LANDING",
+      "ifc43_candidate": "IfcSlab / LANDING",
+      "status": "Prüfvorschlag",
+      "note_de": "Funktion und Betonmaterial bestätigen; keine Zuordnung allein aus dem Namen."
+    },
+    {
+      "code": "EC23",
+      "ifc4_candidate": "IfcRampFlight",
+      "ifc43_candidate": "IfcRampFlight",
+      "status": "Prüfvorschlag",
+      "note_de": "Schrägfläche und horizontale Projektion getrennt dokumentieren."
+    },
+    {
+      "code": "EC24",
+      "ifc4_candidate": "IfcSlab / LANDING",
+      "ifc43_candidate": "IfcSlab / LANDING",
+      "status": "Prüfvorschlag",
+      "note_de": "Funktion und Betonmaterial bestätigen; keine Zuordnung allein aus dem Namen."
+    },
+    {
+      "code": "EC31",
+      "ifc4_candidate": "IfcWall oder funktional passende Klasse",
+      "ifc43_candidate": "IfcWall oder funktional passende Klasse",
+      "status": "Prüfvorschlag",
+      "note_de": "Funktion, Lage und physische Abgrenzung prüfen; keine erfundene eigene IFC-Klasse."
+    },
+    {
+      "code": "EC32",
+      "ifc4_candidate": "IfcWall / PARAPET",
+      "ifc43_candidate": "IfcWall / PARAPET",
+      "status": "Prüfvorschlag",
+      "note_de": "Funktion und Betonmaterial bestätigen; keine Zuordnung allein aus dem Namen."
+    },
+    {
+      "code": "EC33",
+      "ifc4_candidate": "Funktional passende Klasse / Teil des Tragelements",
+      "ifc43_candidate": "Funktional passende Klasse / Teil des Tragelements",
+      "status": "Prüfvorschlag",
+      "note_de": "Integrierte Konsole als Merkmal des Tragelements; separates Volumen nur bei eindeutiger Abgrenzung."
+    },
+    {
+      "code": "EC34",
+      "ifc4_candidate": "Teil des Tragelements oder gesondert bestätigte Klasse",
+      "ifc43_candidate": "Teil des Tragelements oder gesondert bestätigte Klasse",
+      "status": "Prüfvorschlag",
+      "note_de": "Vorzugsweise Zusatzmerkmal; eigene Hauptkategorie nur bei nicht überlappendem separatem Betonobjekt."
+    },
+    {
+      "code": "EC35",
+      "ifc4_candidate": "IfcWall",
+      "ifc43_candidate": "IfcWall",
+      "status": "Prüfvorschlag",
+      "note_de": "Spezifische Unterkategorie von Wand; niemals zusätzlich zu EC11 zählen."
+    },
+    {
+      "code": "EC36",
+      "ifc4_candidate": "IfcSlab",
+      "ifc43_candidate": "IfcSlab",
+      "status": "Prüfvorschlag",
+      "note_de": "Sohle oder Abdeckung als Untertyp festhalten; Hohlraum und kompletten Schachtcontainer nicht als Beton zählen."
+    },
+    {
+      "code": "EC41",
+      "ifc4_candidate": "Funktional passende Klasse; Einzelfallprüfung",
+      "ifc43_candidate": "Funktional passende Klasse; Einzelfallprüfung",
+      "status": "Prüfvorschlag",
+      "note_de": "Sonderform ist kein Grund für automatische Proxy-Klassifizierung; unbekannte Funktion sichtbar lassen."
+    },
+    {
+      "code": "MX01",
+      "ifc4_candidate": "Als eigenes Material-/Bauteilobjekt prüfen",
+      "ifc43_candidate": "Als eigenes Material-/Bauteilobjekt prüfen",
+      "status": "Prüfvorschlag",
+      "note_de": "Nur Beton; Vergussmörtel separat außerhalb der Beton-Standardsumme. Keine implizite Füllung von Köchern."
+    },
+    {
+      "code": "MX02",
+      "ifc4_candidate": "Funktional passende Klasse; Einzelfallprüfung",
+      "ifc43_candidate": "Funktional passende Klasse; Einzelfallprüfung",
+      "status": "Prüfvorschlag",
+      "note_de": "Material bestätigen; Estrich und Mörtel nicht allein über ähnliche Bezeichnungen einschließen."
+    },
+    {
+      "code": "UN00",
+      "ifc4_candidate": "Vorhandene IFC-Klasse erhalten",
+      "ifc43_candidate": "Vorhandene IFC-Klasse erhalten",
+      "status": "Prüfvorschlag",
+      "note_de": "Auffangstatus, keine fachliche Endzuordnung. Bestätigtes Betonvolumen separat unter ungeklärt zeigen; Materiallücken nicht als Beton bestätigen."
+    }
+  ],
+  "metrics": [
+    {
+      "key": "concrete_volume_gross_m3",
+      "label_de": "Bruttobetonvolumen",
+      "unit": "m³",
+      "applies_to_de": "Betonkörper",
+      "convention_de": "Quellendefinition erhalten; keine Abzüge mit Nettovolumen vermischen."
+    },
+    {
+      "key": "concrete_volume_net_m3",
+      "label_de": "Nettobetonvolumen",
+      "unit": "m³",
+      "applies_to_de": "Betonkörper",
+      "convention_de": "Bearbeitungen, Öffnungen und Aussparungen berücksichtigen; bei bereits bereinigter Geometrie nicht erneut abziehen."
+    },
+    {
+      "key": "concrete_volume_contractual_m3",
+      "label_de": "Vertragliches Betonvolumen",
+      "unit": "m³",
+      "applies_to_de": "Optional",
+      "convention_de": "Nur mit bestätigter Abrechnungsregel; keine automatische Gleichsetzung mit IFC-QTO."
+    },
+    {
+      "key": "plan_area_m2",
+      "label_de": "Grund-/Projektionsfläche",
+      "unit": "m²",
+      "applies_to_de": "Platten/Fundamente",
+      "convention_de": "Horizontal projizierte Fläche; Brutto/Netto und Bezug angeben."
+    },
+    {
+      "key": "wall_reference_area_m2",
+      "label_de": "Wandansichtsfläche",
+      "unit": "m²",
+      "applies_to_de": "Wände",
+      "convention_de": "Definierte Bezugsseite; nicht automatisch zweiseitige Schalfläche."
+    },
+    {
+      "key": "formwork_contact_area_m2",
+      "label_de": "Schalungskontaktfläche",
+      "unit": "m²",
+      "applies_to_de": "Betonoberflächen",
+      "convention_de": "Nur tatsächlich zu schalende Flächen; Kontakt zu Erdreich oder Bestandsbeton prüfen."
+    },
+    {
+      "key": "nominal_pile_diameter_m",
+      "label_de": "Nennpfahldurchmesser",
+      "unit": "m",
+      "applies_to_de": "Kreisförmige Pfähle",
+      "convention_de": "Exakt nach Nennmaß gruppieren; keinen Ersatzdurchmesser aus Volumen erfinden."
+    },
+    {
+      "key": "pile_axis_length_m",
+      "label_de": "Pfahlachslänge",
+      "unit": "m",
+      "applies_to_de": "Pfähle",
+      "convention_de": "Betrachtete Kopf-/Fußpunkte und Neigung dokumentieren; keine Verwechslung mit vertikaler Tiefe."
+    },
+    {
+      "key": "section_b_m",
+      "label_de": "Querschnittsbreite",
+      "unit": "m",
+      "applies_to_de": "Stützen/Balken/Pfähle",
+      "convention_de": "Exaktes Maß; Achsenbezug erhalten, 0,30×0,50 nicht stillschweigend drehen."
+    },
+    {
+      "key": "section_h_m",
+      "label_de": "Querschnittshöhe",
+      "unit": "m",
+      "applies_to_de": "Stützen/Balken/Pfähle",
+      "convention_de": "Bei Balken Gesamthöhe und Deckenüberlappung zusätzlich dokumentieren."
+    },
+    {
+      "key": "slab_thickness_m",
+      "label_de": "Plattendicke",
+      "unit": "m",
+      "applies_to_de": "Platten",
+      "convention_de": "Dicke normal zur Bezugsfläche; nur konstanten bestätigten Wert klassieren."
+    },
+    {
+      "key": "wall_thickness_m",
+      "label_de": "Wanddicke",
+      "unit": "m",
+      "applies_to_de": "Wände",
+      "convention_de": "Normal zur Wandfläche; bei variabler Dicke min/max und Verlauf erhalten."
+    },
+    {
+      "key": "wall_height_m",
+      "label_de": "Wandhöhe",
+      "unit": "m",
+      "applies_to_de": "Wände",
+      "convention_de": "Vertikaler Höhenbezug; bei variabler Höhe keine konstante Kategorie erzwingen."
+    },
+    {
+      "key": "length_m",
+      "label_de": "Achslänge",
+      "unit": "m",
+      "applies_to_de": "Streifen/Balken/Aufkantungen",
+      "convention_de": "Eigene Definition und Quelle; keine ungeprüfte Bounding-Box-Länge."
+    },
+    {
+      "key": "thickness_min_m",
+      "label_de": "Minimale Dicke",
+      "unit": "m",
+      "applies_to_de": "Variable Bauteile",
+      "convention_de": "Zusammen mit maximaler Dicke und Geometrietyp ausgeben."
+    },
+    {
+      "key": "thickness_max_m",
+      "label_de": "Maximale Dicke",
+      "unit": "m",
+      "applies_to_de": "Variable Bauteile",
+      "convention_de": "Nicht ohne Freigabe als repräsentative Standarddicke klassieren."
+    },
+    {
+      "key": "reinforcement_mass_kg",
+      "label_de": "Bewehrungsmasse",
+      "unit": "kg",
+      "applies_to_de": "Gesonderte Bewehrungsauswertung",
+      "convention_de": "Nur bestätigter Vollständigkeitsgrad; Modellmenge oder externer Ansatz getrennt."
+    },
+    {
+      "key": "reinforcement_intensity_kg_m3",
+      "label_de": "Bewehrungskennwert",
+      "unit": "kg/m³",
+      "applies_to_de": "Optional",
+      "convention_de": "Kompatible Bewehrungsmasse / zugehöriges Betonvolumen; Bezugsmenge und Erfassungsumfang angeben."
+    },
+    {
+      "key": "precast_unit_mass_kg",
+      "label_de": "Fertigteil-/Montagemasse",
+      "unit": "kg",
+      "applies_to_de": "Fertigteile",
+      "convention_de": "Bestätigte Materialmassen einschließlich deklarierter Einbauteile; keine pauschale feste Dichte."
+    },
+    {
+      "key": "count",
+      "label_de": "Anzahl",
+      "unit": "Stk",
+      "applies_to_de": "Je gewählter Zählebene",
+      "convention_de": "Modellobjekt, physisches Bauteil und Betonierabschnitt unterscheiden."
+    }
+  ],
+  "intervals": [
+    {
+      "metric": "concrete_volume_m3",
+      "code": "V01",
+      "lower_exclusive": 0,
+      "upper_inclusive": 0.5,
+      "unit": "m³",
+      "label_de": "über 0 bis 0,5 m³",
+      "applies_to_de": "Alle Betonobjekte; Mengenbasis und Zählebene getrennt",
+      "active": true,
+      "status": "Projektvorschlag"
+    },
+    {
+      "metric": "concrete_volume_m3",
+      "code": "V02",
+      "lower_exclusive": 0.5,
+      "upper_inclusive": 1,
+      "unit": "m³",
+      "label_de": "über 0,5 bis 1 m³",
+      "applies_to_de": "Alle Betonobjekte; Mengenbasis und Zählebene getrennt",
+      "active": true,
+      "status": "Projektvorschlag"
+    },
+    {
+      "metric": "concrete_volume_m3",
+      "code": "V03",
+      "lower_exclusive": 1,
+      "upper_inclusive": 2.5,
+      "unit": "m³",
+      "label_de": "über 1 bis 2,5 m³",
+      "applies_to_de": "Alle Betonobjekte; Mengenbasis und Zählebene getrennt",
+      "active": true,
+      "status": "Projektvorschlag"
+    },
+    {
+      "metric": "concrete_volume_m3",
+      "code": "V04",
+      "lower_exclusive": 2.5,
+      "upper_inclusive": 5,
+      "unit": "m³",
+      "label_de": "über 2,5 bis 5 m³",
+      "applies_to_de": "Alle Betonobjekte; Mengenbasis und Zählebene getrennt",
+      "active": true,
+      "status": "Projektvorschlag"
+    },
+    {
+      "metric": "concrete_volume_m3",
+      "code": "V05",
+      "lower_exclusive": 5,
+      "upper_inclusive": 10,
+      "unit": "m³",
+      "label_de": "über 5 bis 10 m³",
+      "applies_to_de": "Alle Betonobjekte; Mengenbasis und Zählebene getrennt",
+      "active": true,
+      "status": "Projektvorschlag"
+    },
+    {
+      "metric": "concrete_volume_m3",
+      "code": "V06",
+      "lower_exclusive": 10,
+      "upper_inclusive": 25,
+      "unit": "m³",
+      "label_de": "über 10 bis 25 m³",
+      "applies_to_de": "Alle Betonobjekte; Mengenbasis und Zählebene getrennt",
+      "active": true,
+      "status": "Projektvorschlag"
+    },
+    {
+      "metric": "concrete_volume_m3",
+      "code": "V07",
+      "lower_exclusive": 25,
+      "upper_inclusive": 50,
+      "unit": "m³",
+      "label_de": "über 25 bis 50 m³",
+      "applies_to_de": "Alle Betonobjekte; Mengenbasis und Zählebene getrennt",
+      "active": true,
+      "status": "Projektvorschlag"
+    },
+    {
+      "metric": "concrete_volume_m3",
+      "code": "V08",
+      "lower_exclusive": 50,
+      "upper_inclusive": 100,
+      "unit": "m³",
+      "label_de": "über 50 bis 100 m³",
+      "applies_to_de": "Alle Betonobjekte; Mengenbasis und Zählebene getrennt",
+      "active": true,
+      "status": "Projektvorschlag"
+    },
+    {
+      "metric": "concrete_volume_m3",
+      "code": "V09",
+      "lower_exclusive": 100,
+      "upper_inclusive": null,
+      "unit": "m³",
+      "label_de": "über 100 m³",
+      "applies_to_de": "Alle Betonobjekte; Mengenbasis und Zählebene getrennt",
+      "active": true,
+      "status": "Projektvorschlag"
+    },
+    {
+      "metric": "slab_thickness_m",
+      "code": "PD01",
+      "lower_exclusive": 0,
+      "upper_inclusive": 0.15,
+      "unit": "m",
+      "label_de": "über 0 bis 0,15 m",
+      "applies_to_de": "Konstant dicke Fundament-/Boden-/Decken-/Podestplatten",
+      "active": true,
+      "status": "Projektvorschlag"
+    },
+    {
+      "metric": "slab_thickness_m",
+      "code": "PD02",
+      "lower_exclusive": 0.15,
+      "upper_inclusive": 0.25,
+      "unit": "m",
+      "label_de": "über 0,15 bis 0,25 m",
+      "applies_to_de": "Konstant dicke Fundament-/Boden-/Decken-/Podestplatten",
+      "active": true,
+      "status": "Projektvorschlag"
+    },
+    {
+      "metric": "slab_thickness_m",
+      "code": "PD03",
+      "lower_exclusive": 0.25,
+      "upper_inclusive": 0.4,
+      "unit": "m",
+      "label_de": "über 0,25 bis 0,4 m",
+      "applies_to_de": "Konstant dicke Fundament-/Boden-/Decken-/Podestplatten",
+      "active": true,
+      "status": "Projektvorschlag"
+    },
+    {
+      "metric": "slab_thickness_m",
+      "code": "PD04",
+      "lower_exclusive": 0.4,
+      "upper_inclusive": 0.6,
+      "unit": "m",
+      "label_de": "über 0,4 bis 0,6 m",
+      "applies_to_de": "Konstant dicke Fundament-/Boden-/Decken-/Podestplatten",
+      "active": true,
+      "status": "Projektvorschlag"
+    },
+    {
+      "metric": "slab_thickness_m",
+      "code": "PD05",
+      "lower_exclusive": 0.6,
+      "upper_inclusive": 1,
+      "unit": "m",
+      "label_de": "über 0,6 bis 1 m",
+      "applies_to_de": "Konstant dicke Fundament-/Boden-/Decken-/Podestplatten",
+      "active": true,
+      "status": "Projektvorschlag"
+    },
+    {
+      "metric": "slab_thickness_m",
+      "code": "PD06",
+      "lower_exclusive": 1,
+      "upper_inclusive": null,
+      "unit": "m",
+      "label_de": "über 1 m",
+      "applies_to_de": "Konstant dicke Fundament-/Boden-/Decken-/Podestplatten",
+      "active": true,
+      "status": "Projektvorschlag"
+    },
+    {
+      "metric": "wall_thickness_m",
+      "code": "WD01",
+      "lower_exclusive": 0,
+      "upper_inclusive": 0.15,
+      "unit": "m",
+      "label_de": "über 0 bis 0,15 m",
+      "applies_to_de": "Konstant dicke Wände",
+      "active": true,
+      "status": "Projektvorschlag"
+    },
+    {
+      "metric": "wall_thickness_m",
+      "code": "WD02",
+      "lower_exclusive": 0.15,
+      "upper_inclusive": 0.25,
+      "unit": "m",
+      "label_de": "über 0,15 bis 0,25 m",
+      "applies_to_de": "Konstant dicke Wände",
+      "active": true,
+      "status": "Projektvorschlag"
+    },
+    {
+      "metric": "wall_thickness_m",
+      "code": "WD03",
+      "lower_exclusive": 0.25,
+      "upper_inclusive": 0.35,
+      "unit": "m",
+      "label_de": "über 0,25 bis 0,35 m",
+      "applies_to_de": "Konstant dicke Wände",
+      "active": true,
+      "status": "Projektvorschlag"
+    },
+    {
+      "metric": "wall_thickness_m",
+      "code": "WD04",
+      "lower_exclusive": 0.35,
+      "upper_inclusive": 0.5,
+      "unit": "m",
+      "label_de": "über 0,35 bis 0,5 m",
+      "applies_to_de": "Konstant dicke Wände",
+      "active": true,
+      "status": "Projektvorschlag"
+    },
+    {
+      "metric": "wall_thickness_m",
+      "code": "WD05",
+      "lower_exclusive": 0.5,
+      "upper_inclusive": null,
+      "unit": "m",
+      "label_de": "über 0,5 m",
+      "applies_to_de": "Konstant dicke Wände",
+      "active": true,
+      "status": "Projektvorschlag"
+    },
+    {
+      "metric": "wall_height_m",
+      "code": "WH01",
+      "lower_exclusive": 0,
+      "upper_inclusive": 2,
+      "unit": "m",
+      "label_de": "über 0 bis 2 m",
+      "applies_to_de": "Konstante vertikale Wandhöhe mit bestätigtem Bezug",
+      "active": true,
+      "status": "Projektvorschlag"
+    },
+    {
+      "metric": "wall_height_m",
+      "code": "WH02",
+      "lower_exclusive": 2,
+      "upper_inclusive": 3,
+      "unit": "m",
+      "label_de": "über 2 bis 3 m",
+      "applies_to_de": "Konstante vertikale Wandhöhe mit bestätigtem Bezug",
+      "active": true,
+      "status": "Projektvorschlag"
+    },
+    {
+      "metric": "wall_height_m",
+      "code": "WH03",
+      "lower_exclusive": 3,
+      "upper_inclusive": 4,
+      "unit": "m",
+      "label_de": "über 3 bis 4 m",
+      "applies_to_de": "Konstante vertikale Wandhöhe mit bestätigtem Bezug",
+      "active": true,
+      "status": "Projektvorschlag"
+    },
+    {
+      "metric": "wall_height_m",
+      "code": "WH04",
+      "lower_exclusive": 4,
+      "upper_inclusive": 6,
+      "unit": "m",
+      "label_de": "über 4 bis 6 m",
+      "applies_to_de": "Konstante vertikale Wandhöhe mit bestätigtem Bezug",
+      "active": true,
+      "status": "Projektvorschlag"
+    },
+    {
+      "metric": "wall_height_m",
+      "code": "WH05",
+      "lower_exclusive": 6,
+      "upper_inclusive": null,
+      "unit": "m",
+      "label_de": "über 6 m",
+      "applies_to_de": "Konstante vertikale Wandhöhe mit bestätigtem Bezug",
+      "active": true,
+      "status": "Projektvorschlag"
+    }
+  ],
+  "features": [
+    {
+      "key": "model_family",
+      "label_de": "Teilfachmodell",
+      "examples_de": "EFx / ECx / kombiniertes Modell",
+      "status": "Projektstruktur",
+      "note_de": "Modellzugehörigkeit aus Projektmapping; x steht für projektabhängige Untergliederung, nicht für einen neuen konkreten Modellcode."
+    },
+    {
+      "key": "primary_category",
+      "label_de": "Primäre Bauteilkategorie",
+      "examples_de": "EF01…MX02 / UN00",
+      "status": "Projektvorschlag",
+      "note_de": "Genau eine primäre Kategorie je Betonobjekt; unknown/conflict bleiben sichtbar."
+    },
+    {
+      "key": "construction_method",
+      "label_de": "Bauweise",
+      "examples_de": "Ortbeton / Fertigteil / Halbfertigteil",
+      "status": "Übliche Fachgliederung",
+      "note_de": "Betonierort und Bauteilaufbau unterscheiden; Halbfertigteil in Betonanteile zerlegen."
+    },
+    {
+      "key": "reinforcement_type",
+      "label_de": "Bewehrungsart",
+      "examples_de": "unbewehrt / Stahlbeton / Spannbeton / Faserbeton / kombiniert",
+      "status": "Übliche Fachgliederung",
+      "note_de": "Betonvolumen getrennt von Bewehrungsmasse führen; fehlende Stabmodelle beweisen keinen unbewehrten Beton."
+    },
+    {
+      "key": "strength_class",
+      "label_de": "Druckfestigkeitsklasse",
+      "examples_de": "C20/25 / C25/30 / C30/37; LC nur bei passender Betonart",
+      "status": "Genormte Klassenbezeichnungen",
+      "note_de": "Beispiele, keine Anforderungsvorgabe; tatsächliche Spezifikation übernehmen."
+    },
+    {
+      "key": "exposure_classes",
+      "label_de": "Expositionsklassen",
+      "examples_de": "X0; XC / XD / XS / XF / XA / XM mit zugehörigen Stufen",
+      "status": "Genormte Klassenbezeichnungen",
+      "note_de": "Mehrere Klassen gleichzeitig möglich; bei Bedarf flächenbezogen. Keine Ableitung allein aus EFx/ECx oder Bauteilname."
+    },
+    {
+      "key": "concrete_density_type",
+      "label_de": "Betonart nach Rohdichte",
+      "examples_de": "Normalbeton / Leichtbeton / Schwerbeton",
+      "status": "Übliche Fachgliederung",
+      "note_de": "Rohdichte und Dichteklasse nur bei bestätigter Quelle; keine pauschale Umrechnung m³ in t."
+    },
+    {
+      "key": "consistency_class",
+      "label_de": "Konsistenzklasse",
+      "examples_de": "z. B. F3 / F4 / F5",
+      "status": "Genormte Klassenbezeichnungen",
+      "note_de": "Mischungs-/Lieferinformation; nur führen, wenn für die Auswertung benötigt."
+    },
+    {
+      "key": "chloride_class",
+      "label_de": "Chloridgehaltsklasse",
+      "examples_de": "Deklarierter Klassenwert",
+      "status": "Genormte Klassenbezeichnungen",
+      "note_de": "Nicht mit Expositionsklasse XD oder XS verwechseln."
+    },
+    {
+      "key": "nominal_cover",
+      "label_de": "Nennbetondeckung",
+      "examples_de": "mm, ggf. je Bauteilseite",
+      "status": "Planungsangabe",
+      "note_de": "Geometrische Prüfung benötigt Bewehrungsmodell und klare Bezugsfläche."
+    },
+    {
+      "key": "watertight_construction",
+      "label_de": "WU-Anforderung",
+      "examples_de": "ja / nein / unbekannt; Nutzungsklasse und Konzeptreferenz",
+      "status": "Geplante Anforderung",
+      "note_de": "WU-Eignung ist kein bloßes Produktetikett und folgt nicht allein aus Betonfestigkeit."
+    },
+    {
+      "key": "surface_requirement",
+      "label_de": "Oberflächenanforderung",
+      "examples_de": "Sichtbetonklasse nach vereinbartem Merkblatt / andere Oberfläche",
+      "status": "Vereinbarte Anforderung",
+      "note_de": "Flächenbezogen führen; keine pauschale Klasse für alle Seiten annehmen."
+    },
+    {
+      "key": "formwork_geometry",
+      "label_de": "Schalungsgeometrie",
+      "examples_de": "eben / geneigt / gekrümmt / strukturiert",
+      "status": "Auswertungsvorschlag",
+      "note_de": "Geometrie liefert nur Hinweise; reale Schalungsflächen gesondert bestimmen."
+    },
+    {
+      "key": "formwork_contact",
+      "label_de": "Flächenkontakt",
+      "examples_de": "Schalung / Erdreich / Sauberkeitsschicht / Bestand / freie Oberfläche",
+      "status": "Auswertungsvorschlag",
+      "note_de": "Kontakt zum Erdreich bedeutet nicht automatisch, dass ohne Schalung ausgeführt wird."
+    },
+    {
+      "key": "permanent_formwork",
+      "label_de": "Verbleibende Schalung",
+      "examples_de": "ja / nein / unbekannt",
+      "status": "Ausführungsmerkmal",
+      "note_de": "Beton-Fertigteilhaut und Ortbetonkern physisch getrennt zählen."
+    },
+    {
+      "key": "geometry_kind",
+      "label_de": "Geometrie",
+      "examples_de": "prismatisch / abgestuft / geneigt / gevoutet / gekrümmt / variabel",
+      "status": "Auswertungsvorschlag",
+      "note_de": "Eigenes Merkmal; Bauteilfunktion bleibt erhalten."
+    },
+    {
+      "key": "cross_section_shape",
+      "label_de": "Querschnittsform",
+      "examples_de": "rechteckig / kreisförmig / polygonal / hohl / variabel",
+      "status": "Auswertungsvorschlag",
+      "note_de": "Exakte Abmessungen bleiben zusätzlich erhalten."
+    },
+    {
+      "key": "pile_execution",
+      "label_de": "Pfahlausführung",
+      "examples_de": "gebohrt / gerammt / gedrückt / geschraubt / projektspezifisch",
+      "status": "Ausführungsmerkmal",
+      "note_de": "Herstellungsart, Material und Tragmechanismus getrennt führen."
+    },
+    {
+      "key": "use_context",
+      "label_de": "Nutzungskontext",
+      "examples_de": "Pumpensumpf / Aufzugsschacht / Becken / Behälter / Maschine / Pfahlwand",
+      "status": "Zusatzmerkmal",
+      "note_de": "Wand, Pfähle, Sohle und Abdeckung bleiben eigene Bauteilarten; Hohlraum zählt nicht als Beton."
+    },
+    {
+      "key": "load_bearing",
+      "label_de": "Tragfunktion",
+      "examples_de": "tragend / aussteifend / nichttragend / unbekannt",
+      "status": "Planungsangabe",
+      "note_de": "Mehrfachfunktionen möglich; nicht allein aus IFC-Klasse ableiten."
+    },
+    {
+      "key": "pouring_section",
+      "label_de": "Betonierabschnitt",
+      "examples_de": "Bestätigte Abschnitts-ID",
+      "status": "Ausführungsplanung",
+      "note_de": "Objektvolumen ist nicht automatisch Betonierlosvolumen; ein Los kann mehrere Objekte enthalten."
+    },
+    {
+      "key": "joint_type",
+      "label_de": "Fugen",
+      "examples_de": "Arbeitsfuge / Bewegungsfuge / Sollrissfuge",
+      "status": "Ausführungsmerkmal",
+      "note_de": "Betonbauteil, Fugenraum und Fugeneinlage getrennt auswerten."
+    },
+    {
+      "key": "bbq_class",
+      "label_de": "Betonbauqualitätsklasse",
+      "examples_de": "BBQ-N / BBQ-E / BBQ-S",
+      "status": "DIN 1045-1000:2023-08",
+      "note_de": "Nur bestätigte Projektfestlegung; nicht mit Überwachungsklasse verwechseln."
+    },
+    {
+      "key": "monitoring_class",
+      "label_de": "Überwachungsklasse",
+      "examples_de": "Bestätigter Projektwert",
+      "status": "Normbezogene Projektfestlegung",
+      "note_de": "Separates Merkmal; kein automatischer Schluss aus BBQ."
+    },
+    {
+      "key": "location",
+      "label_de": "Lage",
+      "examples_de": "Zone / Ebene / Bauabschnitt / erdberührt",
+      "status": "Projektstruktur",
+      "note_de": "Projektmapping für Hierarchy und Bauabschnitt bestätigen."
+    },
+    {
+      "key": "lv_ident",
+      "label_de": "Leistungszuordnung",
+      "examples_de": "540_LV_Ident",
+      "status": "Projektfeld",
+      "note_de": "Führend nach Projektregel; Alternativquelle aus Name/Description/ObjectType sichtbar dokumentieren."
+    },
+    {
+      "key": "quantity_basis",
+      "label_de": "Mengenbasis",
+      "examples_de": "GROSS / NET / CONTRACTUAL",
+      "status": "Auswertungsregel",
+      "note_de": "Eigene Summen und Kategorien je Basis. Öffnungen bei NET berücksichtigen."
+    },
+    {
+      "key": "data_status",
+      "label_de": "Datenstatus",
+      "examples_de": "confirmed / inferred / unknown / invalid / conflict / incomplete",
+      "status": "Auswertungsregel",
+      "note_de": "Eigene Statuswerte, keine normativen IFC-Enumerationen."
+    }
+  ],
+  "acceptance_cases": [
+    {
+      "id": "B01",
+      "area": "Grenze",
+      "given_de": "Nettovolumen 0,5 m³",
+      "expected_de": "V01; 0,500001 m³ liegt in V02",
+      "execution_status": "nicht im Quantity Agent ausgeführt"
+    },
+    {
+      "id": "B02",
+      "area": "Grenze",
+      "given_de": "Plattendicke 0,25 m konstant",
+      "expected_de": "PD02; 0,250001 m liegt in PD03",
+      "execution_status": "nicht im Quantity Agent ausgeführt"
+    },
+    {
+      "id": "B03",
+      "area": "Grenze",
+      "given_de": "Wanddicke 0,35 m konstant",
+      "expected_de": "WD03; 0,350001 m liegt in WD04",
+      "execution_status": "nicht im Quantity Agent ausgeführt"
+    },
+    {
+      "id": "B04",
+      "area": "Grenze",
+      "given_de": "Wandhöhe 4,0 m konstant",
+      "expected_de": "WH03; 4,000001 m liegt in WH04",
+      "execution_status": "nicht im Quantity Agent ausgeführt"
+    },
+    {
+      "id": "B05",
+      "area": "Pfahl",
+      "given_de": "Bohrpfähle mit Nenn-Ø 0,60 und 0,80 m",
+      "expected_de": "Zwei exakte Durchmessergruppen; keine Sammelklasse 0,5–1,0 m",
+      "execution_status": "nicht im Quantity Agent ausgeführt"
+    },
+    {
+      "id": "B06",
+      "area": "Pfahl",
+      "given_de": "Rechteckiger Betonpfahl 0,35 × 0,35 m",
+      "expected_de": "Exakt nach Querschnitt; kein berechneter Ersatzdurchmesser",
+      "execution_status": "nicht im Quantity Agent ausgeführt"
+    },
+    {
+      "id": "B07",
+      "area": "Neigung",
+      "given_de": "Schrägpfahl: Achslänge 12 m, vertikale Projektion 10 m",
+      "expected_de": "Pfahllänge 12 m; Tiefe und Länge nicht verwechseln",
+      "execution_status": "nicht im Quantity Agent ausgeführt"
+    },
+    {
+      "id": "B08",
+      "area": "Material",
+      "given_de": "Mikropfahl aus Stahl und Verpressmörtel",
+      "expected_de": "Keine automatische Aufnahme des Gesamtvolumens in die Betonsumme",
+      "execution_status": "nicht im Quantity Agent ausgeführt"
+    },
+    {
+      "id": "B09",
+      "area": "Gründung",
+      "given_de": "IfcSlab BASESLAB ohne Funktionsangabe",
+      "expected_de": "EF03 gegenüber EC01 bleibt ungeklärt; keine Namens-/Enum-Automatik",
+      "execution_status": "nicht im Quantity Agent ausgeführt"
+    },
+    {
+      "id": "B10",
+      "area": "Köcher",
+      "given_de": "Fundament außen 2 × 2 × 1 m, Köcher 0,5 × 0,5 × 0,6 m",
+      "expected_de": "Brutto 4,00 m³; Netto 3,85 m³; Köcher 0,15 m³ kein Beton",
+      "execution_status": "nicht im Quantity Agent ausgeführt"
+    },
+    {
+      "id": "B11",
+      "area": "Öffnung",
+      "given_de": "Platte 10 × 8 × 0,5 m; durchgehende Öffnung 1 × 1 m",
+      "expected_de": "Brutto 40,0 m³; Netto 39,5 m³; PD04; V07 in beiden Mengenbasen",
+      "execution_status": "nicht im Quantity Agent ausgeführt"
+    },
+    {
+      "id": "B12",
+      "area": "Doppelabzug",
+      "given_de": "NET-QTO oder Geometrie enthält die Öffnung aus B11 bereits",
+      "expected_de": "39,5 m³ erhalten; nicht nochmals 0,5 m³ abziehen",
+      "execution_status": "nicht im Quantity Agent ausgeführt"
+    },
+    {
+      "id": "B13",
+      "area": "Überlappung",
+      "given_de": "Decke 40 m³ und Unterzug 1 m³, 0,4 m³ bereits in Decke enthalten",
+      "expected_de": "Konflikt bzw. freigegebene disjunkte Aufteilung; nicht stillschweigend 41 m³ bestätigen",
+      "execution_status": "nicht im Quantity Agent ausgeführt"
+    },
+    {
+      "id": "B14",
+      "area": "Container",
+      "given_de": "Schacht: Wandbeton 8 m³, Sohle 2 m³, zusätzlicher Gesamtcontainer 10 m³",
+      "expected_de": "10 m³ Betonsumme; Container nicht zusätzlich addieren",
+      "execution_status": "nicht im Quantity Agent ausgeführt"
+    },
+    {
+      "id": "B15",
+      "area": "Halbfertigteil",
+      "given_de": "Elementdecke: Fertigteilhaut 6 m³, Ortbeton 14 m³, Gesamtelement 20 m³",
+      "expected_de": "20 m³ einmal; getrennte Anteile ausweisen; keine 40 m³",
+      "execution_status": "nicht im Quantity Agent ausgeführt"
+    },
+    {
+      "id": "B16",
+      "area": "Veränderliche Dicke",
+      "given_de": "Platte d = 0,30 bis 0,60 m",
+      "expected_de": "variabel; min/max ausgeben; keine konstante PD-Kategorie aus Mittel- oder Maximalwert erzwingen",
+      "execution_status": "nicht im Quantity Agent ausgeführt"
+    },
+    {
+      "id": "B17",
+      "area": "Schalung",
+      "given_de": "Bodenplatte auf Sauberkeitsschicht, freie Oberseite",
+      "expected_de": "Gesamtoberfläche ist keine Schalfläche; Ränder und Kontakte gesondert prüfen",
+      "execution_status": "nicht im Quantity Agent ausgeführt"
+    },
+    {
+      "id": "B18",
+      "area": "Schalung",
+      "given_de": "Wand 5 × 3 m mit zwei potenziell geschalten Seiten",
+      "expected_de": "15 m² Wandansicht; 30 m² mögliche Seitenflächen vor Öffnungen/Kontakten; nicht gleichsetzen",
+      "execution_status": "nicht im Quantity Agent ausgeführt"
+    },
+    {
+      "id": "B19",
+      "area": "Bewehrung",
+      "given_de": "Modell ohne Bewehrungsstäbe; Objekt als Stahlbeton deklariert",
+      "expected_de": "Bewehrungsmenge unbekannt; nicht 0 kg oder unbewehrt ableiten",
+      "execution_status": "nicht im Quantity Agent ausgeführt"
+    },
+    {
+      "id": "B20",
+      "area": "Exposition",
+      "given_de": "Eine Wandseite XC4, andere XA2; weitere Klassen spezifiziert",
+      "expected_de": "Alle bestätigten Anforderungen erhalten, keine einzige Maximal-Expositionsklasse bilden",
+      "execution_status": "nicht im Quantity Agent ausgeführt"
+    },
+    {
+      "id": "B21",
+      "area": "Datenlücke",
+      "given_de": "NET fehlt, nur GROSS vorhanden",
+      "expected_de": "NET unknown; GROSS separat; keine stille Ersatzmenge",
+      "execution_status": "nicht im Quantity Agent ausgeführt"
+    },
+    {
+      "id": "B22",
+      "area": "Einheit",
+      "given_de": "Wanddicke 250 mm und Betonmenge 2.000.000.000 mm³",
+      "expected_de": "0,25 m und 2 m³; WD02 und V03",
+      "execution_status": "nicht im Quantity Agent ausgeführt"
+    },
+    {
+      "id": "B23",
+      "area": "Identität",
+      "given_de": "Gleiche GlobalId an zwei Objekten desselben Modellstands",
+      "expected_de": "Konflikt melden; nicht stillschweigend löschen oder deduplizieren",
+      "execution_status": "nicht im Quantity Agent ausgeführt"
+    },
+    {
+      "id": "B24",
+      "area": "Modellstand",
+      "given_de": "Gleicher Dateiname mit geändertem IFC-Inhalt",
+      "expected_de": "Neuer Snapshot; alte Mengen nicht zur aktuellen Summe addieren",
+      "execution_status": "nicht im Quantity Agent ausgeführt"
+    },
+    {
+      "id": "B25",
+      "area": "Mehrfachkategorie",
+      "given_de": "Schachtwand passt als Wand und Schachtwand",
+      "expected_de": "Ein primärer Code EC35; EC11 nur übergeordnete Sicht, keine Zusatzmenge",
+      "execution_status": "nicht im Quantity Agent ausgeführt"
+    },
+    {
+      "id": "B26",
+      "area": "Zuordnung",
+      "given_de": "Pumpensumpf in EFx",
+      "expected_de": "Wände/Sohle nach physischer Funktion; use_context Pumpensumpf; Hohlraum separat",
+      "execution_status": "nicht im Quantity Agent ausgeführt"
+    },
+    {
+      "id": "B27",
+      "area": "Qualität",
+      "given_de": "Keine BBQ-Klasse geliefert",
+      "expected_de": "unbekannt; nicht aus Druckfestigkeits- oder Überwachungsklasse ableiten",
+      "execution_status": "nicht im Quantity Agent ausgeführt"
+    },
+    {
+      "id": "B28",
+      "area": "Masse",
+      "given_de": "Betonvolumen ohne Rohdichte / Fertigteilmasse",
+      "expected_de": "Keine pauschale Umrechnung in kg; Beton in m³ verfügbar halten",
+      "execution_status": "nicht im Quantity Agent ausgeführt"
+    },
+    {
+      "id": "B29",
+      "area": "Nullwert",
+      "given_de": "Volumen fehlt / ist 0 / ist negativ",
+      "expected_de": "unknown / invalid / invalid; Rohwert erhalten, keine positive V-Kategorie",
+      "execution_status": "nicht im Quantity Agent ausgeführt"
+    },
+    {
+      "id": "B30",
+      "area": "Leistung",
+      "given_de": "Öffnung geometrisch abgezogen, vertraglich andere Abzugsregel",
+      "expected_de": "NET und CONTRACTUAL getrennt ausgeben; keine automatische VOB-Abrechnung",
+      "execution_status": "nicht im Quantity Agent ausgeführt"
+    },
+    {
+      "id": "B31",
+      "area": "Länge",
+      "given_de": "Zwei Teile eines durchgehenden Streifenfundaments",
+      "expected_de": "Objektanzahl und physisches Fundament bzw. Achslänge getrennt definieren",
+      "execution_status": "nicht im Quantity Agent ausgeführt"
+    },
+    {
+      "id": "B32",
+      "area": "Regelimport",
+      "given_de": "Überlappende aktive Intervalle oder doppelte Codes",
+      "expected_de": "Import verwerfen; letzte gültige Katalogversion beibehalten",
+      "execution_status": "nicht im Quantity Agent ausgeführt"
+    }
+  ],
+  "sources": [
+    {
+      "id": "S01",
+      "title": "Projektauftrag buildingSMART / IFC v1.0",
+      "url": "Projektquelle vom 18.10.2026",
+      "scope": "Arbeitsgrundlage; keine Änderung am Gesamtauftrag des Quantity Agents"
+    },
+    {
+      "id": "S02",
+      "title": "buildingSMART – IfcFooting, IFC4.3.2.0",
+      "url": "https://standards.buildingsmart.org/IFC/RELEASE/IFC4_3/HTML/lexical/IfcFooting.htm",
+      "scope": "Fundamente, Gründungsplatten und Tiefgründung unterscheiden"
+    },
+    {
+      "id": "S03",
+      "title": "buildingSMART – IfcFootingTypeEnum, IFC4.3.2.0",
+      "url": "https://standards.buildingsmart.org/IFC/RELEASE/IFC4_3/HTML/lexical/IfcFootingTypeEnum.htm",
+      "scope": "PAD_FOOTING, STRIP_FOOTING, PILE_CAP, FOOTING_BEAM; Caisson-Versionshinweis"
+    },
+    {
+      "id": "S04",
+      "title": "buildingSMART – IfcFootingTypeEnum, IFC4",
+      "url": "https://standards.buildingsmart.org/IFC/RELEASE/IFC4/FINAL/HTML/schema/ifcstructuralelementsdomain/lexical/ifcfootingtypeenum.htm",
+      "scope": "Versionsvergleich Gründung"
+    },
+    {
+      "id": "S05",
+      "title": "buildingSMART – IfcPileTypeEnum, IFC4.3.2.0",
+      "url": "https://standards.buildingsmart.org/IFC/RELEASE/IFC4_3/HTML/lexical/IfcPileTypeEnum.htm",
+      "scope": "Pfahltypen; Material muss separat bestätigt werden"
+    },
+    {
+      "id": "S06",
+      "title": "buildingSMART – Qto_SlabBaseQuantities, IFC4.3.2.0",
+      "url": "https://standards.buildingsmart.org/IFC/RELEASE/IFC4_3/HTML/lexical/Qto_SlabBaseQuantities.htm",
+      "scope": "Brutto-/Nettomengen; keine universelle Mengenquelle aller Klassen"
+    },
+    {
+      "id": "S07",
+      "title": "buildingSMART – IfcStair, IFC4.3.2.0",
+      "url": "https://standards.buildingsmart.org/IFC/RELEASE/IFC4_3/HTML/lexical/IfcStair.htm",
+      "scope": "Treppencontainer, Läufe und Podeste"
+    },
+    {
+      "id": "S08",
+      "title": "buildingSMART – IfcWallTypeEnum, IFC4.3.2.0",
+      "url": "https://standards.buildingsmart.org/IFC/RELEASE/IFC4_3/HTML/lexical/IfcWallTypeEnum.htm",
+      "scope": "Wandtypen versionsabhängig prüfen"
+    },
+    {
+      "id": "S09",
+      "title": "Beton.org – Auswahl des Betons",
+      "url": "https://www.beton.org/betonbau/beton-und-bautechnik/beton-bautechnik/auswahl-des-betons/",
+      "scope": "Klassenbezeichnungen; keine projektspezifischen Grenzwerte daraus abgeleitet"
+    },
+    {
+      "id": "S10",
+      "title": "DIN Media – DIN 1045-1000:2023-08",
+      "url": "https://www.dinmedia.de/de/norm/din-1045-1000/369463519",
+      "scope": "Titel, Ausgabe und Anwendungszweck der Betonbauqualitätsklassen"
+    },
+    {
+      "id": "S11",
+      "title": "Beton.org – Zement-Merkblatt B30, Februar 2026",
+      "url": "https://www.beton.org/fileadmin/beton-org/media/Dokumente/PDF/Service/Zementmerkbl%C3%A4tter/B30_ZM_2_2026.pdf",
+      "scope": "BBQ-N/E/S; BBQ und Überwachungsklassen sind getrennte Angaben"
+    }
+  ],
+  "interval_semantics": "lower_exclusive < value <= upper_inclusive; null upper = infinity",
+  "exact_grouping_metrics": [
+    "nominal_pile_diameter_m",
+    "section_b_m",
+    "section_h_m"
+  ],
+  "special_values": {
+    "missing": "unknown",
+    "zero": "invalid",
+    "negative": "invalid",
+    "variable_dimension": "variable",
+    "not_applicable": "not_applicable"
+  },
+  "automation": {
+    "category_assignments": "nur nach bestätigtem Projektmapping",
+    "intervals": "nach Quellen-/Einheitenprüfung",
+    "ifc_mapping": "Prüfkandidaten, keine automatische Umklassifizierung",
+    "writeback": false
+  },
+  "exclusions": [
+    "Erdvolumen",
+    "Hohlräume",
+    "Dämmung",
+    "Mauerwerk",
+    "Bewehrung als Betonvolumen",
+    "Verpressmörtel ohne Betonbestätigung",
+    "Boden-Zement-Gemische ohne gesonderte Festlegung"
+  ],
+  "excel_layout": [
+    {
+      "sheet": "Start",
+      "header_row": 5,
+      "first_data_row": 6,
+      "headers": [
+        "Thema",
+        "Wert",
+        "Erläuterung"
+      ],
+      "keys": null,
+      "rows": 14
+    },
+    {
+      "sheet": "Bauteile",
+      "header_row": 5,
+      "first_data_row": 6,
+      "headers": [
+        "Code",
+        "Modellbereich",
+        "Gruppe",
+        "Bauteilart",
+        "Mengen",
+        "Geometrie / Maße",
+        "Abgrenzung / Hinweis",
+        "Status"
+      ],
+      "keys": [
+        "code",
+        "model_scope",
+        "group_de",
+        "name_de",
+        "quantities_de",
+        "geometry_de",
+        "note_de",
+        "status"
+      ],
+      "rows": 42
+    },
+    {
+      "sheet": "IFC_Zuordnung",
+      "header_row": 5,
+      "first_data_row": 6,
+      "headers": [
+        "Code",
+        "IFC4 – Kandidat",
+        "IFC4.3 ADD2 – Kandidat",
+        "Status",
+        "Voraussetzung / Grenze"
+      ],
+      "keys": [
+        "code",
+        "ifc4_candidate",
+        "ifc43_candidate",
+        "status",
+        "note_de"
+      ],
+      "rows": 42
+    },
+    {
+      "sheet": "Messgroessen",
+      "header_row": 5,
+      "first_data_row": 6,
+      "headers": [
+        "Interner Schlüssel",
+        "Messgröße",
+        "Einheit",
+        "Anwendung",
+        "Mess- und Auswertungskonvention"
+      ],
+      "keys": [
+        "key",
+        "label_de",
+        "unit",
+        "applies_to_de",
+        "convention_de"
+      ],
+      "rows": 20
+    },
+    {
+      "sheet": "Intervalle",
+      "header_row": 5,
+      "first_data_row": 6,
+      "headers": [
+        "Messgröße",
+        "Code",
+        "Untergrenze exklusiv",
+        "Obergrenze inklusive",
+        "Einheit",
+        "Bereich",
+        "Anwendung",
+        "Aktiv",
+        "Status"
+      ],
+      "keys": [
+        "metric",
+        "code",
+        "lower_exclusive",
+        "upper_inclusive",
+        "unit",
+        "label_de",
+        "applies_to_de",
+        "active",
+        "status"
+      ],
+      "rows": 25
+    },
+    {
+      "sheet": "Merkmale",
+      "header_row": 5,
+      "first_data_row": 6,
+      "headers": [
+        "Interner Schlüssel",
+        "Merkmal",
+        "Beispiele / Werte",
+        "Einordnung",
+        "Anwendung / Hinweis"
+      ],
+      "keys": [
+        "key",
+        "label_de",
+        "examples_de",
+        "status",
+        "note_de"
+      ],
+      "rows": 28
+    },
+    {
+      "sheet": "Abnahme",
+      "header_row": 5,
+      "first_data_row": 6,
+      "headers": [
+        "ID",
+        "Thema",
+        "Eingabe / Situation",
+        "Erwartetes Ergebnis",
+        "Ausführungsstatus"
+      ],
+      "keys": [
+        "id",
+        "area",
+        "given_de",
+        "expected_de",
+        "execution_status"
+      ],
+      "rows": 32
+    }
+  ],
+  "changelog": [
+    {
+      "version": "0.2.0",
+      "date": "2026-11-01",
+      "changes": "Benutzerdefinierte Kategorieprofile für Stahl-/Betonbau; Stützen, Wände und Bleche; Parallelbetrieb exakter Maßgruppen; Vorschau, Versionierung und Sollfälle."
+    }
+  ],
+  "custom_metrics": [
+    {
+      "key": "column_width_m",
+      "label_de": "Stützenbreite",
+      "unit": "m",
+      "applies_to_de": "Stütze, Rechteck",
+      "convention_de": "Bestätigte lokale Querschnittsbreite; kein globales Außenmaß."
+    },
+    {
+      "key": "column_depth_m",
+      "label_de": "Stützenquerschnittshöhe",
+      "unit": "m",
+      "applies_to_de": "Stütze, Rechteck",
+      "convention_de": "Bestätigte lokale Querschnittshöhe; Achsen erhalten."
+    },
+    {
+      "key": "column_diameter_m",
+      "label_de": "Stützendurchmesser",
+      "unit": "m",
+      "applies_to_de": "Stütze, Kreis",
+      "convention_de": "Nur Kreisquerschnitt; kein Ersatzdurchmesser."
+    },
+    {
+      "key": "column_section_area_m2",
+      "label_de": "Stützenquerschnittsfläche",
+      "unit": "m²",
+      "applies_to_de": "Stütze",
+      "convention_de": "Bestätigte Querschnittsfläche; Querschnittsform getrennt filtern."
+    },
+    {
+      "key": "column_height_m",
+      "label_de": "Stützenhöhe",
+      "unit": "m",
+      "applies_to_de": "Stütze",
+      "convention_de": "Bestätigter Höhenbezug; Achslänge und vertikale Höhe unterscheiden."
+    }
+  ],
+  "profile_requirements": [
+    {
+      "id": "PR01",
+      "topic_de": "Profile verwalten",
+      "requirement_de": "Standardprofile schreibgeschützt mitliefern; als benutzerdefiniertes Profil kopieren. Anlegen, umbenennen, bearbeiten, duplizieren, auswählen und archivieren."
+    },
+    {
+      "id": "PR02",
+      "topic_de": "Speicherbereich",
+      "requirement_de": "Persönlich oder projektbezogen; Freigabe für Kollegen separat mit Berechtigungen implementieren. Keine implizite Änderung fremder Profile."
+    },
+    {
+      "id": "PR03",
+      "topic_de": "Identität",
+      "requirement_de": "Stabile profile_id, Version, Ursprung, Name, Änderungszeit und Inhalts-Fingerprint speichern. Fachliche Änderung erzeugt neue Version; alte Berichte bleiben reproduzierbar."
+    },
+    {
+      "id": "PR04",
+      "topic_de": "Anwendungsbereich",
+      "requirement_de": "Objekttyp/Kategorien, Material, Querschnittsform, Mengenbasis und Zählebene explizit im scope_json. Keine Profilanwendung nur anhand eines frei geratenen Namens."
+    },
+    {
+      "id": "PR05",
+      "topic_de": "Einheiten",
+      "requirement_de": "Anzeige in mm/cm/m, m², m³, kg oder kg/m. Grenzen kanonisch in m/m²/m³/kg/kg/m speichern. Einheiten nur innerhalb gleicher Dimension konvertieren."
+    },
+    {
+      "id": "PR06",
+      "topic_de": "Grenzregel",
+      "requirement_de": "Untergrenze exklusiv, Obergrenze inklusive. Offene letzte Obergrenze = null/Excel-Leerwert. Untergrenzen numerisch und nicht negativ; keine Vor-Rundung."
+    },
+    {
+      "id": "PR07",
+      "topic_de": "Überlappung",
+      "requirement_de": "Aktive Bänder innerhalb desselben Profils dürfen sich nicht überschneiden. Codes sind pro Profil eindeutig. Unterschiedliche Profile dürfen dieselbe Messgröße anders einteilen."
+    },
+    {
+      "id": "PR08",
+      "topic_de": "Abdeckung",
+      "requirement_de": "coverage=complete verlangt lückenlose Abdeckung aller positiven Werte bis unendlich. coverage=partial erlaubt bewusste Lücken und einen begrenzten Bereich; außerhalb gilt out_of_range."
+    },
+    {
+      "id": "PR09",
+      "topic_de": "Unvollständige Daten",
+      "requirement_de": "Fehlend=unknown; nicht anwendbar=not_applicable; Null/negativ/nicht endlich=invalid. Variable Dicke/Querschnitt=variable, bis eine bestätigte abschnittsweise Auswertung vorliegt."
+    },
+    {
+      "id": "PR10",
+      "topic_de": "Originalmaße",
+      "requirement_de": "Rohwert, Einheit, Quelle und normalisierter Wert erhalten. Exakte Maßgruppen parallel zu Intervallen anbieten. Keine Modelländerung oder zusätzliche Verschachtelung."
+    },
+    {
+      "id": "PR11",
+      "topic_de": "Vorschau",
+      "requirement_de": "Vor Speichern/Anwenden: Grenzen/Einheiten und Umfang prüfen, Treffer je Band sowie unknown/invalid/variable/not_applicable/out_of_range/conflict zeigen. Drilldown auf Objekte."
+    },
+    {
+      "id": "PR12",
+      "topic_de": "Auswertungswechsel",
+      "requirement_de": "Profilwechsel kategorisiert neu; keine Rohmengenänderung. Kombinierte Filter sind Schnittmengen. Alternative Profile niemals zu zusätzlicher Materialmenge addieren."
+    },
+    {
+      "id": "PR13",
+      "topic_de": "Import/Export",
+      "requirement_de": "Profile und Bänder über Excel/JSON austauschen. Fehlende Pflichtfelder, unbekannte Metriken, doppelte IDs/Versionen mit anderem Inhalt, ungültige Scopes oder Intervalle atomar ablehnen."
+    },
+    {
+      "id": "PR14",
+      "topic_de": "Aktivierung",
+      "requirement_de": "Entwurfsprofile nicht automatisch aktivieren. Erst nach Validierung und Nutzerwahl anwenden; ungültiger Import erhält letzte gültige Konfiguration."
+    },
+    {
+      "id": "PR15",
+      "topic_de": "Stützen",
+      "requirement_de": "Rechteck b/h in lokalen Querschnittsachsen und Rund-Ø trennen. A nur aus bestätigtem Querschnitt; nicht beliebig Volumen/Höhe bei veränderlichem Querschnitt. Rechteck- und Rundprofile getrennt filtern."
+    },
+    {
+      "id": "PR16",
+      "topic_de": "Wände",
+      "requirement_de": "Dicke normal zur Wandfläche, vertikale Höhe und Achslänge mit bestätigter Konvention. Wandansichtsfläche, Öffnungsabzüge und Schalungskontaktfläche bleiben verschiedene Messgrößen."
+    },
+    {
+      "id": "PR17",
+      "topic_de": "Bleche",
+      "requirement_de": "Nennblechdicke aus bestätigter Profil-/Materialquelle oder validierter lokaler Geometrie. Nicht kleinste globale Bounding-Box-Abmessung. Modellierte Dicke allein beweist keinen Stahlwerkstoff."
+    },
+    {
+      "id": "PR18",
+      "topic_de": "Blechflächen",
+      "requirement_de": "Gross/Net und Fläche der Mittelfläche versus Oberfläche unterscheiden. Ausgeklinkte/gelochte Bleche nicht über Außenrechteck als Nettofläche rechnen. Abwicklung gekanteter Bleche nur mit bestätigter Quelle."
+    },
+    {
+      "id": "PR19",
+      "topic_de": "Ergebnisvertrag",
+      "requirement_de": "Je Objekt: profile_id, profile_version, profile_fingerprint, metric, category_code, classification_status, canonical_value, quantity_basis und evaluation_level ausgeben. Bericht enthält Modellstand und Profilversionen."
+    },
+    {
+      "id": "PR20",
+      "topic_de": "UI-Workflow",
+      "requirement_de": "Kategorieprofile öffnen, Messgröße und Scope wählen, Grenzen/Bezeichnungen pflegen, Vorschau, Speichern als neue Version, Anwenden. Noch nicht gespeichert/ungültig darf nicht als aktives Profil erscheinen."
+    }
+  ],
+  "category_profiles": [
+    {
+      "profile_id": "std_concrete_volume_m3",
+      "name_de": "Standard: concrete_volume_m3",
+      "metric": "concrete_volume_m3",
+      "scope_json": "{\"applies_to\": \"legacy_catalog_scope\", \"evaluation_level\": \"explicit_report_selection\", \"material\": \"concrete\", \"quantity_basis\": \"explicit_report_selection\"}",
+      "canonical_unit": "m³",
+      "display_unit": "m³",
+      "origin": "standard",
+      "coverage": "complete",
+      "profile_version": "1.0.0",
+      "state": "readonly"
+    },
+    {
+      "profile_id": "std_slab_thickness_m",
+      "name_de": "Standard: slab_thickness_m",
+      "metric": "slab_thickness_m",
+      "scope_json": "{\"applies_to\": \"legacy_catalog_scope\", \"component_function\": \"slab\", \"evaluation_level\": \"explicit_report_selection\", \"material\": \"concrete\", \"quantity_basis\": \"explicit_report_selection\"}",
+      "canonical_unit": "m",
+      "display_unit": "m",
+      "origin": "standard",
+      "coverage": "complete",
+      "profile_version": "1.0.0",
+      "state": "readonly"
+    },
+    {
+      "profile_id": "std_wall_thickness_m",
+      "name_de": "Standard: wall_thickness_m",
+      "metric": "wall_thickness_m",
+      "scope_json": "{\"applies_to\": \"legacy_catalog_scope\", \"component_function\": \"wall\", \"evaluation_level\": \"explicit_report_selection\", \"material\": \"concrete\", \"quantity_basis\": \"explicit_report_selection\"}",
+      "canonical_unit": "m",
+      "display_unit": "m",
+      "origin": "standard",
+      "coverage": "complete",
+      "profile_version": "1.0.0",
+      "state": "readonly"
+    },
+    {
+      "profile_id": "std_wall_height_m",
+      "name_de": "Standard: wall_height_m",
+      "metric": "wall_height_m",
+      "scope_json": "{\"applies_to\": \"legacy_catalog_scope\", \"component_function\": \"wall\", \"evaluation_level\": \"explicit_report_selection\", \"material\": \"concrete\", \"quantity_basis\": \"explicit_report_selection\"}",
+      "canonical_unit": "m",
+      "display_unit": "m",
+      "origin": "standard",
+      "coverage": "complete",
+      "profile_version": "1.0.0",
+      "state": "readonly"
+    },
+    {
+      "profile_id": "usr_column_area",
+      "name_de": "Beispiel Stützenquerschnitte",
+      "metric": "column_section_area_m2",
+      "scope_json": "{\"component_function\": \"column\", \"cross_section_shape\": \"rectangular\", \"evaluation_level\": \"PART\", \"material\": \"concrete\", \"quantity_basis\": \"explicit_report_selection\"}",
+      "canonical_unit": "m²",
+      "display_unit": "m²",
+      "origin": "example",
+      "coverage": "complete",
+      "profile_version": "1.0.0",
+      "state": "draft"
+    },
+    {
+      "profile_id": "usr_column_height",
+      "name_de": "Beispiel Stützenhöhen",
+      "metric": "column_height_m",
+      "scope_json": "{\"component_function\": \"column\", \"cross_section_shape\": \"any\", \"evaluation_level\": \"PART\", \"material\": \"concrete\", \"quantity_basis\": \"explicit_report_selection\"}",
+      "canonical_unit": "m",
+      "display_unit": "cm",
+      "origin": "example",
+      "coverage": "complete",
+      "profile_version": "1.0.0",
+      "state": "draft"
+    },
+    {
+      "profile_id": "usr_column_diameter",
+      "name_de": "Beispiel Rundstützen",
+      "metric": "column_diameter_m",
+      "scope_json": "{\"component_function\": \"column\", \"cross_section_shape\": \"circular\", \"evaluation_level\": \"PART\", \"material\": \"concrete\", \"quantity_basis\": \"explicit_report_selection\"}",
+      "canonical_unit": "m",
+      "display_unit": "cm",
+      "origin": "example",
+      "coverage": "complete",
+      "profile_version": "1.0.0",
+      "state": "draft"
+    },
+    {
+      "profile_id": "usr_wall_thickness",
+      "name_de": "Beispiel Wanddicken",
+      "metric": "wall_thickness_m",
+      "scope_json": "{\"component_function\": \"wall\", \"cross_section_shape\": \"not_applicable\", \"evaluation_level\": \"PART\", \"material\": \"concrete\", \"quantity_basis\": \"explicit_report_selection\"}",
+      "canonical_unit": "m",
+      "display_unit": "cm",
+      "origin": "example",
+      "coverage": "complete",
+      "profile_version": "1.0.0",
+      "state": "draft"
+    },
+    {
+      "profile_id": "usr_wall_height",
+      "name_de": "Beispiel Wandhöhen",
+      "metric": "wall_height_m",
+      "scope_json": "{\"component_function\": \"wall\", \"cross_section_shape\": \"not_applicable\", \"evaluation_level\": \"PART\", \"material\": \"concrete\", \"quantity_basis\": \"explicit_report_selection\"}",
+      "canonical_unit": "m",
+      "display_unit": "m",
+      "origin": "example",
+      "coverage": "complete",
+      "profile_version": "1.0.0",
+      "state": "draft"
+    }
+  ],
+  "profile_bands": [
+    {
+      "profile_id": "std_concrete_volume_m3",
+      "category_code": "V01",
+      "lower_exclusive": 0,
+      "upper_inclusive": 0.5,
+      "canonical_unit": "m³",
+      "label_de": "über 0 bis 0,5 m³",
+      "active": true
+    },
+    {
+      "profile_id": "std_concrete_volume_m3",
+      "category_code": "V02",
+      "lower_exclusive": 0.5,
+      "upper_inclusive": 1,
+      "canonical_unit": "m³",
+      "label_de": "über 0,5 bis 1 m³",
+      "active": true
+    },
+    {
+      "profile_id": "std_concrete_volume_m3",
+      "category_code": "V03",
+      "lower_exclusive": 1,
+      "upper_inclusive": 2.5,
+      "canonical_unit": "m³",
+      "label_de": "über 1 bis 2,5 m³",
+      "active": true
+    },
+    {
+      "profile_id": "std_concrete_volume_m3",
+      "category_code": "V04",
+      "lower_exclusive": 2.5,
+      "upper_inclusive": 5,
+      "canonical_unit": "m³",
+      "label_de": "über 2,5 bis 5 m³",
+      "active": true
+    },
+    {
+      "profile_id": "std_concrete_volume_m3",
+      "category_code": "V05",
+      "lower_exclusive": 5,
+      "upper_inclusive": 10,
+      "canonical_unit": "m³",
+      "label_de": "über 5 bis 10 m³",
+      "active": true
+    },
+    {
+      "profile_id": "std_concrete_volume_m3",
+      "category_code": "V06",
+      "lower_exclusive": 10,
+      "upper_inclusive": 25,
+      "canonical_unit": "m³",
+      "label_de": "über 10 bis 25 m³",
+      "active": true
+    },
+    {
+      "profile_id": "std_concrete_volume_m3",
+      "category_code": "V07",
+      "lower_exclusive": 25,
+      "upper_inclusive": 50,
+      "canonical_unit": "m³",
+      "label_de": "über 25 bis 50 m³",
+      "active": true
+    },
+    {
+      "profile_id": "std_concrete_volume_m3",
+      "category_code": "V08",
+      "lower_exclusive": 50,
+      "upper_inclusive": 100,
+      "canonical_unit": "m³",
+      "label_de": "über 50 bis 100 m³",
+      "active": true
+    },
+    {
+      "profile_id": "std_concrete_volume_m3",
+      "category_code": "V09",
+      "lower_exclusive": 100,
+      "upper_inclusive": null,
+      "canonical_unit": "m³",
+      "label_de": "über 100 m³",
+      "active": true
+    },
+    {
+      "profile_id": "std_slab_thickness_m",
+      "category_code": "PD01",
+      "lower_exclusive": 0,
+      "upper_inclusive": 0.15,
+      "canonical_unit": "m",
+      "label_de": "über 0 bis 0,15 m",
+      "active": true
+    },
+    {
+      "profile_id": "std_slab_thickness_m",
+      "category_code": "PD02",
+      "lower_exclusive": 0.15,
+      "upper_inclusive": 0.25,
+      "canonical_unit": "m",
+      "label_de": "über 0,15 bis 0,25 m",
+      "active": true
+    },
+    {
+      "profile_id": "std_slab_thickness_m",
+      "category_code": "PD03",
+      "lower_exclusive": 0.25,
+      "upper_inclusive": 0.4,
+      "canonical_unit": "m",
+      "label_de": "über 0,25 bis 0,4 m",
+      "active": true
+    },
+    {
+      "profile_id": "std_slab_thickness_m",
+      "category_code": "PD04",
+      "lower_exclusive": 0.4,
+      "upper_inclusive": 0.6,
+      "canonical_unit": "m",
+      "label_de": "über 0,4 bis 0,6 m",
+      "active": true
+    },
+    {
+      "profile_id": "std_slab_thickness_m",
+      "category_code": "PD05",
+      "lower_exclusive": 0.6,
+      "upper_inclusive": 1,
+      "canonical_unit": "m",
+      "label_de": "über 0,6 bis 1 m",
+      "active": true
+    },
+    {
+      "profile_id": "std_slab_thickness_m",
+      "category_code": "PD06",
+      "lower_exclusive": 1,
+      "upper_inclusive": null,
+      "canonical_unit": "m",
+      "label_de": "über 1 m",
+      "active": true
+    },
+    {
+      "profile_id": "std_wall_thickness_m",
+      "category_code": "WD01",
+      "lower_exclusive": 0,
+      "upper_inclusive": 0.15,
+      "canonical_unit": "m",
+      "label_de": "über 0 bis 0,15 m",
+      "active": true
+    },
+    {
+      "profile_id": "std_wall_thickness_m",
+      "category_code": "WD02",
+      "lower_exclusive": 0.15,
+      "upper_inclusive": 0.25,
+      "canonical_unit": "m",
+      "label_de": "über 0,15 bis 0,25 m",
+      "active": true
+    },
+    {
+      "profile_id": "std_wall_thickness_m",
+      "category_code": "WD03",
+      "lower_exclusive": 0.25,
+      "upper_inclusive": 0.35,
+      "canonical_unit": "m",
+      "label_de": "über 0,25 bis 0,35 m",
+      "active": true
+    },
+    {
+      "profile_id": "std_wall_thickness_m",
+      "category_code": "WD04",
+      "lower_exclusive": 0.35,
+      "upper_inclusive": 0.5,
+      "canonical_unit": "m",
+      "label_de": "über 0,35 bis 0,5 m",
+      "active": true
+    },
+    {
+      "profile_id": "std_wall_thickness_m",
+      "category_code": "WD05",
+      "lower_exclusive": 0.5,
+      "upper_inclusive": null,
+      "canonical_unit": "m",
+      "label_de": "über 0,5 m",
+      "active": true
+    },
+    {
+      "profile_id": "std_wall_height_m",
+      "category_code": "WH01",
+      "lower_exclusive": 0,
+      "upper_inclusive": 2,
+      "canonical_unit": "m",
+      "label_de": "über 0 bis 2 m",
+      "active": true
+    },
+    {
+      "profile_id": "std_wall_height_m",
+      "category_code": "WH02",
+      "lower_exclusive": 2,
+      "upper_inclusive": 3,
+      "canonical_unit": "m",
+      "label_de": "über 2 bis 3 m",
+      "active": true
+    },
+    {
+      "profile_id": "std_wall_height_m",
+      "category_code": "WH03",
+      "lower_exclusive": 3,
+      "upper_inclusive": 4,
+      "canonical_unit": "m",
+      "label_de": "über 3 bis 4 m",
+      "active": true
+    },
+    {
+      "profile_id": "std_wall_height_m",
+      "category_code": "WH04",
+      "lower_exclusive": 4,
+      "upper_inclusive": 6,
+      "canonical_unit": "m",
+      "label_de": "über 4 bis 6 m",
+      "active": true
+    },
+    {
+      "profile_id": "std_wall_height_m",
+      "category_code": "WH05",
+      "lower_exclusive": 6,
+      "upper_inclusive": null,
+      "canonical_unit": "m",
+      "label_de": "über 6 m",
+      "active": true
+    },
+    {
+      "profile_id": "usr_column_area",
+      "category_code": "K01",
+      "lower_exclusive": 0,
+      "upper_inclusive": 0.09,
+      "canonical_unit": "m²",
+      "label_de": "über 0 bis 0,09 m²",
+      "active": true
+    },
+    {
+      "profile_id": "usr_column_area",
+      "category_code": "K02",
+      "lower_exclusive": 0.09,
+      "upper_inclusive": 0.16,
+      "canonical_unit": "m²",
+      "label_de": "über 0,09 bis 0,16 m²",
+      "active": true
+    },
+    {
+      "profile_id": "usr_column_area",
+      "category_code": "K03",
+      "lower_exclusive": 0.16,
+      "upper_inclusive": 0.25,
+      "canonical_unit": "m²",
+      "label_de": "über 0,16 bis 0,25 m²",
+      "active": true
+    },
+    {
+      "profile_id": "usr_column_area",
+      "category_code": "K04",
+      "lower_exclusive": 0.25,
+      "upper_inclusive": 0.36,
+      "canonical_unit": "m²",
+      "label_de": "über 0,25 bis 0,36 m²",
+      "active": true
+    },
+    {
+      "profile_id": "usr_column_area",
+      "category_code": "K05",
+      "lower_exclusive": 0.36,
+      "upper_inclusive": 0.64,
+      "canonical_unit": "m²",
+      "label_de": "über 0,36 bis 0,64 m²",
+      "active": true
+    },
+    {
+      "profile_id": "usr_column_area",
+      "category_code": "K06",
+      "lower_exclusive": 0.64,
+      "upper_inclusive": null,
+      "canonical_unit": "m²",
+      "label_de": "über 0,64 m²",
+      "active": true
+    },
+    {
+      "profile_id": "usr_column_height",
+      "category_code": "K01",
+      "lower_exclusive": 0,
+      "upper_inclusive": 3,
+      "canonical_unit": "m",
+      "label_de": "über 0 bis 3 m",
+      "active": true
+    },
+    {
+      "profile_id": "usr_column_height",
+      "category_code": "K02",
+      "lower_exclusive": 3,
+      "upper_inclusive": 4,
+      "canonical_unit": "m",
+      "label_de": "über 3 bis 4 m",
+      "active": true
+    },
+    {
+      "profile_id": "usr_column_height",
+      "category_code": "K03",
+      "lower_exclusive": 4,
+      "upper_inclusive": 6,
+      "canonical_unit": "m",
+      "label_de": "über 4 bis 6 m",
+      "active": true
+    },
+    {
+      "profile_id": "usr_column_height",
+      "category_code": "K04",
+      "lower_exclusive": 6,
+      "upper_inclusive": null,
+      "canonical_unit": "m",
+      "label_de": "über 6 m",
+      "active": true
+    },
+    {
+      "profile_id": "usr_column_diameter",
+      "category_code": "K01",
+      "lower_exclusive": 0,
+      "upper_inclusive": 0.3,
+      "canonical_unit": "m",
+      "label_de": "über 0 bis 0,3 m",
+      "active": true
+    },
+    {
+      "profile_id": "usr_column_diameter",
+      "category_code": "K02",
+      "lower_exclusive": 0.3,
+      "upper_inclusive": 0.4,
+      "canonical_unit": "m",
+      "label_de": "über 0,3 bis 0,4 m",
+      "active": true
+    },
+    {
+      "profile_id": "usr_column_diameter",
+      "category_code": "K03",
+      "lower_exclusive": 0.4,
+      "upper_inclusive": 0.6,
+      "canonical_unit": "m",
+      "label_de": "über 0,4 bis 0,6 m",
+      "active": true
+    },
+    {
+      "profile_id": "usr_column_diameter",
+      "category_code": "K04",
+      "lower_exclusive": 0.6,
+      "upper_inclusive": null,
+      "canonical_unit": "m",
+      "label_de": "über 0,6 m",
+      "active": true
+    },
+    {
+      "profile_id": "usr_wall_thickness",
+      "category_code": "K01",
+      "lower_exclusive": 0,
+      "upper_inclusive": 0.2,
+      "canonical_unit": "m",
+      "label_de": "über 0 bis 0,2 m",
+      "active": true
+    },
+    {
+      "profile_id": "usr_wall_thickness",
+      "category_code": "K02",
+      "lower_exclusive": 0.2,
+      "upper_inclusive": 0.3,
+      "canonical_unit": "m",
+      "label_de": "über 0,2 bis 0,3 m",
+      "active": true
+    },
+    {
+      "profile_id": "usr_wall_thickness",
+      "category_code": "K03",
+      "lower_exclusive": 0.3,
+      "upper_inclusive": 0.5,
+      "canonical_unit": "m",
+      "label_de": "über 0,3 bis 0,5 m",
+      "active": true
+    },
+    {
+      "profile_id": "usr_wall_thickness",
+      "category_code": "K04",
+      "lower_exclusive": 0.5,
+      "upper_inclusive": null,
+      "canonical_unit": "m",
+      "label_de": "über 0,5 m",
+      "active": true
+    },
+    {
+      "profile_id": "usr_wall_height",
+      "category_code": "K01",
+      "lower_exclusive": 0,
+      "upper_inclusive": 3,
+      "canonical_unit": "m",
+      "label_de": "über 0 bis 3 m",
+      "active": true
+    },
+    {
+      "profile_id": "usr_wall_height",
+      "category_code": "K02",
+      "lower_exclusive": 3,
+      "upper_inclusive": 4,
+      "canonical_unit": "m",
+      "label_de": "über 3 bis 4 m",
+      "active": true
+    },
+    {
+      "profile_id": "usr_wall_height",
+      "category_code": "K03",
+      "lower_exclusive": 4,
+      "upper_inclusive": 6,
+      "canonical_unit": "m",
+      "label_de": "über 4 bis 6 m",
+      "active": true
+    },
+    {
+      "profile_id": "usr_wall_height",
+      "category_code": "K04",
+      "lower_exclusive": 6,
+      "upper_inclusive": null,
+      "canonical_unit": "m",
+      "label_de": "über 6 m",
+      "active": true
+    }
+  ],
+  "profile_contract": {
+    "interval": "lower_exclusive < canonical_value <= upper_inclusive",
+    "default_coverage": "complete",
+    "partial_coverage": "Lücken erlaubt; out_of_range sichtbar",
+    "example_activation": "draft, nur nach Nutzerwahl",
+    "unknown_metric": "reject",
+    "original_values": "preserve",
+    "writeback": false,
+    "standard_profiles": "readonly; clone before editing",
+    "allowed_display_units": {
+      "m": [
+        "mm",
+        "cm",
+        "m"
+      ],
+      "m²": [
+        "m²"
+      ],
+      "m³": [
+        "m³"
+      ],
+      "kg": [
+        "kg"
+      ],
+      "kg/m": [
+        "kg/m"
+      ]
+    }
+  },
+  "profile_acceptance_cases": [
+    {
+      "id": "P01",
+      "given_de": "Standardprofil bearbeiten",
+      "expected_de": "Direkte Änderung verweigern; Kopie mit neuer ID erzeugen.",
+      "execution_status": "nicht im Quantity Agent ausgeführt"
+    },
+    {
+      "id": "P02",
+      "given_de": "Wanddicke 250 mm; Grenzen 0,20/0,30 m",
+      "expected_de": "0,25 m normalisieren; K02 im Beispielprofil.",
+      "execution_status": "nicht im Quantity Agent ausgeführt"
+    },
+    {
+      "id": "P03",
+      "given_de": "Blechdicke 15 mm genau auf Grenze",
+      "expected_de": "K02; 15,001 mm liegt in K03.",
+      "execution_status": "nicht im Quantity Agent ausgeführt"
+    },
+    {
+      "id": "P04",
+      "given_de": "Zwei aktive sich überschneidende Bänder",
+      "expected_de": "Profilimport atomar ablehnen; aktive Version erhalten.",
+      "execution_status": "nicht im Quantity Agent ausgeführt"
+    },
+    {
+      "id": "P05",
+      "given_de": "Complete-Profil mit Lücke",
+      "expected_de": "Ungültig; keine Aktivierung.",
+      "execution_status": "nicht im Quantity Agent ausgeführt"
+    },
+    {
+      "id": "P06",
+      "given_de": "Partial-Profil mit bewusst freier Spanne",
+      "expected_de": "Gültig; Objekte in Lücke als out_of_range zählen.",
+      "execution_status": "nicht im Quantity Agent ausgeführt"
+    },
+    {
+      "id": "P07",
+      "given_de": "Von exakter Maßgruppe auf Intervallprofil wechseln",
+      "expected_de": "Originalmaße und Gesamtsumme unverändert; Gruppen neu berechnen.",
+      "execution_status": "nicht im Quantity Agent ausgeführt"
+    },
+    {
+      "id": "P08",
+      "given_de": "Rundstütze bei Rechteck-Stützenprofil",
+      "expected_de": "not_applicable; kein erzwungenes Rechteckmaß.",
+      "execution_status": "nicht im Quantity Agent ausgeführt"
+    },
+    {
+      "id": "P09",
+      "given_de": "Variable Wanddicke 0,20–0,40 m",
+      "expected_de": "variable; min/max erhalten; keine konstante Größenklasse.",
+      "execution_status": "nicht im Quantity Agent ausgeführt"
+    },
+    {
+      "id": "P10",
+      "given_de": "Gedrehtes Blech, gleiche lokale Dicke",
+      "expected_de": "Gleiche Kategorie; globale Bounding-Box ignorieren.",
+      "execution_status": "nicht im Quantity Agent ausgeführt"
+    },
+    {
+      "id": "P11",
+      "given_de": "Gekantetes Blech ohne bestätigte Abwicklung",
+      "expected_de": "Abwicklungsfläche unknown; keine Außenrechteck-Ersatzfläche.",
+      "execution_status": "nicht im Quantity Agent ausgeführt"
+    },
+    {
+      "id": "P12",
+      "given_de": "Gelochtes Blech; Nettofläche bereits geliefert",
+      "expected_de": "Kein zweiter Lochabzug; NET und GROSS getrennt.",
+      "execution_status": "nicht im Quantity Agent ausgeführt"
+    },
+    {
+      "id": "P13",
+      "given_de": "Kombination Blechdicke und Einzelgewicht",
+      "expected_de": "Schnittmenge filtern; keine zusätzliche Masse durch Mehrfachprofile.",
+      "execution_status": "nicht im Quantity Agent ausgeführt"
+    },
+    {
+      "id": "P14",
+      "given_de": "Profilversion 1.0.0 später fachlich geändert",
+      "expected_de": "Neue Version; alter Bericht behält Version und Fingerprint.",
+      "execution_status": "nicht im Quantity Agent ausgeführt"
+    },
+    {
+      "id": "P15",
+      "given_de": "Profilimport mit mm als Volumeneinheit",
+      "expected_de": "Wegen Dimensionsfehler ablehnen.",
+      "execution_status": "nicht im Quantity Agent ausgeführt"
+    },
+    {
+      "id": "P16",
+      "given_de": "Auswertung vor Speichern eines ungültigen Entwurfs",
+      "expected_de": "Letztes gültiges Profil bleibt aktiv; Entwurf als ungespeichert zeigen.",
+      "execution_status": "nicht im Quantity Agent ausgeführt"
+    },
+    {
+      "id": "P17",
+      "given_de": "Import/Export Excel–JSON",
+      "expected_de": "IDs, Scopes, Einheiten, Grenzen, Versionen und Kategorien unverändert.",
+      "execution_status": "nicht im Quantity Agent ausgeführt"
+    },
+    {
+      "id": "P18",
+      "given_de": "Unbekannter Metric-Key oder doppelte ID mit abweichendem Inhalt",
+      "expected_de": "Import ablehnen; kein stilles Überschreiben.",
+      "execution_status": "nicht im Quantity Agent ausgeführt"
+    },
+    {
+      "id": "P19",
+      "given_de": "Stützenhöhe versus Achslänge einer Schrägstütze",
+      "expected_de": "Messkonvention beachten; Werte nicht austauschbar.",
+      "execution_status": "nicht im Quantity Agent ausgeführt"
+    },
+    {
+      "id": "P20",
+      "given_de": "Vorschau mit fehlenden und nicht passenden Objekten",
+      "expected_de": "unknown, invalid, variable, not_applicable, out_of_range und Treffer separat ausgeben.",
+      "execution_status": "nicht im Quantity Agent ausgeführt"
+    }
+  ],
+  "profile_excel_layout": {
+    "Profile": [
+      "profile_id",
+      "name_de",
+      "metric",
+      "scope_json",
+      "canonical_unit",
+      "display_unit",
+      "origin",
+      "coverage",
+      "profile_version",
+      "state"
+    ],
+    "Profil_Baender": [
+      "profile_id",
+      "category_code",
+      "lower_exclusive",
+      "upper_inclusive",
+      "canonical_unit",
+      "label_de",
+      "active"
+    ],
+    "Profil_Metriken": [
+      "key",
+      "label_de",
+      "unit",
+      "applies_to_de",
+      "convention_de"
+    ],
+    "Profil_Regeln": [
+      "id",
+      "topic_de",
+      "requirement_de"
+    ],
+    "Profil_Abnahme": [
+      "id",
+      "given_de",
+      "expected_de",
+      "execution_status"
+    ]
+  }
+}
