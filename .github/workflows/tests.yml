@@ -32,3 +32,17 @@ jobs:
           python export_openapi.py
           git diff --exit-code -- openapi/ifc_quantity_agent_mvp1_openapi_v1.json
 
+
+  object-layout:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Install browser test dependencies
+        run: npm ci --prefix tests/browser
+      - name: Install Chromium
+        run: node tests/browser/node_modules/playwright/cli.js install --with-deps chromium --only-shell
+      - name: Verify independent scroll areas and fixed filters
+        run: node tests/test_object_scroll.cjs

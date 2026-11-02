@@ -140,3 +140,9 @@ Links oben steht `UI v0.3.4`. IFC-Schema, Exportzeitpunkt und Referenzstand steh
 ### UI v0.3.5 – lesbarer Objekt-Drilldown
 
 Property Sets erscheinen gruppiert und aufklappbar als Eigenschaft/Wert-Tabellen. Mengen zeigen Wert, explizite Einheit und Quelle; fehlend und Null bleiben getrennt. Zahlenanzeige mit maximal sechs Nachkommastellen, exakter Rohwert aufklappbar. Technisches JSON ist optional. Die IFC-Daten und Mengenregeln werden nicht verändert.
+
+### UI v0.3.6 – Objektansicht scrollen
+
+In der Objektansicht bleiben Suche, Filter und Spaltenköpfe sichtbar. Die Liste und der Detailbereich scrollen unabhängig innerhalb der Fensterhöhe. Auf kleineren Bildschirmen stehen beide Bereiche übereinander. Der Objekttitel bleibt im Detailbereich sichtbar. Regression für diese Layoutgrenzen: `node tests/test_object_scroll.cjs` (Playwright erforderlich).
+
+Browser-Layouttests vorbereiten: `npm ci --prefix tests/browser`, dann `node tests/browser/node_modules/playwright/cli.js install chromium --only-shell`. Node/Playwright sind nur für Entwicklungstests nötig, nicht zum Windows-Start des Agenten.

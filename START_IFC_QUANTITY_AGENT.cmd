@@ -4,7 +4,7 @@ cd /d "%~dp0"
 
 echo.
 echo ============================================================
-echo  IFC Quantity Agent - MVP 1 - UI v0.3.5
+echo  IFC Quantity Agent - MVP 1 - UI v0.3.6
 echo ============================================================
 echo.
 

@@ -4,14 +4,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>IFC Quantity Agent</title>
-  <link rel="stylesheet" href="/assets/styles.css?v=0.3.5">
+  <link rel="stylesheet" href="/assets/styles.css?v=0.3.6">
 </head>
 <body>
   <div class="app-shell">
     <aside class="sidebar">
       <div class="brand">
         <div class="brand-mark">IQ</div>
-        <div><strong>IFC Quantity</strong><span>Agent · MVP 1 · UI v0.3.5</span></div>
+        <div><strong>IFC Quantity</strong><span>Agent · MVP 1 · UI v0.3.6</span></div>
       </div>
       <nav id="main-nav" aria-label="Hauptnavigation">
         <button class="nav-item active" data-view="overview"><span>01</span>Projektübersicht</button>
@@ -89,9 +89,9 @@
         <div id="objects-layout" class="object-layout hidden">
           <article class="panel table-panel">
             <div class="table-toolbar"><div class="search-wrap"><span>⌕</span><input id="object-search" placeholder="GlobalId, Name, Klasse …"></div><label class="check-filter"><input id="missing-lv" type="checkbox"> LV-Ident leer</label><label class="check-filter"><input id="only-findings" type="checkbox"> Nur mit Findings</label><span id="object-count" class="result-count"></span></div>
-            <div class="table-scroll tall"><table><thead><tr><th class="select-col"><input id="select-all" type="checkbox" aria-label="Alle sichtbaren Objekte wählen"></th><th>IFC-Klasse</th><th>Name</th><th>LV-Ident</th><th>Material</th><th>Findings</th></tr><tr class="column-filters"><th></th><th><input data-field="ifc_class" placeholder="Filtern"></th><th><input data-field="name" placeholder="Filtern"></th><th><select data-field="lv_ident"><option value="">Alle</option><option value="__EMPTY__">(Leer)</option><option value="__FILLED__">(Nicht leer)</option></select></th><th><input data-field="materials" placeholder="Filtern"></th><th></th></tr></thead><tbody id="object-body"></tbody></table></div>
+            <div class="table-scroll tall" tabindex="0" aria-label="Objektliste scrollen"><table><thead><tr><th class="select-col"><input id="select-all" type="checkbox" aria-label="Alle sichtbaren Objekte wählen"></th><th>IFC-Klasse</th><th>Name</th><th>LV-Ident</th><th>Material</th><th>Findings</th></tr><tr class="column-filters"><th></th><th><input data-field="ifc_class" placeholder="Filtern"></th><th><input data-field="name" placeholder="Filtern"></th><th><select data-field="lv_ident"><option value="">Alle</option><option value="__EMPTY__">(Leer)</option><option value="__FILLED__">(Nicht leer)</option></select></th><th><input data-field="materials" placeholder="Filtern"></th><th></th></tr></thead><tbody id="object-body"></tbody></table></div>
           </article>
-          <aside id="detail-panel" class="detail-panel"><div class="detail-empty"><div class="detail-glyph">↗</div><h3>Objekt auswählen</h3><p>Klicke eine Tabellenzeile an, um IFC-Attribute, PSets, QTOs und Findings zu prüfen.</p></div></aside>
+          <aside id="detail-panel" class="detail-panel" tabindex="0" aria-label="Objektdetails scrollen"><div class="detail-empty"><div class="detail-glyph">↗</div><h3>Objekt auswählen</h3><p>Klicke eine Tabellenzeile an, um IFC-Attribute, PSets, QTOs und Findings zu prüfen.</p></div></aside>
         </div>
       </section>
 
@@ -102,7 +102,7 @@
       <section id="view-quality" class="view"><div class="empty-state roadmap"><span class="badge planned">NACH MVP‑1</span><h2>Model Quality Checker</h2><p>KI-Hinweise und verbindliche EIR-/AIA-Regelprüfungen bleiben klar getrennte Arbeitsbereiche.</p></div></section>
     </main>
   </div>
-  <script src="/assets/object-details.js?v=0.3.5" defer></script>
-  <script src="/assets/app.js?v=0.3.5" defer></script>
+  <script src="/assets/object-details.js?v=0.3.6" defer></script>
+  <script src="/assets/app.js?v=0.3.6" defer></script>
 </body>
 </html>

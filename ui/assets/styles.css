@@ -32,3 +32,39 @@
 .technical-data pre{font:12px/1.6 Consolas,monospace;white-space:pre-wrap;overflow-wrap:anywhere;background:#f4f6f8;padding:10px;border-radius:5px;max-height:320px;overflow:auto}
 .visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 @media(max-width:1100px){.object-layout{grid-template-columns:1fr}}
+/* v0.3.6: keep object filters visible; only list/details scroll. */
+body.object-view{height:100dvh;overflow:hidden}
+.object-view .app-shell{height:100dvh;min-height:0;overflow:hidden;grid-template-rows:minmax(0,1fr)}
+.object-view .workspace{height:100dvh;min-height:0;display:flex;flex-direction:column;overflow:hidden;padding-bottom:16px}
+.object-view .topbar{flex:0 0 104px;min-height:104px}
+.object-view #reference-status{display:none}
+.object-view #view-objects.active{display:flex;flex-direction:column;flex:1;min-height:0;overflow:hidden}
+.object-view #view-objects>.section-head{flex:none}
+.object-view #objects-empty{min-height:0;overflow:auto}
+.object-view .object-layout{flex:1;min-height:0;grid-template-rows:minmax(0,1fr);align-items:stretch}
+.object-view .object-layout>.table-panel{display:flex;flex-direction:column;min-height:0}
+.object-view .object-layout .table-toolbar{flex:none;flex-wrap:wrap}
+.object-view .table-scroll.tall{flex:1;min-height:0;max-height:none;overflow:auto;overscroll-behavior:contain;scrollbar-gutter:stable}
+.object-view .table-scroll.tall thead{position:sticky;top:0;z-index:2}
+.object-view .table-scroll.tall thead th{position:static}
+.object-view .detail-panel{min-height:0;overflow:auto;overscroll-behavior:contain;scrollbar-gutter:stable}
+.object-view .detail-head{position:sticky;top:0;z-index:3}
+@media(max-width:1100px){
+ .object-view .object-layout{grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr) minmax(0,1fr)}
+}
+@media(max-width:760px){
+ .object-view .app-shell{display:flex;flex-direction:column}
+ .object-view .sidebar{position:static;height:auto;flex:none;padding:10px 14px}
+ .object-view .brand{padding:0 0 8px}
+ .object-view .sidebar nav{display:flex;flex-direction:row;overflow-x:auto;margin-top:8px;gap:4px}
+ .object-view .nav-item{flex:none;width:auto;white-space:nowrap;padding:7px 8px}
+ .object-view .workspace{height:auto;flex:1;padding-bottom:10px}
+ .object-view .topbar{flex:0 0 auto;min-height:80px;padding:10px 0}
+ .object-view .topbar h1{font-size:23px}
+ .object-view .model-chip{max-width:150px}
+ .object-view #view-objects{margin-top:12px}
+ .object-view .section-head{margin-bottom:8px}
+ .object-view .object-layout{gap:8px}
+}
+/* Contain absolute accessible captions; prevent phantom document overflow. */
+.pset-group{position:relative}

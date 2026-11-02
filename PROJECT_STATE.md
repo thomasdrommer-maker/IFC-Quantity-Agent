@@ -2,7 +2,7 @@
 
 **Stand:** 02.11.2026  
 **Entwicklungskonzept:** [v1.12](docs/concept/IFC_Quantity_Agent_Entwicklungskonzept_v1.12.md)  
-**Implementierungspaket:** v0.3.5  
+**Implementierungspaket:** v0.3.6  
 **API-Vertrag:** v1.0.0  
 **Regelpaket:** IQA-M1-Z445-ECA v0.1.0
 
@@ -67,3 +67,13 @@ MVP-1-UI anhand des Z445-Modells fachlich und visuell prüfen. Danach Mengenübe
 - Nutzer bestätigt v0.3.4, Metadaten/Referenzanzeige und unabhängige Element-/Assemblyzahlen. Objektbezug und tatsächliche PSets/QTOs vorläufig bestätigt.
 - Beanstandung: JSON-Blöcke zu klein und schlecht lesbar. v0.3.5 zeigt PSet-Gruppen als aufklappbare Tabellen und Mengen mit Einheit, Quelle sowie exaktem Rohwert. Roh-JSON bleibt optional. Anzeige rundet nur Zahlenformat auf maximal 6 Dezimalstellen; Collector/Regeln/Baseline unverändert.
 - Lesbarkeitsabnahme v0.3.5 und Modellstruktur weiterhin offen; keine vollständige MVP-1-Freigabe.
+
+## UI v0.3.6 – Scrollbereiche der Objektansicht
+
+- Nutzer bestätigt PSet-Tabellen, Mengenanzeige und aufklappbare Rohwerte in v0.3.5.
+- Korrektur: Objektansicht auf Fensterhöhe begrenzen; Filterleiste außerhalb der scrollenden Tabelle, gesamter Tabellenkopf bleibt sichtbar. Objektdetails scrollen unabhängig, Objekttitel bleibt stehen.
+- Für kleine Fenster werden Liste und Details als zwei begrenzte Bereiche übereinander angezeigt. Beim Wechsel der Ansicht wird das normale Seitenlayout wiederhergestellt.
+- Keine Änderungen an API, Collector oder Mengen-/Referenzregeln. Vollständige MVP-1-Abnahme weiterhin offen (Modellstruktur).
+
+- Browser-Regression v0.3.6 lokal bestanden: 1500×900, 1280×720, 1280×600, 1024×768, 390×844; 600 Objekte und 20 aufgeklappte PSet-Gruppen. Listenende, Detailende, feststehende Filter/Spaltenköpfe und Rückkehr zur Projektübersicht geprüft. Neuer CI-Job `object-layout`.
+- Die PSet-Gruppen bilden zusätzlich den Positionierungsrahmen für unsichtbare Tabellenbeschriftungen. Ohne diesen Rahmen können lange Detailinhalte eine unsichtbare zusätzliche Seitenhöhe erzeugen; der Browsertest prüft deshalb auch die Dokumenthöhe.

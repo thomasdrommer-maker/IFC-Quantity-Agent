@@ -45,8 +45,8 @@ def main():
     listener = reserve_listener(host, int(os.getenv("IQA_API_PORT", "8000")))
     port = listener.getsockname()[1]
     browser_host = "127.0.0.1" if host == "0.0.0.0" else host
-    url = f"http://{browser_host}:{port}/?v=0.3.5"
-    print(f"IFC Quantity Agent UI v0.3.5\nPaket: {PACKAGE_ROOT}\nBrowser: {url}", flush=True)
+    url = f"http://{browser_host}:{port}/?v=0.3.6"
+    print(f"IFC Quantity Agent UI v0.3.6\nPaket: {PACKAGE_ROOT}\nBrowser: {url}", flush=True)
     if os.getenv("IQA_OPEN_BROWSER", "1") != "0":
         threading.Thread(target=open_when_ready, args=(url,), daemon=True).start()
     try:

@@ -14,7 +14,7 @@ function formatIfcTimestamp(raw){
 async function api(path,options={}){const response=await fetch(path,options);if(!response.ok){let detail=`HTTP ${response.status}`;try{detail=(await response.json()).detail||detail}catch{}throw new Error(detail)}return response.json()}
 async function checkHealth(){try{const h=await api('/api/v1/health');$('#api-version').textContent=`API ${h.api_version} · ${h.rule_package.rule_count} Regeln`}catch{$('#api-version').textContent='API nicht erreichbar';$('.status-dot').style.background='#c44b4b'}}
 
-function activateView(name){$$('.nav-item').forEach(b=>b.classList.toggle('active',b.dataset.view===name));$$('.view').forEach(v=>v.classList.toggle('active',v.id===`view-${name}`));const button=$(`.nav-item[data-view="${name}"]`);$('#page-title').textContent=button?button.textContent.replace(/^\d+/,'').trim():'IFC Quantity Agent'}
+function activateView(name){document.body.classList.toggle('object-view',name==='objects');$$('.nav-item').forEach(b=>b.classList.toggle('active',b.dataset.view===name));$$('.view').forEach(v=>v.classList.toggle('active',v.id===`view-${name}`));const button=$(`.nav-item[data-view="${name}"]`);$('#page-title').textContent=button?button.textContent.replace(/^\d+/,'').trim():'IFC Quantity Agent'}
 $$('.nav-item').forEach(b=>b.addEventListener('click',()=>activateView(b.dataset.view)));
 
 function openPicker(){$('#file-input').click()}$('#upload-trigger').addEventListener('click',openPicker);$('#upload-panel-trigger').addEventListener('click',openPicker);
