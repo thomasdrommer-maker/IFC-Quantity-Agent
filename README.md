@@ -136,3 +136,7 @@ Die Baseline ist die einzige Quelle der Sollwerte. Der Collector darf keine fehl
 
 Links oben steht `UI v0.3.4`. IFC-Schema, Exportzeitpunkt und Referenzstand stehen nach dem Upload oberhalb der Kennzahlen. Der Starter reserviert einen freien Port und öffnet genau diese Instanz. Die im Konsolenfenster angezeigte Browser-Adresse gilt für diese Sitzung.
 
+
+### UI v0.3.5 – lesbarer Objekt-Drilldown
+
+Property Sets erscheinen gruppiert und aufklappbar als Eigenschaft/Wert-Tabellen. Mengen zeigen Wert, explizite Einheit und Quelle; fehlend und Null bleiben getrennt. Zahlenanzeige mit maximal sechs Nachkommastellen, exakter Rohwert aufklappbar. Technisches JSON ist optional. Die IFC-Daten und Mengenregeln werden nicht verändert.

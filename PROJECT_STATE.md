@@ -1,8 +1,8 @@
 # IFC Quantity Agent – Projektstatus
 
-**Stand:** 01.11.2026  
+**Stand:** 02.11.2026  
 **Entwicklungskonzept:** [v1.12](docs/concept/IFC_Quantity_Agent_Entwicklungskonzept_v1.12.md)  
-**Implementierungspaket:** v0.3.4  
+**Implementierungspaket:** v0.3.5  
 **API-Vertrag:** v1.0.0  
 **Regelpaket:** IQA-M1-Z445-ECA v0.1.0
 
@@ -61,3 +61,9 @@ MVP-1-UI anhand des Z445-Modells fachlich und visuell prüfen. Danach Mengenübe
 - Profilengine, API-/UI-Verwaltung und Excel-/JSON-Konfigurationsaustausch sind noch offen. Je Paket 32 fachliche und 20 Profil-Sollfälle sind noch als Integrationstests umzusetzen.
 - Keine Änderung an Collector, Baseline, aktiven MVP-1-Regeln, Anwendungsversion oder OpenAPI. Fachpakete nicht automatisch aktiv laden.
 - Nach MVP-1-Abnahme gemeinsamen Profilkern entwickeln; Integration in Stahlbau MVP 3 und Betonbau MVP 4. Modellcode-Mapping und Mengenquellen des Gesamtauftrags bleiben maßgebend.
+
+## UI-Abnahmefeedback und v0.3.5 – 02.11.2026
+
+- Nutzer bestätigt v0.3.4, Metadaten/Referenzanzeige und unabhängige Element-/Assemblyzahlen. Objektbezug und tatsächliche PSets/QTOs vorläufig bestätigt.
+- Beanstandung: JSON-Blöcke zu klein und schlecht lesbar. v0.3.5 zeigt PSet-Gruppen als aufklappbare Tabellen und Mengen mit Einheit, Quelle sowie exaktem Rohwert. Roh-JSON bleibt optional. Anzeige rundet nur Zahlenformat auf maximal 6 Dezimalstellen; Collector/Regeln/Baseline unverändert.
+- Lesbarkeitsabnahme v0.3.5 und Modellstruktur weiterhin offen; keine vollständige MVP-1-Freigabe.
