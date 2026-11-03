@@ -1,6 +1,6 @@
 # IFC Quantity Agent – Projektstatus
 
-**Stand:** 02.11.2026  
+**Stand:** 03.11.2026  
 **Entwicklungskonzept:** [v1.12](docs/concept/IFC_Quantity_Agent_Entwicklungskonzept_v1.12.md)  
 **Implementierungspaket:** v0.3.6  
 **API-Vertrag:** v1.0.0  
@@ -77,3 +77,10 @@ MVP-1-UI anhand des Z445-Modells fachlich und visuell prüfen. Danach Mengenübe
 
 - Browser-Regression v0.3.6 lokal bestanden: 1500×900, 1280×720, 1280×600, 1024×768, 390×844; 600 Objekte und 20 aufgeklappte PSet-Gruppen. Listenende, Detailende, feststehende Filter/Spaltenköpfe und Rückkehr zur Projektübersicht geprüft. Neuer CI-Job `object-layout`.
 - Die PSet-Gruppen bilden zusätzlich den Positionierungsrahmen für unsichtbare Tabellenbeschriftungen. Ohne diesen Rahmen können lange Detailinhalte eine unsichtbare zusätzliche Seitenhöhe erzeugen; der Browsertest prüft deshalb auch die Dokumenthöhe.
+
+## Nutzerabnahme Scrollkorrektur – 03.11.2026
+
+- Tom bestätigt: „Scrollprüfung von v0.3.6 funktioniert“. Scrollkorrektur der Objektansicht damit nutzerseitig bestätigt.
+- Keine vollständige MVP-1-Freigabe: Modellstrukturansicht und abschließender Gesamtcheck weiterhin offen.
+- Zusätzlich offen: Starter gegen lange Windows-Installationspfade absichern (DLL-Ladefehler im langen, doppelt verschachtelten Paketpfad).
+- Nächster Funktionsschritt: reale räumliche IFC-Struktur und Assembly-Beziehungen darstellen; fehlende Zuordnungen sichtbar halten und Objekte zum Drilldown verknüpfen. Danach MVP-1-Abnahme und Konsolidierung.
