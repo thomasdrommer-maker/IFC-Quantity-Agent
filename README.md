@@ -146,3 +146,13 @@ Property Sets erscheinen gruppiert und aufklappbar als Eigenschaft/Wert-Tabellen
 In der Objektansicht bleiben Suche, Filter und Spaltenköpfe sichtbar. Die Liste und der Detailbereich scrollen unabhängig innerhalb der Fensterhöhe. Auf kleineren Bildschirmen stehen beide Bereiche übereinander. Der Objekttitel bleibt im Detailbereich sichtbar. Regression für diese Layoutgrenzen: `node tests/test_object_scroll.cjs` (Playwright erforderlich).
 
 Browser-Layouttests vorbereiten: `npm ci --prefix tests/browser`, dann `node tests/browser/node_modules/playwright/cli.js install chromium --only-shell`. Node/Playwright sind nur für Entwicklungstests nötig, nicht zum Windows-Start des Agenten.
+
+### UI v0.3.7 – kurzer Umgebungspfad und Modellstruktur
+
+Der Windows-Starter erstellt Python/IfcOpenShell nun außerhalb des Paketordners in `%LOCALAPPDATA%\IQA`. Er zeigt den verwendeten Pfad an. Beim ersten Aufruf werden die Abhängigkeiten installiert, weitere Starts verwenden die geprüfte Umgebung erneut. Das verhindert den beobachteten DLL-Ladefehler durch lange, doppelt verschachtelte Paketpfade. Eine native Windows-Installation ist im Zielrechner-Test zu bestätigen. Die alte `.venv314` wird ignoriert und nicht gelöscht. Optional: `IQA_ENV_ROOT` auf einen kurzen beschreibbaren Ordner setzen. Git oder Administratorrechte werden vom Starter nicht angefordert.
+
+Nach dem IFC-Upload zeigt **Modellstruktur** die gelieferten räumlichen und Baugruppenbeziehungen. Aufklappen lädt weitere Zweige; Namen von Elementen öffnen den Detailbereich. Suche nach Name, GlobalId, STEP-ID, Klasse und LV-Ident sowie Klassen-/Materialfilter sind vorhanden. Die LV-Ident-Gruppierung ist eine Auswertung, keine native IFC-Beziehung. Elemente ohne direkte Containment-Beziehung werden separat sichtbar, auch wenn sie über eine Assembly indirekt zugeordnet sein können. Es gibt keine Mengensummierung in dieser Ansicht.
+
+API v1.1.0 ergänzt `GET /api/v1/analyses/{id}/structure` sowie `GET /api/v1/analyses/{id}/objects/by-step/{step_id}`. STEP-IDs sind nur innerhalb einer IFC-Datei gültig und dienen nicht zum revisionsübergreifenden Objektvergleich.
+
+[Prüfschritte v0.3.7](docs/acceptance/IFC_Quantity_Agent_MVP1_UI_v0.3.7_Testplan.md)

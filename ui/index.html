@@ -4,14 +4,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>IFC Quantity Agent</title>
-  <link rel="stylesheet" href="/assets/styles.css?v=0.3.6">
+  <link rel="stylesheet" href="/assets/styles.css?v=0.3.7">
 </head>
 <body>
   <div class="app-shell">
     <aside class="sidebar">
       <div class="brand">
         <div class="brand-mark">IQ</div>
-        <div><strong>IFC Quantity</strong><span>Agent · MVP 1 · UI v0.3.6</span></div>
+        <div><strong>IFC Quantity</strong><span>Agent · MVP 1 · UI v0.3.7</span></div>
       </div>
       <nav id="main-nav" aria-label="Hauptnavigation">
         <button class="nav-item active" data-view="overview"><span>01</span>Projektübersicht</button>
@@ -96,13 +96,23 @@
       </section>
 
       <section id="view-quantities" class="view"><div class="empty-state roadmap"><span class="badge planned">MVP‑1 AUSBAU</span><h2>Mengenübersicht</h2><p>Die Navigation ist vorbereitet. Als nächstes werden die API-Mengen nach Bauteilgruppe, Material und Einheit ohne Doppelzählung aggregiert.</p></div></section>
-      <section id="view-structure" class="view"><div class="empty-state roadmap"><span class="badge planned">MVP‑1 AUSBAU</span><h2>Modellstruktur</h2><p>Hier entsteht der Projektbaum aus Teilmodell, Geschoss und Objektgruppe.</p></div></section>
+      <section id="view-structure" class="view">
+        <div class="section-head"><div><span class="kicker">TATSÄCHLICHE IFC-BEZIEHUNGEN</span><h2>Modellstruktur</h2></div></div>
+        <div id="structure-empty" class="empty-state"><h2>Noch kein Modell geladen</h2><p>Nach dem IFC-Upload erscheinen räumliche Struktur, Baugruppen und Objektverknüpfungen.</p></div>
+        <div id="structure-content" class="hidden">
+          <p id="structure-summary" class="structure-summary"></p>
+          <p class="detail-help">Ein Objekt kann über mehrere Beziehungen sichtbar sein. Kennzahlen zählen eindeutige STEP-IDs; Assemblies sind in der Elementzahl enthalten. Hier werden keine Mengen summiert. „Ohne direkte räumliche Zuordnung“ umfasst auch Einzelteile, die nur über eine Baugruppe zugeordnet sind.</p>
+          <div class="structure-toolbar"><input id="structure-search" placeholder="Name, Klasse, GlobalId, STEP-ID oder LV-Ident suchen" aria-label="Modellstruktur durchsuchen"><select id="structure-mode" aria-label="Strukturansicht"><option value="native">IFC-Struktur</option><option value="assemblies">Baugruppen</option><option value="lv">LV-Ident-Gruppen (Auswertung)</option></select><select id="structure-class" aria-label="IFC-Klasse filtern"></select><select id="structure-material" aria-label="Material filtern"></select></div>
+          <p id="structure-count" class="muted"></p><div id="structure-tree" class="structure-tree"></div>
+        </div>
+      </section>
       <section id="view-building" class="view"><div class="empty-state roadmap"><span class="badge planned">MVP‑1 AUSBAU</span><h2>Bauwerksbuch / Räume</h2><p>GFA- und BSV-Nachweise werden erst angezeigt, sobald die zugehörige Datenquelle implementiert ist.</p></div></section>
       <section id="view-materials" class="view"><div class="empty-state roadmap"><span class="badge planned">MVP‑1 AUSBAU</span><h2>Materialanalyse</h2><p>Originalmaterial und normalisierte Materialgruppen werden künftig parallel ausgewertet.</p></div></section>
       <section id="view-quality" class="view"><div class="empty-state roadmap"><span class="badge planned">NACH MVP‑1</span><h2>Model Quality Checker</h2><p>KI-Hinweise und verbindliche EIR-/AIA-Regelprüfungen bleiben klar getrennte Arbeitsbereiche.</p></div></section>
     </main>
   </div>
-  <script src="/assets/object-details.js?v=0.3.6" defer></script>
-  <script src="/assets/app.js?v=0.3.6" defer></script>
+  <script src="/assets/object-details.js?v=0.3.7" defer></script>
+  <script src="/assets/structure.js?v=0.3.7" defer></script>
+  <script src="/assets/app.js?v=0.3.7" defer></script>
 </body>
 </html>

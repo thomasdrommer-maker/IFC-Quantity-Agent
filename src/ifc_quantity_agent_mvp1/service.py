@@ -74,7 +74,7 @@ class AnalysisService:
         return {
             "status": "ok",
             "service": "ifc-quantity-agent-mvp1-api",
-            "api_version": "1.0.0",
+            "api_version": "1.1.0",
             "rule_package": {
                 "id": self.catalog["package_id"],
                 "version": self.catalog["package_version"],
@@ -129,6 +129,8 @@ class AnalysisService:
             "rule_results": result_rows,
             "findings": findings,
             "objects": objects,
+            "objects_by_step": {row["step_id"]: row for row in actual["objects"]},
+            "structure": actual["model_structure"],
         }
         with self._lock:
             self._analyses[analysis_id] = record
@@ -173,6 +175,7 @@ class AnalysisService:
                 "rule_results": f"/api/v1/analyses/{analysis_id}/rule-results",
                 "findings": f"/api/v1/analyses/{analysis_id}/findings",
                 "objects": f"/api/v1/analyses/{analysis_id}/objects",
+                "structure": f"/api/v1/analyses/{analysis_id}/structure",
             },
         }
 
@@ -275,3 +278,18 @@ class AnalysisService:
         row["findings"] = [item for item in record["findings"] if item["global_id"] == global_id]
         return {"analysis_id": analysis_id, "object": row}
 
+
+    def structure(self, analysis_id: str) -> dict[str, Any]:
+        return {"analysis_id": analysis_id, **self._get(analysis_id)["structure"]}
+
+    def object_detail_by_step(self, analysis_id: str, step_id: int) -> dict[str, Any]:
+        record = self._get(analysis_id)
+        try:
+            row = dict(record["objects_by_step"][step_id])
+        except KeyError as exc:
+            raise ObjectNotFound(step_id) from exc
+        gid = row.get("global_id")
+        unique = gid and sum(o.get("global_id") == gid for o in record["objects_by_step"].values()) == 1
+        row["findings"] = [f for f in record["findings"] if unique and f["global_id"] == gid]
+        row["finding_identity_ambiguous"] = not bool(unique)
+        return {"analysis_id": analysis_id, "object": row}

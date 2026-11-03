@@ -1,0 +1,11 @@
+const assert=require('node:assert/strict');
+const tree=require('../ui/assets/structure.js');
+const nodes=[{node_id:'1',step_id:1,ifc_class:'IfcProject',name:'Projekt',is_spatial:true},{node_id:'2',step_id:2,ifc_class:'IfcElementAssembly',name:'Baugruppe',is_element:true,is_assembly:true},{node_id:'3',step_id:3,ifc_class:'IfcBeam',name:'<Unterzug>',is_element:true,lv_ident:'Unterzug',materials:['Beton']}];
+const data={nodes,edges:[{parent:'1',child:'2',relation_type:'IfcRelAggregates',relation_step_id:4},{parent:'2',child:'3',relation_type:'IfcRelAggregates',relation_step_id:5}],roots:['1'],uncontained_elements:['3']};
+assert.match(tree.render(data).html,/Räumliche IFC-Struktur/);
+assert.match(tree.render(data,{query:'Unterzug'}).html,/&lt;Unterzug&gt;/);
+assert.equal(tree.render(data,{material:'Beton'}).count,1);
+assert.match(tree.render(data,{mode:'lv'}).html,/LV-Ident leer/);
+assert.match(tree.nodeHtml('2',tree.index(data),['2']),/Zyklischer Verweis/);
+assert.match(tree.render(data,{query:'<Unterzug>'}).html,/data-step-id="3"/);
+console.log('Structure renderer filters, identity, escaping and cycle guard passed.');

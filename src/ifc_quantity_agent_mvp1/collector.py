@@ -8,6 +8,7 @@ from typing import Any
 import ifcopenshell
 from ifcopenshell.util.element import get_material, get_psets
 from ifcopenshell.util.unit import get_project_unit
+from .structure import collect_structure
 
 
 def _present(value: Any) -> bool:
@@ -401,5 +402,6 @@ def collect(ifc_path: str | Path, model_file_name: str | None = None) -> dict[st
         "finding_evidence": dict(evidence),
         "objects": object_records,
     }
+    actual["model_structure"] = collect_structure(model, elements, object_records)
     return actual
 

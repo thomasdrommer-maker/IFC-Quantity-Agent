@@ -2,8 +2,8 @@
 
 **Stand:** 03.11.2026  
 **Entwicklungskonzept:** [v1.12](docs/concept/IFC_Quantity_Agent_Entwicklungskonzept_v1.12.md)  
-**Implementierungspaket:** v0.3.6  
-**API-Vertrag:** v1.0.0  
+**Implementierungspaket:** v0.3.7  
+**API-Vertrag:** v1.1.0  
 **Regelpaket:** IQA-M1-Z445-ECA v0.1.0
 
 ## Fertiggestellt
@@ -84,3 +84,14 @@ MVP-1-UI anhand des Z445-Modells fachlich und visuell prüfen. Danach Mengenübe
 - Keine vollständige MVP-1-Freigabe: Modellstrukturansicht und abschließender Gesamtcheck weiterhin offen.
 - Zusätzlich offen: Starter gegen lange Windows-Installationspfade absichern (DLL-Ladefehler im langen, doppelt verschachtelten Paketpfad).
 - Nächster Funktionsschritt: reale räumliche IFC-Struktur und Assembly-Beziehungen darstellen; fehlende Zuordnungen sichtbar halten und Objekte zum Drilldown verknüpfen. Danach MVP-1-Abnahme und Konsolidierung.
+
+## UI v0.3.7 / API v1.1.0 – Starter und Modellstruktur
+
+- Starter verwendet `%LOCALAPPDATA%\IQA\p314-<Abhängigkeitskennung>` statt einer tief im Paket liegenden `.venv314`. `IQA_ENV_ROOT` erlaubt bei Bedarf einen anderen kurzen beschreibbaren Basispfad. Requirements-Inhalt, Python-Version und Plattform bestimmen die Umgebung. Marker erst nach erfolgreichen nativen Imports, Importprüfung bei jedem Start; bestehende Umgebungen werden nicht gelöscht.
+- Neue rein lesende Modellstruktur aus IfcProject/IfcSpatialElement und tatsächlichen IfcRelAggregates/IfcRelNests/IfcRelContainedInSpatialStructure. Eindeutige STEP-IDs, Beziehungsquelle und Beziehungs-STEP-ID, fehlende/mehrfache GlobalIds, getrennte rohe Containment-Abdeckung; keine erfundene Geschosszuordnung und keine Mengensummierung.
+- UI: IFC-Struktur, Baugruppen und LV-Ident-Auswertung, Suche, IFC-Klassen- und Materialfilter, bedarfsgeladene Baumzweige mit Zyklenschutz. LV-Ident-Auswertung ist keine native IFC-Zerlegung.
+- Additive Endpunkte `/api/v1/analyses/{id}/structure` und `/objects/by-step/{step_id}`. Auch Elemente ohne eindeutige GlobalId bleiben über STEP-ID einsehbar. Bei mehrdeutiger Identität keine automatische Finding-Zuordnung oder GlobalId-Selektion.
+- Automatisiert lokal geprüft: 17 Python-Tests bestanden, zwei ursprüngliche Z445-Referenzprüfungen mangels Referenzdatei übersprungen; Renderer-Tests und Browserprüfung für Baum/Suche/Filter/STEP-Drilldown sowie Scrollregression in fünf Fenstergrößen bestanden. IFC4 und IFC4X3_ADD2 mit synthetischen realen IFC-Dateien getestet.
+- Windows-Runner für native Imports, Umgebungslogik und Struktur-API ergänzt. Tatsächliche Installation auf Toms Firmenrechner, Z445-Struktur und Gesamt-MVP-1-Abnahme stehen aus.
+- [Konkreter Testplan v0.3.7](docs/acceptance/IFC_Quantity_Agent_MVP1_UI_v0.3.7_Testplan.md). Collector um zusätzliche Strukturinventur erweitert; aktive Regeln und Referenzbaseline unverändert.
+- Zusätzlich lokal Ende-zu-Ende im echten Browser geprüft: synthetische IFC-Datei hochladen → Struktur-API lesen → Objekt ohne GlobalId über STEP-ID öffnen.

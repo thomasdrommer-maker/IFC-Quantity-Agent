@@ -68,3 +68,8 @@ body.object-view{height:100dvh;overflow:hidden}
 }
 /* Contain absolute accessible captions; prevent phantom document overflow. */
 .pset-group{position:relative}
+
+/* v0.3.7 native relationship inventory */
+.structure-summary{padding:14px 16px;background:#edf5f4;border:1px solid var(--line);border-radius:8px;font-weight:650}
+.structure-toolbar{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}.structure-toolbar input,.structure-toolbar select{padding:10px;border:1px solid var(--line);border-radius:6px;max-width:100%;background:white}.structure-toolbar input{flex:1 1 280px}
+.structure-tree{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px}.tree-section{margin-bottom:14px}.tree-section>summary{padding:12px;background:#edf5f4;font-weight:650;cursor:pointer}.tree-node{margin:7px 0 7px 15px;border-left:2px solid #c8dfdc}.tree-node>summary{padding:9px;cursor:pointer;overflow-wrap:anywhere}.tree-children{padding-left:14px}.tree-leaf,.tree-warning{padding:9px 12px;border-bottom:1px solid #edf0f3;overflow-wrap:anywhere}.tree-warning{background:#fff0d8}.tree-object{border:0;background:transparent;color:var(--teal);font-weight:650;text-align:left;padding:0;cursor:pointer;text-decoration:underline;text-underline-offset:3px}.tree-meta,.tree-relation{display:block;color:var(--muted);font-size:11px;margin-top:3px}.tree-relation{color:#526172}

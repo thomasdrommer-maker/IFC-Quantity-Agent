@@ -95,7 +95,7 @@ def create_app(service: AnalysisService | None = None) -> FastAPI:
     ui_root = package_root / "ui"
     app = FastAPI(
         title="IFC Quantity Agent MVP-1 API",
-        version="1.0.0",
+        version="1.1.0",
         description=(
             "Plattformneutrale REST-API für IFC-Inventur, reproduzierbare "
             "MVP-1-Regelergebnisse, Prüfbericht und Objekt-Drilldown."
@@ -231,6 +231,22 @@ def create_app(service: AnalysisService | None = None) -> FastAPI:
     def object_detail(analysis_id: str, global_id: str) -> dict[str, Any]:
         try:
             return analysis_service.object_detail(analysis_id, global_id)
+        except AnalysisNotFound:
+            raise HTTPException(status_code=404, detail="Analyse nicht gefunden.")
+        except ObjectNotFound:
+            raise HTTPException(status_code=404, detail="Objekt nicht gefunden.")
+
+    @app.get("/api/v1/analyses/{analysis_id}/structure", tags=["Model structure"])
+    def structure(analysis_id: str) -> dict[str, Any]:
+        try:
+            return analysis_service.structure(analysis_id)
+        except AnalysisNotFound:
+            raise HTTPException(status_code=404, detail="Analyse nicht gefunden.")
+
+    @app.get("/api/v1/analyses/{analysis_id}/objects/by-step/{step_id}", response_model=ObjectDetailResponse, tags=["Objects"])
+    def object_by_step(analysis_id: str, step_id: int) -> dict[str, Any]:
+        try:
+            return analysis_service.object_detail_by_step(analysis_id, step_id)
         except AnalysisNotFound:
             raise HTTPException(status_code=404, detail="Analyse nicht gefunden.")
         except ObjectNotFound:
