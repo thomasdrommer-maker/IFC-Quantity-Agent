@@ -1,5 +1,7 @@
 # AGENTS.md
 
+Der [Entwicklungsauftrag](docs/entwicklungsauftrag.md) bündelt den aktuellen Meilenstein und die reproduzierbaren Prüfungen.
+
 ## Verbindliche Grundlagen
 
 - Fachliche Grundlage ist `docs/concept/IFC_Quantity_Agent_Entwicklungskonzept_v1.12.md`.
