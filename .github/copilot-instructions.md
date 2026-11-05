@@ -1,0 +1,7 @@
+# GitHub Copilot im IFC Quantity Agent
+
+- Lies zuerst [AGENTS.md](../AGENTS.md) und den [Entwicklungsauftrag](../docs/entwicklungsauftrag.md). Das dort verlinkte Konzept v1.12 ist die fachliche Grundlage. Nutze den Projektstatus und das beauftragte Issue, um den konkreten Arbeitsumfang festzustellen.
+- Verwende den gemeinsamen Application Service und die Regelengine für CLI, API und UI. Mengen und freigegebene Prüfungen bleiben deterministisch. KI-Hinweise, offene Fachfragen und Entwurfsregeln bleiben als solche erkennbar.
+- Verwende `BASF_General.540_LV_Ident` als führende fachliche Zuordnung. Nutze IFC-Textattribute nur bei fehlendem oder leerem Wert als gekennzeichnete Fallbacks. Melde Widersprüche als Findings. Erhalte native IFC-Klassen, Mengenquellen, Einheiten und die Rückverfolgbarkeit. Prüfe die Aggregation von Baugruppen und Einzelteilen auf Doppelzählung.
+- Verwende ausschließlich freigegebene Testdaten. Für Cloud-Tests stehen die vorhandenen synthetischen Fälle und die versionierte JSON-Sollbasis zur Verfügung. Die JSON-Sollbasis ersetzt keinen Lauf am Z445-IFC. Lege IFC-Dateien, sensible Projektdaten und generierte Laufberichte weder im Repo noch in PR-Kommentaren ab.
+- Führe die zum Änderungsumfang passenden Prüfungen aus dem Entwicklungsauftrag aus. Gib im PR die betroffenen Regel-IDs, fachlich erwartete Ergebnisänderungen sowie bestandene, fehlgeschlagene und übersprungene Prüfungen an. Änderungen an Sollwerten brauchen eine eigenständige fachliche Begründung und Freigabe.
