@@ -1,0 +1,1481 @@
+{
+  "schema_version": "1.1.0",
+  "catalog_id": "ifcqa_steel_categories",
+  "catalog_version": "0.2.0",
+  "date": "2026-11-01",
+  "author": "OpenAI für Tom",
+  "status": "Entwurf zur Projektabstimmung",
+  "scope": [
+    "IFC4",
+    "IFC4.3 ADD2"
+  ],
+  "interval_semantics": "lower_exclusive < value <= upper_inclusive; null upper = infinity",
+  "special_values": {
+    "missing": "unknown",
+    "zero": "invalid",
+    "negative": "invalid",
+    "non_finite": "invalid",
+    "not_applicable": "not_applicable"
+  },
+  "mass_bases": [
+    "NET",
+    "GROSS",
+    "PROFILE_THEORETICAL",
+    "CONTRACTUAL",
+    "UNKNOWN"
+  ],
+  "evaluation_levels": [
+    "PART",
+    "ASSEMBLY",
+    "MONTAGE_UNIT"
+  ],
+  "weight_bands": [
+    {
+      "metric": "object_mass_kg",
+      "code": "G01",
+      "lower_exclusive": 0,
+      "upper_inclusive": 25,
+      "unit": "kg",
+      "label_de": "über 0 bis 25 kg",
+      "active": true,
+      "status": "Projektvorschlag"
+    },
+    {
+      "metric": "object_mass_kg",
+      "code": "G02",
+      "lower_exclusive": 25,
+      "upper_inclusive": 50,
+      "unit": "kg",
+      "label_de": "über 25 bis 50 kg",
+      "active": true,
+      "status": "Projektvorschlag"
+    },
+    {
+      "metric": "object_mass_kg",
+      "code": "G03",
+      "lower_exclusive": 50,
+      "upper_inclusive": 100,
+      "unit": "kg",
+      "label_de": "über 50 bis 100 kg",
+      "active": true,
+      "status": "Projektvorschlag"
+    },
+    {
+      "metric": "object_mass_kg",
+      "code": "G04",
+      "lower_exclusive": 100,
+      "upper_inclusive": 250,
+      "unit": "kg",
+      "label_de": "über 100 bis 250 kg",
+      "active": true,
+      "status": "Projektvorschlag"
+    },
+    {
+      "metric": "object_mass_kg",
+      "code": "G05",
+      "lower_exclusive": 250,
+      "upper_inclusive": 500,
+      "unit": "kg",
+      "label_de": "über 250 bis 500 kg",
+      "active": true,
+      "status": "Projektvorschlag"
+    },
+    {
+      "metric": "object_mass_kg",
+      "code": "G06",
+      "lower_exclusive": 500,
+      "upper_inclusive": 1000,
+      "unit": "kg",
+      "label_de": "über 500 bis 1000 kg",
+      "active": true,
+      "status": "Projektvorschlag"
+    },
+    {
+      "metric": "object_mass_kg",
+      "code": "G07",
+      "lower_exclusive": 1000,
+      "upper_inclusive": 2000,
+      "unit": "kg",
+      "label_de": "über 1000 bis 2000 kg",
+      "active": true,
+      "status": "Projektvorschlag"
+    },
+    {
+      "metric": "object_mass_kg",
+      "code": "G08",
+      "lower_exclusive": 2000,
+      "upper_inclusive": 5000,
+      "unit": "kg",
+      "label_de": "über 2000 bis 5000 kg",
+      "active": true,
+      "status": "Projektvorschlag"
+    },
+    {
+      "metric": "object_mass_kg",
+      "code": "G09",
+      "lower_exclusive": 5000,
+      "upper_inclusive": null,
+      "unit": "kg",
+      "label_de": "über 5000 kg",
+      "active": true,
+      "status": "Projektvorschlag"
+    },
+    {
+      "metric": "profile_mass_per_m_kg_m",
+      "code": "M01",
+      "lower_exclusive": 0,
+      "upper_inclusive": 10,
+      "unit": "kg/m",
+      "label_de": "über 0 bis 10 kg/m",
+      "active": true,
+      "status": "Projektvorschlag"
+    },
+    {
+      "metric": "profile_mass_per_m_kg_m",
+      "code": "M02",
+      "lower_exclusive": 10,
+      "upper_inclusive": 25,
+      "unit": "kg/m",
+      "label_de": "über 10 bis 25 kg/m",
+      "active": true,
+      "status": "Projektvorschlag"
+    },
+    {
+      "metric": "profile_mass_per_m_kg_m",
+      "code": "M03",
+      "lower_exclusive": 25,
+      "upper_inclusive": 50,
+      "unit": "kg/m",
+      "label_de": "über 25 bis 50 kg/m",
+      "active": true,
+      "status": "Projektvorschlag"
+    },
+    {
+      "metric": "profile_mass_per_m_kg_m",
+      "code": "M04",
+      "lower_exclusive": 50,
+      "upper_inclusive": 100,
+      "unit": "kg/m",
+      "label_de": "über 50 bis 100 kg/m",
+      "active": true,
+      "status": "Projektvorschlag"
+    },
+    {
+      "metric": "profile_mass_per_m_kg_m",
+      "code": "M05",
+      "lower_exclusive": 100,
+      "upper_inclusive": 200,
+      "unit": "kg/m",
+      "label_de": "über 100 bis 200 kg/m",
+      "active": true,
+      "status": "Projektvorschlag"
+    },
+    {
+      "metric": "profile_mass_per_m_kg_m",
+      "code": "M06",
+      "lower_exclusive": 200,
+      "upper_inclusive": null,
+      "unit": "kg/m",
+      "label_de": "über 200 kg/m",
+      "active": true,
+      "status": "Projektvorschlag"
+    }
+  ],
+  "profile_rules": [
+    {
+      "rule_id": "P01",
+      "priority": 10,
+      "pattern": "^IPE\\s*\\d",
+      "profile_series": "IPE",
+      "section_family": "I_H",
+      "active": true,
+      "status": "Projektvorschlag",
+      "note_de": "Nur Vorzuordnung; vollständiger Querschnitt ist über exakten Katalogschlüssel zu validieren."
+    },
+    {
+      "rule_id": "P02",
+      "priority": 20,
+      "pattern": "^IPN\\s*\\d",
+      "profile_series": "IPN",
+      "section_family": "I_H",
+      "active": true,
+      "status": "Projektvorschlag",
+      "note_de": "Nur Vorzuordnung; vollständiger Querschnitt ist über exakten Katalogschlüssel zu validieren."
+    },
+    {
+      "rule_id": "P03",
+      "priority": 30,
+      "pattern": "^HEA\\s*\\d",
+      "profile_series": "HEA",
+      "section_family": "I_H",
+      "active": true,
+      "status": "Projektvorschlag",
+      "note_de": "Nur Vorzuordnung; vollständiger Querschnitt ist über exakten Katalogschlüssel zu validieren."
+    },
+    {
+      "rule_id": "P04",
+      "priority": 40,
+      "pattern": "^HEB\\s*\\d",
+      "profile_series": "HEB",
+      "section_family": "I_H",
+      "active": true,
+      "status": "Projektvorschlag",
+      "note_de": "Nur Vorzuordnung; vollständiger Querschnitt ist über exakten Katalogschlüssel zu validieren."
+    },
+    {
+      "rule_id": "P05",
+      "priority": 50,
+      "pattern": "^HEM\\s*\\d",
+      "profile_series": "HEM",
+      "section_family": "I_H",
+      "active": true,
+      "status": "Projektvorschlag",
+      "note_de": "Nur Vorzuordnung; vollständiger Querschnitt ist über exakten Katalogschlüssel zu validieren."
+    },
+    {
+      "rule_id": "P06",
+      "priority": 60,
+      "pattern": "^UPE\\s*\\d",
+      "profile_series": "UPE",
+      "section_family": "U",
+      "active": true,
+      "status": "Projektvorschlag",
+      "note_de": "Nur Vorzuordnung; vollständiger Querschnitt ist über exakten Katalogschlüssel zu validieren."
+    },
+    {
+      "rule_id": "P07",
+      "priority": 70,
+      "pattern": "^UPN\\s*\\d",
+      "profile_series": "UPN",
+      "section_family": "U",
+      "active": true,
+      "status": "Projektvorschlag",
+      "note_de": "Nur Vorzuordnung; vollständiger Querschnitt ist über exakten Katalogschlüssel zu validieren."
+    },
+    {
+      "rule_id": "P08",
+      "priority": 80,
+      "pattern": "^CHS\\s*\\d",
+      "profile_series": "CHS",
+      "section_family": "HOLLOW_CIRCULAR",
+      "active": true,
+      "status": "Projektvorschlag",
+      "note_de": "Nur Vorzuordnung; vollständiger Querschnitt ist über exakten Katalogschlüssel zu validieren."
+    },
+    {
+      "rule_id": "P09",
+      "priority": 90,
+      "pattern": "^SHS\\s*\\d",
+      "profile_series": "SHS",
+      "section_family": "HOLLOW_SQUARE",
+      "active": true,
+      "status": "Projektvorschlag",
+      "note_de": "Nur Vorzuordnung; vollständiger Querschnitt ist über exakten Katalogschlüssel zu validieren."
+    },
+    {
+      "rule_id": "P10",
+      "priority": 100,
+      "pattern": "^RHS\\s*\\d",
+      "profile_series": "RHS",
+      "section_family": "HOLLOW_RECTANGULAR",
+      "active": true,
+      "status": "Projektvorschlag",
+      "note_de": "Nur Vorzuordnung; vollständiger Querschnitt ist über exakten Katalogschlüssel zu validieren."
+    },
+    {
+      "rule_id": "P11",
+      "priority": 110,
+      "pattern": "^L\\s*\\d",
+      "profile_series": "L",
+      "section_family": "ANGLE",
+      "active": true,
+      "status": "Projektvorschlag",
+      "note_de": "Nur Vorzuordnung; vollständiger Querschnitt ist über exakten Katalogschlüssel zu validieren."
+    },
+    {
+      "rule_id": "P12",
+      "priority": 120,
+      "pattern": "^T\\s*\\d",
+      "profile_series": "T",
+      "section_family": "T",
+      "active": true,
+      "status": "Projektvorschlag",
+      "note_de": "Nur Vorzuordnung; vollständiger Querschnitt ist über exakten Katalogschlüssel zu validieren."
+    }
+  ],
+  "fields": [
+    {
+      "key": "model_snapshot_id",
+      "label_de": "Modellstand",
+      "type": "string",
+      "unit": "–",
+      "requirement": "Pflicht",
+      "meaning_de": "Inhalts-Hash der IFC-Datei plus Modellzuordnung"
+    },
+    {
+      "key": "object_id",
+      "label_de": "Objektidentität",
+      "type": "string",
+      "unit": "–",
+      "requirement": "Pflicht",
+      "meaning_de": "STEP-ID innerhalb des Modellstands; GUID zusätzlich prüfen"
+    },
+    {
+      "key": "global_id",
+      "label_de": "IFC GlobalId",
+      "type": "string|null",
+      "unit": "–",
+      "requirement": "wenn vorhanden",
+      "meaning_de": "Doppelte GUID melden; nicht stillschweigend deduplizieren"
+    },
+    {
+      "key": "ifc_schema",
+      "label_de": "IFC-Schema",
+      "type": "string",
+      "unit": "–",
+      "requirement": "Pflicht",
+      "meaning_de": "Aus Dateiheader; genaue Version dokumentieren"
+    },
+    {
+      "key": "ifc_class",
+      "label_de": "IFC-Klasse",
+      "type": "string",
+      "unit": "–",
+      "requirement": "Pflicht",
+      "meaning_de": "Originalklasse erhalten; keine Umklassifizierung"
+    },
+    {
+      "key": "parent_id",
+      "label_de": "Übergeordnete Baugruppe",
+      "type": "string|null",
+      "unit": "–",
+      "requirement": "wenn vorhanden",
+      "meaning_de": "Aus tatsächlicher Beziehung; nicht aus Namen ableiten"
+    },
+    {
+      "key": "evaluation_level",
+      "label_de": "Auswertungsebene",
+      "type": "enum",
+      "unit": "–",
+      "requirement": "Pflicht",
+      "meaning_de": "PART / ASSEMBLY / MONTAGE_UNIT; Montage nur bei expliziter Zuordnung"
+    },
+    {
+      "key": "steel_scope_status",
+      "label_de": "Stahlzuordnung",
+      "type": "enum",
+      "unit": "–",
+      "requirement": "Pflicht",
+      "meaning_de": "confirmed / unknown / mixed; Klasse allein reicht nicht"
+    },
+    {
+      "key": "component_function",
+      "label_de": "Bauteilfunktion",
+      "type": "string|null",
+      "unit": "–",
+      "requirement": "Zielmerkmal",
+      "meaning_de": "Träger, Stütze, Verband usw.; IFC-Klasse liefert nur grobe Funktion"
+    },
+    {
+      "key": "lv_ident",
+      "label_de": "LV-Ident",
+      "type": "string|null",
+      "unit": "–",
+      "requirement": "wenn vorhanden",
+      "meaning_de": "540_LV_Ident führend; Rückfallquelle sichtbar dokumentieren"
+    },
+    {
+      "key": "material_grade",
+      "label_de": "Werkstoffgüte",
+      "type": "string|null",
+      "unit": "–",
+      "requirement": "Zielmerkmal",
+      "meaning_de": "Vollständige Bezeichnung erhalten, z. B. S355J2"
+    },
+    {
+      "key": "profile_raw",
+      "label_de": "Originalprofil",
+      "type": "string|null",
+      "unit": "–",
+      "requirement": "Zielmerkmal",
+      "meaning_de": "603_Profil erst nach Bestätigung des aktuellen Mappings"
+    },
+    {
+      "key": "profile_normalized",
+      "label_de": "Normalisiertes Profil",
+      "type": "string|null",
+      "unit": "–",
+      "requirement": "abgeleitet",
+      "meaning_de": "Original unverändert erhalten; Varianten nicht zusammenwerfen"
+    },
+    {
+      "key": "section_family",
+      "label_de": "Querschnittsfamilie",
+      "type": "enum|null",
+      "unit": "–",
+      "requirement": "abgeleitet",
+      "meaning_de": "Zum Beispiel I_H, U, ANGLE, HOLLOW_RECTANGULAR"
+    },
+    {
+      "key": "profile_series",
+      "label_de": "Profilreihe",
+      "type": "string|null",
+      "unit": "–",
+      "requirement": "abgeleitet",
+      "meaning_de": "Zum Beispiel IPE, HEB, RHS"
+    },
+    {
+      "key": "manufacturing_method",
+      "label_de": "Herstellungsart",
+      "type": "string|null",
+      "unit": "–",
+      "requirement": "optional",
+      "meaning_de": "Warmgewalzt, kaltgeformt, warmgefertigt, geschweißt"
+    },
+    {
+      "key": "section_build_up",
+      "label_de": "Querschnittsaufbau",
+      "type": "string|null",
+      "unit": "–",
+      "requirement": "optional",
+      "meaning_de": "Einteilig / zusammengesetzt; nicht aus IFC-Nesting ableiten"
+    },
+    {
+      "key": "length_m",
+      "label_de": "Bauteillänge",
+      "type": "number|null",
+      "unit": "m",
+      "requirement": "für Profilrechnung",
+      "meaning_de": "Quelle und Längenkonvention festhalten"
+    },
+    {
+      "key": "mass_basis",
+      "label_de": "Massenbasis",
+      "type": "enum",
+      "unit": "–",
+      "requirement": "Pflicht",
+      "meaning_de": "NET / GROSS / PROFILE_THEORETICAL / CONTRACTUAL / UNKNOWN"
+    },
+    {
+      "key": "object_mass_kg",
+      "label_de": "Objektmasse",
+      "type": "number|null",
+      "unit": "kg",
+      "requirement": "für G-Kategorie",
+      "meaning_de": "Bezieht sich immer auf evaluation_level und mass_basis"
+    },
+    {
+      "key": "object_mass_category",
+      "label_de": "Einzelgewichtskategorie",
+      "type": "string|null",
+      "unit": "–",
+      "requirement": "abgeleitet",
+      "meaning_de": "G01–G09; ungültig oder fehlend nicht als Null behandeln"
+    },
+    {
+      "key": "profile_mass_per_m_kg_m",
+      "label_de": "Profilmetergewicht",
+      "type": "number|null",
+      "unit": "kg/m",
+      "requirement": "für M-Kategorie",
+      "meaning_de": "Nennwert aus bestätigtem Profilkatalog"
+    },
+    {
+      "key": "profile_mass_category",
+      "label_de": "Metergewichtskategorie",
+      "type": "string|null",
+      "unit": "–",
+      "requirement": "abgeleitet",
+      "meaning_de": "M01–M06; nicht aus Baugruppenmasse/Länge ableiten"
+    },
+    {
+      "key": "quantity_source",
+      "label_de": "Mengenquelle",
+      "type": "string|null",
+      "unit": "–",
+      "requirement": "bei Mengenwert",
+      "meaning_de": "Exakter QTO-/Pset-Pfad oder nachvollziehbarer Rechenweg"
+    },
+    {
+      "key": "unit_original",
+      "label_de": "Originaleinheit",
+      "type": "string|null",
+      "unit": "–",
+      "requirement": "bei Mengenwert",
+      "meaning_de": "Objektspezifische Einheit vor Projekteinstellung beachten"
+    },
+    {
+      "key": "profile_catalog_version",
+      "label_de": "Profilkatalogversion",
+      "type": "string|null",
+      "unit": "–",
+      "requirement": "bei Katalogwert",
+      "meaning_de": "Quelle / Ausgabe / Profilvariante eindeutig"
+    },
+    {
+      "key": "rule_catalog_version",
+      "label_de": "Regelkatalogversion",
+      "type": "string",
+      "unit": "–",
+      "requirement": "Pflicht",
+      "meaning_de": "0.2.0; plus Fingerprint des tatsächlichen Kataloginhalts"
+    },
+    {
+      "key": "classification_status",
+      "label_de": "Kategorisierungsstatus",
+      "type": "enum",
+      "unit": "–",
+      "requirement": "Pflicht",
+      "meaning_de": "classified / unknown / not_applicable / invalid / conflict"
+    },
+    {
+      "key": "aggregation_status",
+      "label_de": "Summierungsstatus",
+      "type": "enum",
+      "unit": "–",
+      "requirement": "Pflicht",
+      "meaning_de": "eligible / excluded / incomplete / conflict"
+    },
+    {
+      "key": "included_object_ids",
+      "label_de": "Enthaltene Einzelteile",
+      "type": "array",
+      "unit": "–",
+      "requirement": "bei Aggregation",
+      "meaning_de": "Für Mengenabdeckung und Doppelzählungsprüfung"
+    }
+  ],
+  "acceptance_cases": [
+    {
+      "id": "T01",
+      "area": "Masse",
+      "given_de": "Gültige Masse 25 kg; Basis und Ebene bekannt",
+      "expected_de": "G01",
+      "execution_status": "nicht ausgeführt"
+    },
+    {
+      "id": "T02",
+      "area": "Masse",
+      "given_de": "Gültige Masse 25,001 kg; Basis und Ebene bekannt",
+      "expected_de": "G02",
+      "execution_status": "nicht ausgeführt"
+    },
+    {
+      "id": "T03",
+      "area": "Masse",
+      "given_de": "Gültige Masse 250 kg; Basis und Ebene bekannt",
+      "expected_de": "G04",
+      "execution_status": "nicht ausgeführt"
+    },
+    {
+      "id": "T04",
+      "area": "Masse",
+      "given_de": "Gültige Masse 253,2 kg; Basis und Ebene bekannt",
+      "expected_de": "G05",
+      "execution_status": "nicht ausgeführt"
+    },
+    {
+      "id": "T05",
+      "area": "Masse",
+      "given_de": "Gültige Masse 5.000 kg; Basis und Ebene bekannt",
+      "expected_de": "G08",
+      "execution_status": "nicht ausgeführt"
+    },
+    {
+      "id": "T06",
+      "area": "Masse",
+      "given_de": "Gültige Masse 5.000,001 kg; Basis und Ebene bekannt",
+      "expected_de": "G09",
+      "execution_status": "nicht ausgeführt"
+    },
+    {
+      "id": "T07",
+      "area": "Datenlücke",
+      "given_de": "Masse fehlt",
+      "expected_de": "unknown; Kategorie null; keine Nullmasse",
+      "execution_status": "nicht ausgeführt"
+    },
+    {
+      "id": "T08",
+      "area": "Nullwert",
+      "given_de": "Masse = 0 kg",
+      "expected_de": "invalid für diesen Stahlobjektkatalog; keine G-Kategorie",
+      "execution_status": "nicht ausgeführt"
+    },
+    {
+      "id": "T09",
+      "area": "Fehler",
+      "given_de": "Masse = -1 kg oder NaN",
+      "expected_de": "invalid; aus Massensumme ausgeschlossen",
+      "execution_status": "nicht ausgeführt"
+    },
+    {
+      "id": "T10",
+      "area": "Einheit",
+      "given_de": "0,5 t explizit als metrische Tonne deklariert",
+      "expected_de": "500 kg; G05",
+      "execution_status": "nicht ausgeführt"
+    },
+    {
+      "id": "T11",
+      "area": "Einheit",
+      "given_de": "Massenwert ohne auflösbare Einheit",
+      "expected_de": "unknown; keine Kategorie; Warnung",
+      "execution_status": "nicht ausgeführt"
+    },
+    {
+      "id": "T12",
+      "area": "Metergewicht",
+      "given_de": "50 kg/m aus bestätigtem Profilkatalog",
+      "expected_de": "M03",
+      "execution_status": "nicht ausgeführt"
+    },
+    {
+      "id": "T13",
+      "area": "Metergewicht",
+      "given_de": "50,001 kg/m aus bestätigtem Profilkatalog",
+      "expected_de": "M04",
+      "execution_status": "nicht ausgeführt"
+    },
+    {
+      "id": "T14",
+      "area": "Profil",
+      "given_de": "IPE 300, bestätigt, 42,2 kg/m, Länge 6 m",
+      "expected_de": "253,2 kg PROFILE_THEORETICAL; G05; M03",
+      "execution_status": "nicht ausgeführt"
+    },
+    {
+      "id": "T15",
+      "area": "Baugruppe",
+      "given_de": "IPE 300 mit 253,2 kg plus zwei Platten mit jeweils 12 kg; NET-Werte vollständig und kompatibel",
+      "expected_de": "PART-Summe 277,2 kg; ASSEMBLY-Sicht 277,2 kg; nie 554,4 kg",
+      "execution_status": "nicht ausgeführt"
+    },
+    {
+      "id": "T16",
+      "area": "Baugruppe",
+      "given_de": "Derselbe Träger: nur Profilrechnung 253,2 kg, Platten netto jeweils 12 kg",
+      "expected_de": "Kein automatischer NET-Baugruppenwert; gemischte Massenbasis melden",
+      "execution_status": "nicht ausgeführt"
+    },
+    {
+      "id": "T17",
+      "area": "Basis",
+      "given_de": "NET ausgewählt; nur GROSS vorhanden",
+      "expected_de": "NET bleibt unbekannt; GROSS separat verfügbar",
+      "execution_status": "nicht ausgeführt"
+    },
+    {
+      "id": "T18",
+      "area": "Baugruppe",
+      "given_de": "Ein Kind ohne Masse, übrige Kindmassen vorhanden",
+      "expected_de": "Teilmasse und fehlende Anzahl zeigen; Baugruppe incomplete, keine volle G-Kategorie",
+      "execution_status": "nicht ausgeführt"
+    },
+    {
+      "id": "T19",
+      "area": "Mehrdeutigkeit",
+      "given_de": "Zwei gleichrangige Profilquellen mit IPE 300 und HEB 300",
+      "expected_de": "conflict; keine automatische Profilentscheidung",
+      "execution_status": "nicht ausgeführt"
+    },
+    {
+      "id": "T20",
+      "area": "Profil",
+      "given_de": "2xL 100x100x10 ohne bestätigten zusammengesetzten Katalogschlüssel",
+      "expected_de": "Profil offen; nicht als einzelner Winkel behandeln",
+      "execution_status": "nicht ausgeführt"
+    },
+    {
+      "id": "T21",
+      "area": "Profilvariante",
+      "given_de": "IPE A 300 oder IPE AA 300 ohne exakten Katalogtreffer",
+      "expected_de": "Nicht in IPE 300 umwandeln; keine Standardmasse übernehmen",
+      "execution_status": "nicht ausgeführt"
+    },
+    {
+      "id": "T22",
+      "area": "Stahlzuordnung",
+      "given_de": "IfcBeam mit Material Beton",
+      "expected_de": "Nicht in bestätigte Stahltonnage aufnehmen",
+      "execution_status": "nicht ausgeführt"
+    },
+    {
+      "id": "T23",
+      "area": "Stahlzuordnung",
+      "given_de": "IfcBeam ohne auflösbares Material",
+      "expected_de": "unknown; als ungeklärtes Objekt anzeigen",
+      "execution_status": "nicht ausgeführt"
+    },
+    {
+      "id": "T24",
+      "area": "LV",
+      "given_de": "Assembly und Kinder tragen denselben 540_LV_Ident",
+      "expected_de": "LV-Filter darf alle zeigen; Massensumme bleibt ebenenrein",
+      "execution_status": "nicht ausgeführt"
+    },
+    {
+      "id": "T25",
+      "area": "Identität",
+      "given_de": "Zwei physische Instanzen desselben Typs",
+      "expected_de": "Zwei Objekte zählen; Typzugehörigkeit ist kein Duplikat",
+      "execution_status": "nicht ausgeführt"
+    },
+    {
+      "id": "T26",
+      "area": "Modellstand",
+      "given_de": "Gleicher Dateiname, anderer Dateiinhalt",
+      "expected_de": "Neuer Snapshot; alter Stand wird nicht in aktuelle Summe addiert",
+      "execution_status": "nicht ausgeführt"
+    },
+    {
+      "id": "T27",
+      "area": "Identität",
+      "given_de": "Gleiche GlobalId bei zwei Objekten desselben Snapshots",
+      "expected_de": "Konflikt melden; beide Rohobjekte erhalten",
+      "execution_status": "nicht ausgeführt"
+    },
+    {
+      "id": "T28",
+      "area": "Katalog",
+      "given_de": "Überlappende oder lückenhafte aktive Intervalle",
+      "expected_de": "Katalog ablehnen; letzte gültige Version behalten",
+      "execution_status": "nicht ausgeführt"
+    },
+    {
+      "id": "T29",
+      "area": "Katalog",
+      "given_de": "Mehrere aktive Profilregeln passen auf dasselbe Profil",
+      "expected_de": "conflict; kein stiller First-Match",
+      "execution_status": "nicht ausgeführt"
+    },
+    {
+      "id": "T30",
+      "area": "Aggregation",
+      "given_de": "Zyklus oder widersprüchliche Teilezuordnung",
+      "expected_de": "Aggregation sperren; keine Rekursion ohne Zyklusprüfung",
+      "execution_status": "nicht ausgeführt"
+    },
+    {
+      "id": "T31",
+      "area": "Rundung",
+      "given_de": "25,0004 kg, Anzeige auf drei Dezimalstellen",
+      "expected_de": "G02 anhand ungerundetem Wert; Anzeige kann 25,000 sein",
+      "execution_status": "nicht ausgeführt"
+    },
+    {
+      "id": "T32",
+      "area": "Kosten",
+      "given_de": "Gleiche Gesamtmasse bei unterschiedlichem Fertigungsaufwand",
+      "expected_de": "Keinen identischen Preis automatisch unterstellen",
+      "execution_status": "nicht ausgeführt"
+    }
+  ],
+  "sources": [
+    {
+      "id": "S01",
+      "title": "Projektauftrag buildingSMART / IFC v1.0",
+      "url": "Projektquelle: buildingSMART_IFC_Entwicklungs-_und_Beratungsauftrag_v1.0.md",
+      "scope": "Arbeitsgrundlage vom 18.10.2026"
+    },
+    {
+      "id": "S02",
+      "title": "ArcelorMittal – Products & Solutions",
+      "url": "https://sections.arcelormittal.com/products_and_solutions/EN",
+      "scope": "Etablierte Profilreihen, keine Quelle für vorgeschlagene Gewichtsgrenzen"
+    },
+    {
+      "id": "S03",
+      "title": "ArcelorMittal – Profilkatalog 2024-2",
+      "url": "https://sections.arcelormittal.com/repository2/Sections/Sections_MB_ArcelorMittal_FR_EN_DE_V2024-2.pdf",
+      "scope": "IPE 300: 42,2 kg/m; Beispielwert, kein vollständiger Profilkatalog"
+    },
+    {
+      "id": "S04",
+      "title": "bauforumstahl – Baukosten / Kosten im Stahlbau 2026",
+      "url": "https://bauforumstahl.de/stahlbau/baukosten",
+      "scope": "Kostenfaktoren, keine Preisdaten im vorliegenden Modul"
+    },
+    {
+      "id": "S05",
+      "title": "buildingSMART – Qto_BeamBaseQuantities, IFC4.3.2.0",
+      "url": "https://standards.buildingsmart.org/IFC/RELEASE/IFC4_3/HTML/lexical/Qto_BeamBaseQuantities.htm",
+      "scope": "GrossWeight / NetWeight am Träger ohne Anbauteile"
+    },
+    {
+      "id": "S06",
+      "title": "buildingSMART – Qto_BeamBaseQuantities, IFC4 ADD2",
+      "url": "https://standards.buildingsmart.org/IFC/RELEASE/IFC4/ADD2/HTML/schema/ifcsharedbldgelements/qset/qto_beambasequantities.htm",
+      "scope": "Versionsbezogener Einstieg für IFC4"
+    }
+  ],
+  "profile_reference_examples": [
+    {
+      "designation": "IPE 300",
+      "mass_per_m_kg_m": 42.2,
+      "source_id": "S03",
+      "usage": "Beispiel; kein produktiver Profilstamm"
+    }
+  ],
+  "imports": {
+    "authoritative": "Excel nach validiertem Import",
+    "json": "Synchroner Erststand; nach Excel-Änderungen neu erzeugen",
+    "runtime_writeback": false
+  },
+  "changelog": [
+    {
+      "version": "0.2.0",
+      "date": "2026-11-01",
+      "changes": "Benutzerdefinierte Kategorieprofile für Stahl-/Betonbau; Stützen, Wände und Bleche; Parallelbetrieb exakter Maßgruppen; Vorschau, Versionierung und Sollfälle."
+    }
+  ],
+  "custom_metrics": [
+    {
+      "key": "plate_thickness_m",
+      "label_de": "Blechdicke",
+      "unit": "m",
+      "applies_to_de": "Stahlblech",
+      "convention_de": "Lokaler Nennwert; variable Dicken gesondert."
+    },
+    {
+      "key": "plate_length_m",
+      "label_de": "Blechlänge",
+      "unit": "m",
+      "applies_to_de": "Stahlblech",
+      "convention_de": "Lokale Achsen; Abwicklung nur mit bestätigter Quelle."
+    },
+    {
+      "key": "plate_width_m",
+      "label_de": "Blechbreite",
+      "unit": "m",
+      "applies_to_de": "Stahlblech",
+      "convention_de": "Lokale Achsen; kein ungeprüftes globales Außenmaß."
+    },
+    {
+      "key": "plate_area_m2",
+      "label_de": "Blechfläche",
+      "unit": "m²",
+      "applies_to_de": "Stahlblech",
+      "convention_de": "Mittelflächen-/Abwicklungsbezug und Gross/Net dokumentieren."
+    }
+  ],
+  "profile_requirements": [
+    {
+      "id": "PR01",
+      "topic_de": "Profile verwalten",
+      "requirement_de": "Standardprofile schreibgeschützt mitliefern; als benutzerdefiniertes Profil kopieren. Anlegen, umbenennen, bearbeiten, duplizieren, auswählen und archivieren."
+    },
+    {
+      "id": "PR02",
+      "topic_de": "Speicherbereich",
+      "requirement_de": "Persönlich oder projektbezogen; Freigabe für Kollegen separat mit Berechtigungen implementieren. Keine implizite Änderung fremder Profile."
+    },
+    {
+      "id": "PR03",
+      "topic_de": "Identität",
+      "requirement_de": "Stabile profile_id, Version, Ursprung, Name, Änderungszeit und Inhalts-Fingerprint speichern. Fachliche Änderung erzeugt neue Version; alte Berichte bleiben reproduzierbar."
+    },
+    {
+      "id": "PR04",
+      "topic_de": "Anwendungsbereich",
+      "requirement_de": "Objekttyp/Kategorien, Material, Querschnittsform, Mengenbasis und Zählebene explizit im scope_json. Keine Profilanwendung nur anhand eines frei geratenen Namens."
+    },
+    {
+      "id": "PR05",
+      "topic_de": "Einheiten",
+      "requirement_de": "Anzeige in mm/cm/m, m², m³, kg oder kg/m. Grenzen kanonisch in m/m²/m³/kg/kg/m speichern. Einheiten nur innerhalb gleicher Dimension konvertieren."
+    },
+    {
+      "id": "PR06",
+      "topic_de": "Grenzregel",
+      "requirement_de": "Untergrenze exklusiv, Obergrenze inklusive. Offene letzte Obergrenze = null/Excel-Leerwert. Untergrenzen numerisch und nicht negativ; keine Vor-Rundung."
+    },
+    {
+      "id": "PR07",
+      "topic_de": "Überlappung",
+      "requirement_de": "Aktive Bänder innerhalb desselben Profils dürfen sich nicht überschneiden. Codes sind pro Profil eindeutig. Unterschiedliche Profile dürfen dieselbe Messgröße anders einteilen."
+    },
+    {
+      "id": "PR08",
+      "topic_de": "Abdeckung",
+      "requirement_de": "coverage=complete verlangt lückenlose Abdeckung aller positiven Werte bis unendlich. coverage=partial erlaubt bewusste Lücken und einen begrenzten Bereich; außerhalb gilt out_of_range."
+    },
+    {
+      "id": "PR09",
+      "topic_de": "Unvollständige Daten",
+      "requirement_de": "Fehlend=unknown; nicht anwendbar=not_applicable; Null/negativ/nicht endlich=invalid. Variable Dicke/Querschnitt=variable, bis eine bestätigte abschnittsweise Auswertung vorliegt."
+    },
+    {
+      "id": "PR10",
+      "topic_de": "Originalmaße",
+      "requirement_de": "Rohwert, Einheit, Quelle und normalisierter Wert erhalten. Exakte Maßgruppen parallel zu Intervallen anbieten. Keine Modelländerung oder zusätzliche Verschachtelung."
+    },
+    {
+      "id": "PR11",
+      "topic_de": "Vorschau",
+      "requirement_de": "Vor Speichern/Anwenden: Grenzen/Einheiten und Umfang prüfen, Treffer je Band sowie unknown/invalid/variable/not_applicable/out_of_range/conflict zeigen. Drilldown auf Objekte."
+    },
+    {
+      "id": "PR12",
+      "topic_de": "Auswertungswechsel",
+      "requirement_de": "Profilwechsel kategorisiert neu; keine Rohmengenänderung. Kombinierte Filter sind Schnittmengen. Alternative Profile niemals zu zusätzlicher Materialmenge addieren."
+    },
+    {
+      "id": "PR13",
+      "topic_de": "Import/Export",
+      "requirement_de": "Profile und Bänder über Excel/JSON austauschen. Fehlende Pflichtfelder, unbekannte Metriken, doppelte IDs/Versionen mit anderem Inhalt, ungültige Scopes oder Intervalle atomar ablehnen."
+    },
+    {
+      "id": "PR14",
+      "topic_de": "Aktivierung",
+      "requirement_de": "Entwurfsprofile nicht automatisch aktivieren. Erst nach Validierung und Nutzerwahl anwenden; ungültiger Import erhält letzte gültige Konfiguration."
+    },
+    {
+      "id": "PR15",
+      "topic_de": "Stützen",
+      "requirement_de": "Rechteck b/h in lokalen Querschnittsachsen und Rund-Ø trennen. A nur aus bestätigtem Querschnitt; nicht beliebig Volumen/Höhe bei veränderlichem Querschnitt. Rechteck- und Rundprofile getrennt filtern."
+    },
+    {
+      "id": "PR16",
+      "topic_de": "Wände",
+      "requirement_de": "Dicke normal zur Wandfläche, vertikale Höhe und Achslänge mit bestätigter Konvention. Wandansichtsfläche, Öffnungsabzüge und Schalungskontaktfläche bleiben verschiedene Messgrößen."
+    },
+    {
+      "id": "PR17",
+      "topic_de": "Bleche",
+      "requirement_de": "Nennblechdicke aus bestätigter Profil-/Materialquelle oder validierter lokaler Geometrie. Nicht kleinste globale Bounding-Box-Abmessung. Modellierte Dicke allein beweist keinen Stahlwerkstoff."
+    },
+    {
+      "id": "PR18",
+      "topic_de": "Blechflächen",
+      "requirement_de": "Gross/Net und Fläche der Mittelfläche versus Oberfläche unterscheiden. Ausgeklinkte/gelochte Bleche nicht über Außenrechteck als Nettofläche rechnen. Abwicklung gekanteter Bleche nur mit bestätigter Quelle."
+    },
+    {
+      "id": "PR19",
+      "topic_de": "Ergebnisvertrag",
+      "requirement_de": "Je Objekt: profile_id, profile_version, profile_fingerprint, metric, category_code, classification_status, canonical_value, quantity_basis und evaluation_level ausgeben. Bericht enthält Modellstand und Profilversionen."
+    },
+    {
+      "id": "PR20",
+      "topic_de": "UI-Workflow",
+      "requirement_de": "Kategorieprofile öffnen, Messgröße und Scope wählen, Grenzen/Bezeichnungen pflegen, Vorschau, Speichern als neue Version, Anwenden. Noch nicht gespeichert/ungültig darf nicht als aktives Profil erscheinen."
+    }
+  ],
+  "category_profiles": [
+    {
+      "profile_id": "std_object_mass_kg",
+      "name_de": "Standard: object_mass_kg",
+      "metric": "object_mass_kg",
+      "scope_json": "{\"applies_to\": \"legacy_catalog_scope\", \"evaluation_level\": \"explicit_report_selection\", \"material\": \"steel\", \"quantity_basis\": \"explicit_report_selection\"}",
+      "canonical_unit": "kg",
+      "display_unit": "kg",
+      "origin": "standard",
+      "coverage": "complete",
+      "profile_version": "1.0.0",
+      "state": "readonly"
+    },
+    {
+      "profile_id": "std_profile_mass_per_m_kg_m",
+      "name_de": "Standard: profile_mass_per_m_kg_m",
+      "metric": "profile_mass_per_m_kg_m",
+      "scope_json": "{\"applies_to\": \"legacy_catalog_scope\", \"evaluation_level\": \"explicit_report_selection\", \"material\": \"steel\", \"quantity_basis\": \"explicit_report_selection\"}",
+      "canonical_unit": "kg/m",
+      "display_unit": "kg/m",
+      "origin": "standard",
+      "coverage": "complete",
+      "profile_version": "1.0.0",
+      "state": "readonly"
+    },
+    {
+      "profile_id": "usr_plate_thickness",
+      "name_de": "Beispiel Blechdicken",
+      "metric": "plate_thickness_m",
+      "scope_json": "{\"component_function\": \"plate\", \"evaluation_level\": \"PART\", \"material\": \"steel\", \"quantity_basis\": \"explicit_report_selection\"}",
+      "canonical_unit": "m",
+      "display_unit": "mm",
+      "origin": "example",
+      "coverage": "complete",
+      "profile_version": "1.0.0",
+      "state": "draft"
+    },
+    {
+      "profile_id": "usr_plate_area",
+      "name_de": "Beispiel Blechflächen",
+      "metric": "plate_area_m2",
+      "scope_json": "{\"component_function\": \"plate\", \"evaluation_level\": \"PART\", \"material\": \"steel\", \"quantity_basis\": \"explicit_report_selection\"}",
+      "canonical_unit": "m²",
+      "display_unit": "m²",
+      "origin": "example",
+      "coverage": "complete",
+      "profile_version": "1.0.0",
+      "state": "draft"
+    },
+    {
+      "profile_id": "usr_plate_mass",
+      "name_de": "Beispiel Blechgewichte",
+      "metric": "object_mass_kg",
+      "scope_json": "{\"component_function\": \"plate\", \"evaluation_level\": \"PART\", \"material\": \"steel\", \"quantity_basis\": \"explicit_report_selection\"}",
+      "canonical_unit": "kg",
+      "display_unit": "kg",
+      "origin": "example",
+      "coverage": "complete",
+      "profile_version": "1.0.0",
+      "state": "draft"
+    }
+  ],
+  "profile_bands": [
+    {
+      "profile_id": "std_object_mass_kg",
+      "category_code": "G01",
+      "lower_exclusive": 0,
+      "upper_inclusive": 25,
+      "canonical_unit": "kg",
+      "label_de": "über 0 bis 25 kg",
+      "active": true
+    },
+    {
+      "profile_id": "std_object_mass_kg",
+      "category_code": "G02",
+      "lower_exclusive": 25,
+      "upper_inclusive": 50,
+      "canonical_unit": "kg",
+      "label_de": "über 25 bis 50 kg",
+      "active": true
+    },
+    {
+      "profile_id": "std_object_mass_kg",
+      "category_code": "G03",
+      "lower_exclusive": 50,
+      "upper_inclusive": 100,
+      "canonical_unit": "kg",
+      "label_de": "über 50 bis 100 kg",
+      "active": true
+    },
+    {
+      "profile_id": "std_object_mass_kg",
+      "category_code": "G04",
+      "lower_exclusive": 100,
+      "upper_inclusive": 250,
+      "canonical_unit": "kg",
+      "label_de": "über 100 bis 250 kg",
+      "active": true
+    },
+    {
+      "profile_id": "std_object_mass_kg",
+      "category_code": "G05",
+      "lower_exclusive": 250,
+      "upper_inclusive": 500,
+      "canonical_unit": "kg",
+      "label_de": "über 250 bis 500 kg",
+      "active": true
+    },
+    {
+      "profile_id": "std_object_mass_kg",
+      "category_code": "G06",
+      "lower_exclusive": 500,
+      "upper_inclusive": 1000,
+      "canonical_unit": "kg",
+      "label_de": "über 500 bis 1000 kg",
+      "active": true
+    },
+    {
+      "profile_id": "std_object_mass_kg",
+      "category_code": "G07",
+      "lower_exclusive": 1000,
+      "upper_inclusive": 2000,
+      "canonical_unit": "kg",
+      "label_de": "über 1000 bis 2000 kg",
+      "active": true
+    },
+    {
+      "profile_id": "std_object_mass_kg",
+      "category_code": "G08",
+      "lower_exclusive": 2000,
+      "upper_inclusive": 5000,
+      "canonical_unit": "kg",
+      "label_de": "über 2000 bis 5000 kg",
+      "active": true
+    },
+    {
+      "profile_id": "std_object_mass_kg",
+      "category_code": "G09",
+      "lower_exclusive": 5000,
+      "upper_inclusive": null,
+      "canonical_unit": "kg",
+      "label_de": "über 5000 kg",
+      "active": true
+    },
+    {
+      "profile_id": "std_profile_mass_per_m_kg_m",
+      "category_code": "M01",
+      "lower_exclusive": 0,
+      "upper_inclusive": 10,
+      "canonical_unit": "kg/m",
+      "label_de": "über 0 bis 10 kg/m",
+      "active": true
+    },
+    {
+      "profile_id": "std_profile_mass_per_m_kg_m",
+      "category_code": "M02",
+      "lower_exclusive": 10,
+      "upper_inclusive": 25,
+      "canonical_unit": "kg/m",
+      "label_de": "über 10 bis 25 kg/m",
+      "active": true
+    },
+    {
+      "profile_id": "std_profile_mass_per_m_kg_m",
+      "category_code": "M03",
+      "lower_exclusive": 25,
+      "upper_inclusive": 50,
+      "canonical_unit": "kg/m",
+      "label_de": "über 25 bis 50 kg/m",
+      "active": true
+    },
+    {
+      "profile_id": "std_profile_mass_per_m_kg_m",
+      "category_code": "M04",
+      "lower_exclusive": 50,
+      "upper_inclusive": 100,
+      "canonical_unit": "kg/m",
+      "label_de": "über 50 bis 100 kg/m",
+      "active": true
+    },
+    {
+      "profile_id": "std_profile_mass_per_m_kg_m",
+      "category_code": "M05",
+      "lower_exclusive": 100,
+      "upper_inclusive": 200,
+      "canonical_unit": "kg/m",
+      "label_de": "über 100 bis 200 kg/m",
+      "active": true
+    },
+    {
+      "profile_id": "std_profile_mass_per_m_kg_m",
+      "category_code": "M06",
+      "lower_exclusive": 200,
+      "upper_inclusive": null,
+      "canonical_unit": "kg/m",
+      "label_de": "über 200 kg/m",
+      "active": true
+    },
+    {
+      "profile_id": "usr_plate_thickness",
+      "category_code": "K01",
+      "lower_exclusive": 0,
+      "upper_inclusive": 0.008,
+      "canonical_unit": "m",
+      "label_de": "über 0 bis 0,008 m",
+      "active": true
+    },
+    {
+      "profile_id": "usr_plate_thickness",
+      "category_code": "K02",
+      "lower_exclusive": 0.008,
+      "upper_inclusive": 0.015,
+      "canonical_unit": "m",
+      "label_de": "über 0,008 bis 0,015 m",
+      "active": true
+    },
+    {
+      "profile_id": "usr_plate_thickness",
+      "category_code": "K03",
+      "lower_exclusive": 0.015,
+      "upper_inclusive": 0.025,
+      "canonical_unit": "m",
+      "label_de": "über 0,015 bis 0,025 m",
+      "active": true
+    },
+    {
+      "profile_id": "usr_plate_thickness",
+      "category_code": "K04",
+      "lower_exclusive": 0.025,
+      "upper_inclusive": null,
+      "canonical_unit": "m",
+      "label_de": "über 0,025 m",
+      "active": true
+    },
+    {
+      "profile_id": "usr_plate_area",
+      "category_code": "K01",
+      "lower_exclusive": 0,
+      "upper_inclusive": 0.1,
+      "canonical_unit": "m²",
+      "label_de": "über 0 bis 0,1 m²",
+      "active": true
+    },
+    {
+      "profile_id": "usr_plate_area",
+      "category_code": "K02",
+      "lower_exclusive": 0.1,
+      "upper_inclusive": 0.5,
+      "canonical_unit": "m²",
+      "label_de": "über 0,1 bis 0,5 m²",
+      "active": true
+    },
+    {
+      "profile_id": "usr_plate_area",
+      "category_code": "K03",
+      "lower_exclusive": 0.5,
+      "upper_inclusive": 1,
+      "canonical_unit": "m²",
+      "label_de": "über 0,5 bis 1 m²",
+      "active": true
+    },
+    {
+      "profile_id": "usr_plate_area",
+      "category_code": "K04",
+      "lower_exclusive": 1,
+      "upper_inclusive": 2,
+      "canonical_unit": "m²",
+      "label_de": "über 1 bis 2 m²",
+      "active": true
+    },
+    {
+      "profile_id": "usr_plate_area",
+      "category_code": "K05",
+      "lower_exclusive": 2,
+      "upper_inclusive": null,
+      "canonical_unit": "m²",
+      "label_de": "über 2 m²",
+      "active": true
+    },
+    {
+      "profile_id": "usr_plate_mass",
+      "category_code": "K01",
+      "lower_exclusive": 0,
+      "upper_inclusive": 5,
+      "canonical_unit": "kg",
+      "label_de": "über 0 bis 5 kg",
+      "active": true
+    },
+    {
+      "profile_id": "usr_plate_mass",
+      "category_code": "K02",
+      "lower_exclusive": 5,
+      "upper_inclusive": 25,
+      "canonical_unit": "kg",
+      "label_de": "über 5 bis 25 kg",
+      "active": true
+    },
+    {
+      "profile_id": "usr_plate_mass",
+      "category_code": "K03",
+      "lower_exclusive": 25,
+      "upper_inclusive": 50,
+      "canonical_unit": "kg",
+      "label_de": "über 25 bis 50 kg",
+      "active": true
+    },
+    {
+      "profile_id": "usr_plate_mass",
+      "category_code": "K04",
+      "lower_exclusive": 50,
+      "upper_inclusive": 100,
+      "canonical_unit": "kg",
+      "label_de": "über 50 bis 100 kg",
+      "active": true
+    },
+    {
+      "profile_id": "usr_plate_mass",
+      "category_code": "K05",
+      "lower_exclusive": 100,
+      "upper_inclusive": null,
+      "canonical_unit": "kg",
+      "label_de": "über 100 kg",
+      "active": true
+    }
+  ],
+  "profile_contract": {
+    "interval": "lower_exclusive < canonical_value <= upper_inclusive",
+    "default_coverage": "complete",
+    "partial_coverage": "Lücken erlaubt; out_of_range sichtbar",
+    "example_activation": "draft, nur nach Nutzerwahl",
+    "unknown_metric": "reject",
+    "original_values": "preserve",
+    "writeback": false,
+    "standard_profiles": "readonly; clone before editing",
+    "allowed_display_units": {
+      "m": [
+        "mm",
+        "cm",
+        "m"
+      ],
+      "m²": [
+        "m²"
+      ],
+      "m³": [
+        "m³"
+      ],
+      "kg": [
+        "kg"
+      ],
+      "kg/m": [
+        "kg/m"
+      ]
+    }
+  },
+  "profile_acceptance_cases": [
+    {
+      "id": "P01",
+      "given_de": "Standardprofil bearbeiten",
+      "expected_de": "Direkte Änderung verweigern; Kopie mit neuer ID erzeugen.",
+      "execution_status": "nicht im Quantity Agent ausgeführt"
+    },
+    {
+      "id": "P02",
+      "given_de": "Wanddicke 250 mm; Grenzen 0,20/0,30 m",
+      "expected_de": "0,25 m normalisieren; K02 im Beispielprofil.",
+      "execution_status": "nicht im Quantity Agent ausgeführt"
+    },
+    {
+      "id": "P03",
+      "given_de": "Blechdicke 15 mm genau auf Grenze",
+      "expected_de": "K02; 15,001 mm liegt in K03.",
+      "execution_status": "nicht im Quantity Agent ausgeführt"
+    },
+    {
+      "id": "P04",
+      "given_de": "Zwei aktive sich überschneidende Bänder",
+      "expected_de": "Profilimport atomar ablehnen; aktive Version erhalten.",
+      "execution_status": "nicht im Quantity Agent ausgeführt"
+    },
+    {
+      "id": "P05",
+      "given_de": "Complete-Profil mit Lücke",
+      "expected_de": "Ungültig; keine Aktivierung.",
+      "execution_status": "nicht im Quantity Agent ausgeführt"
+    },
+    {
+      "id": "P06",
+      "given_de": "Partial-Profil mit bewusst freier Spanne",
+      "expected_de": "Gültig; Objekte in Lücke als out_of_range zählen.",
+      "execution_status": "nicht im Quantity Agent ausgeführt"
+    },
+    {
+      "id": "P07",
+      "given_de": "Von exakter Maßgruppe auf Intervallprofil wechseln",
+      "expected_de": "Originalmaße und Gesamtsumme unverändert; Gruppen neu berechnen.",
+      "execution_status": "nicht im Quantity Agent ausgeführt"
+    },
+    {
+      "id": "P08",
+      "given_de": "Rundstütze bei Rechteck-Stützenprofil",
+      "expected_de": "not_applicable; kein erzwungenes Rechteckmaß.",
+      "execution_status": "nicht im Quantity Agent ausgeführt"
+    },
+    {
+      "id": "P09",
+      "given_de": "Variable Wanddicke 0,20–0,40 m",
+      "expected_de": "variable; min/max erhalten; keine konstante Größenklasse.",
+      "execution_status": "nicht im Quantity Agent ausgeführt"
+    },
+    {
+      "id": "P10",
+      "given_de": "Gedrehtes Blech, gleiche lokale Dicke",
+      "expected_de": "Gleiche Kategorie; globale Bounding-Box ignorieren.",
+      "execution_status": "nicht im Quantity Agent ausgeführt"
+    },
+    {
+      "id": "P11",
+      "given_de": "Gekantetes Blech ohne bestätigte Abwicklung",
+      "expected_de": "Abwicklungsfläche unknown; keine Außenrechteck-Ersatzfläche.",
+      "execution_status": "nicht im Quantity Agent ausgeführt"
+    },
+    {
+      "id": "P12",
+      "given_de": "Gelochtes Blech; Nettofläche bereits geliefert",
+      "expected_de": "Kein zweiter Lochabzug; NET und GROSS getrennt.",
+      "execution_status": "nicht im Quantity Agent ausgeführt"
+    },
+    {
+      "id": "P13",
+      "given_de": "Kombination Blechdicke und Einzelgewicht",
+      "expected_de": "Schnittmenge filtern; keine zusätzliche Masse durch Mehrfachprofile.",
+      "execution_status": "nicht im Quantity Agent ausgeführt"
+    },
+    {
+      "id": "P14",
+      "given_de": "Profilversion 1.0.0 später fachlich geändert",
+      "expected_de": "Neue Version; alter Bericht behält Version und Fingerprint.",
+      "execution_status": "nicht im Quantity Agent ausgeführt"
+    },
+    {
+      "id": "P15",
+      "given_de": "Profilimport mit mm als Volumeneinheit",
+      "expected_de": "Wegen Dimensionsfehler ablehnen.",
+      "execution_status": "nicht im Quantity Agent ausgeführt"
+    },
+    {
+      "id": "P16",
+      "given_de": "Auswertung vor Speichern eines ungültigen Entwurfs",
+      "expected_de": "Letztes gültiges Profil bleibt aktiv; Entwurf als ungespeichert zeigen.",
+      "execution_status": "nicht im Quantity Agent ausgeführt"
+    },
+    {
+      "id": "P17",
+      "given_de": "Import/Export Excel–JSON",
+      "expected_de": "IDs, Scopes, Einheiten, Grenzen, Versionen und Kategorien unverändert.",
+      "execution_status": "nicht im Quantity Agent ausgeführt"
+    },
+    {
+      "id": "P18",
+      "given_de": "Unbekannter Metric-Key oder doppelte ID mit abweichendem Inhalt",
+      "expected_de": "Import ablehnen; kein stilles Überschreiben.",
+      "execution_status": "nicht im Quantity Agent ausgeführt"
+    },
+    {
+      "id": "P19",
+      "given_de": "Stützenhöhe versus Achslänge einer Schrägstütze",
+      "expected_de": "Messkonvention beachten; Werte nicht austauschbar.",
+      "execution_status": "nicht im Quantity Agent ausgeführt"
+    },
+    {
+      "id": "P20",
+      "given_de": "Vorschau mit fehlenden und nicht passenden Objekten",
+      "expected_de": "unknown, invalid, variable, not_applicable, out_of_range und Treffer separat ausgeben.",
+      "execution_status": "nicht im Quantity Agent ausgeführt"
+    }
+  ],
+  "profile_excel_layout": {
+    "Profile": [
+      "profile_id",
+      "name_de",
+      "metric",
+      "scope_json",
+      "canonical_unit",
+      "display_unit",
+      "origin",
+      "coverage",
+      "profile_version",
+      "state"
+    ],
+    "Profil_Baender": [
+      "profile_id",
+      "category_code",
+      "lower_exclusive",
+      "upper_inclusive",
+      "canonical_unit",
+      "label_de",
+      "active"
+    ],
+    "Profil_Metriken": [
+      "key",
+      "label_de",
+      "unit",
+      "applies_to_de",
+      "convention_de"
+    ],
+    "Profil_Regeln": [
+      "id",
+      "topic_de",
+      "requirement_de"
+    ],
+    "Profil_Abnahme": [
+      "id",
+      "given_de",
+      "expected_de",
+      "execution_status"
+    ]
+  }
+}

@@ -1,0 +1,340 @@
+{
+  "package_id": "IQA-M1-Z445-ECA",
+  "package_version": "0.1.0",
+  "title": "IFC Quantity Agent MVP-1 – Z445 ECA Regression",
+  "status": "released-for-mvp1-acceptance",
+  "valid_from": "2026-10-21",
+  "basis": "IFC Quantity Agent Entwicklungskonzept v1.11",
+  "baseline_version": "0.1",
+  "model_types": ["ECA"],
+  "id_convention": "IQA-M1-<DOMAIN>-<NNN>",
+  "rules": [
+    {
+      "id": "IQA-M1-FILE-001",
+      "version": "1.0.0",
+      "title": "Referenzdatei über SHA-256 identifizieren",
+      "category": "file",
+      "severity": "blocker",
+      "actual_path": "model.sha256",
+      "expected_path": "model.sha256",
+      "comparator": "equals"
+    },
+    {
+      "id": "IQA-M1-FILE-002",
+      "version": "1.0.0",
+      "title": "Dateigröße reproduzieren",
+      "category": "file",
+      "severity": "error",
+      "actual_path": "model.size_bytes",
+      "expected_path": "model.size_bytes",
+      "comparator": "equals"
+    },
+    {
+      "id": "IQA-M1-FILE-003",
+      "version": "1.0.0",
+      "title": "IFC-Schema erkennen",
+      "category": "file",
+      "severity": "blocker",
+      "actual_path": "model.schema",
+      "expected_path": "model.schema",
+      "comparator": "equals"
+    },
+    {
+      "id": "IQA-M1-FILE-004",
+      "version": "1.0.0",
+      "title": "ViewDefinition erkennen",
+      "category": "file",
+      "severity": "error",
+      "actual_path": "model.view_definition",
+      "expected_path": "model.view_definition",
+      "comparator": "equals"
+    },
+    {
+      "id": "IQA-M1-FILE-005",
+      "version": "1.0.0",
+      "title": "Exportzeitstempel erkennen",
+      "category": "file",
+      "severity": "warning",
+      "actual_path": "model.export_timestamp",
+      "expected_path": "model.export_timestamp",
+      "comparator": "equals"
+    },
+    {
+      "id": "IQA-M1-FILE-006",
+      "version": "1.0.0",
+      "title": "ECA-Modelltyp aus Dateiname transparent ableiten",
+      "category": "file",
+      "severity": "error",
+      "actual_path": "model.model_type",
+      "expected_path": "model.model_type",
+      "comparator": "subset_equal"
+    },
+    {
+      "id": "IQA-M1-UNIT-001",
+      "version": "1.0.0",
+      "title": "Projekt-Einheiten erkennen",
+      "category": "unit",
+      "severity": "blocker",
+      "actual_path": "units",
+      "expected_path": "units",
+      "comparator": "subset_equal"
+    },
+    {
+      "id": "IQA-M1-SPAT-001",
+      "version": "1.0.0",
+      "title": "Räumliche Struktur inventarisieren",
+      "category": "spatial",
+      "severity": "error",
+      "actual_path": "spatial",
+      "expected_path": "spatial",
+      "comparator": "subset_equal"
+    },
+    {
+      "id": "IQA-M1-ELEM-001",
+      "version": "1.0.0",
+      "title": "IfcProduct-Anzahl reproduzieren",
+      "category": "element",
+      "severity": "blocker",
+      "actual_path": "counts.ifc_products",
+      "expected_path": "counts.ifc_products",
+      "comparator": "equals"
+    },
+    {
+      "id": "IQA-M1-ELEM-002",
+      "version": "1.0.0",
+      "title": "IfcElement-Anzahl reproduzieren",
+      "category": "element",
+      "severity": "blocker",
+      "actual_path": "counts.ifc_elements",
+      "expected_path": "counts.ifc_elements",
+      "comparator": "equals"
+    },
+    {
+      "id": "IQA-M1-ELEM-003",
+      "version": "1.0.0",
+      "title": "STEP-Entity-Anzahl reproduzieren",
+      "category": "element",
+      "severity": "error",
+      "actual_path": "counts.step_entities",
+      "expected_path": "counts.step_entities",
+      "comparator": "equals"
+    },
+    {
+      "id": "IQA-M1-ELEM-004",
+      "version": "1.0.0",
+      "title": "Geometrische Repräsentationsabdeckung reproduzieren",
+      "category": "element",
+      "severity": "error",
+      "actual_path": "counts.elements_with_representation",
+      "expected_path": "counts.elements_with_representation",
+      "comparator": "equals"
+    },
+    {
+      "id": "IQA-M1-ELEM-005",
+      "version": "1.0.0",
+      "title": "Elemente ohne Repräsentation reproduzieren",
+      "category": "element",
+      "severity": "error",
+      "actual_path": "counts.elements_without_representation",
+      "expected_path": "counts.elements_without_representation",
+      "comparator": "equals"
+    },
+    {
+      "id": "IQA-M1-ELEM-006",
+      "version": "1.0.0",
+      "title": "Native IFC-Klassenverteilung reproduzieren",
+      "category": "element",
+      "severity": "blocker",
+      "actual_path": "ifc_class_counts",
+      "expected_path": "ifc_class_counts",
+      "comparator": "subset_equal"
+    },
+    {
+      "id": "IQA-M1-GUID-001",
+      "version": "1.0.0",
+      "title": "IfcRoot-GlobalIds zählen",
+      "category": "guid",
+      "severity": "error",
+      "actual_path": "counts.ifc_roots_with_global_id",
+      "expected_path": "counts.ifc_roots_with_global_id",
+      "comparator": "equals"
+    },
+    {
+      "id": "IQA-M1-GUID-002",
+      "version": "1.0.0",
+      "title": "Doppelte GlobalIds erkennen",
+      "category": "guid",
+      "severity": "blocker",
+      "actual_path": "counts.duplicate_global_ids",
+      "expected_path": "counts.duplicate_global_ids",
+      "comparator": "equals"
+    },
+    {
+      "id": "IQA-M1-SPAT-002",
+      "version": "1.0.0",
+      "title": "Elemente mit räumlicher Zuordnung zählen",
+      "category": "spatial",
+      "severity": "error",
+      "actual_path": "counts.elements_with_one_spatial_containment",
+      "expected_path": "counts.elements_with_one_spatial_containment",
+      "comparator": "equals"
+    },
+    {
+      "id": "IQA-M1-SPAT-003",
+      "version": "1.0.0",
+      "title": "Elemente ohne räumliche Zuordnung zählen",
+      "category": "spatial",
+      "severity": "error",
+      "actual_path": "counts.elements_without_spatial_containment",
+      "expected_path": "counts.elements_without_spatial_containment",
+      "comparator": "equals",
+      "evidence_path": "finding_evidence.uncontained_elements"
+    },
+    {
+      "id": "IQA-M1-PSET-001",
+      "version": "1.0.0",
+      "title": "PSet- und QTO-Abdeckung reproduzieren",
+      "category": "pset",
+      "severity": "error",
+      "actual_path": "property_set_coverage",
+      "expected_path": "property_set_coverage",
+      "comparator": "subset_equal"
+    },
+    {
+      "id": "IQA-M1-FIELD-001",
+      "version": "1.0.0",
+      "title": "LV-Ident-Verteilung einschließlich Leerwerten reproduzieren",
+      "category": "field",
+      "severity": "blocker",
+      "actual_path": "lv_ident",
+      "expected_path": "lv_ident",
+      "comparator": "subset_equal"
+    },
+    {
+      "id": "IQA-M1-FIELD-002",
+      "version": "1.0.0",
+      "title": "Schlüsselfeld-Abdeckung reproduzieren",
+      "category": "field",
+      "severity": "error",
+      "actual_path": "key_field_coverage",
+      "expected_path": "key_field_coverage",
+      "comparator": "subset_equal"
+    },
+    {
+      "id": "IQA-M1-FIELD-003",
+      "version": "1.0.0",
+      "title": "BIM_Core.IfcClass getrennt von nativer Klasse inventarisieren",
+      "category": "field",
+      "severity": "blocker",
+      "actual_path": "bim_core_ifc_class_values",
+      "expected_path": "bim_core_ifc_class_values",
+      "comparator": "subset_equal"
+    },
+    {
+      "id": "IQA-M1-MAT-001",
+      "version": "1.0.0",
+      "title": "Materialzuordnungen reproduzieren",
+      "category": "material",
+      "severity": "error",
+      "actual_path": "material_assignments",
+      "expected_path": "material_assignments",
+      "comparator": "subset_equal"
+    },
+    {
+      "id": "IQA-M1-ASM-001",
+      "version": "1.0.0",
+      "title": "Assembly-Struktur reproduzieren",
+      "category": "assembly",
+      "severity": "blocker",
+      "actual_path": "assemblies",
+      "expected_path": "assemblies",
+      "comparator": "subset_equal"
+    },
+    {
+      "id": "IQA-M1-OPEN-001",
+      "version": "1.0.0",
+      "title": "Öffnungen und Voids-Beziehungen reproduzieren",
+      "category": "opening",
+      "severity": "error",
+      "actual_path": "openings",
+      "expected_path": "openings",
+      "comparator": "subset_equal",
+      "evidence_path": "finding_evidence.opening_elements_without_void_relation"
+    },
+    {
+      "id": "IQA-M1-QTY-001",
+      "version": "1.0.0",
+      "title": "Objekte mit Brutto- und Netto-Volumen zählen",
+      "category": "quantity",
+      "severity": "blocker",
+      "actual_path": "quantities.objects_with_gross_701_and_net_volume",
+      "expected_path": "quantities.objects_with_gross_701_and_net_volume",
+      "comparator": "equals"
+    },
+    {
+      "id": "IQA-M1-QTY-002",
+      "version": "1.0.0",
+      "title": "Bruttovolumensumme reproduzieren",
+      "category": "quantity",
+      "severity": "blocker",
+      "actual_path": "quantities.gross_701_sum_m3",
+      "expected_path": "quantities.gross_701_sum_m3",
+      "comparator": "equals",
+      "tolerance": 0.000001
+    },
+    {
+      "id": "IQA-M1-QTY-003",
+      "version": "1.0.0",
+      "title": "Netto-Volumensumme reproduzieren",
+      "category": "quantity",
+      "severity": "blocker",
+      "actual_path": "quantities.net_volume_sum_m3",
+      "expected_path": "quantities.net_volume_sum_m3",
+      "comparator": "equals",
+      "tolerance": 0.000001
+    },
+    {
+      "id": "IQA-M1-QTY-004",
+      "version": "1.0.0",
+      "title": "Brutto-/Netto-Differenz reproduzieren",
+      "category": "quantity",
+      "severity": "error",
+      "actual_path": "quantities.gross_minus_net_m3",
+      "expected_path": "quantities.gross_minus_net_m3",
+      "comparator": "equals",
+      "tolerance": 0.000001
+    },
+    {
+      "id": "IQA-M1-QTY-005",
+      "version": "1.0.0",
+      "title": "701-Bruttovolumen mit benutzerdefiniertem QTO abgleichen",
+      "category": "quantity",
+      "severity": "blocker",
+      "actual_path": "quantities.gross_701_matches_custom_qto_where_both_present",
+      "expected_path": "quantities.gross_701_matches_custom_qto_where_both_present",
+      "comparator": "equals"
+    },
+    {
+      "id": "IQA-M1-QTY-006",
+      "version": "1.0.0",
+      "title": "LV-Gruppenmengen reproduzieren",
+      "category": "quantity",
+      "severity": "blocker",
+      "actual_path": "quantities.lv_groups",
+      "expected_path": "quantities.lv_groups",
+      "comparator": "subset_equal",
+      "tolerance": 0.000001
+    },
+    {
+      "id": "IQA-M1-REVIEW-001",
+      "version": "1.0.0",
+      "title": "Erwartete Reviewbefunde mit Objekt-Evidenz reproduzieren",
+      "category": "review",
+      "severity": "error",
+      "actual_path": "expected_review_findings",
+      "expected_path": "expected_review_findings",
+      "comparator": "subset_equal",
+      "evidence_path": "finding_evidence"
+    }
+  ]
+}

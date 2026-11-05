@@ -1,0 +1,56 @@
+{
+  "date": "2026-11-01",
+  "purpose": "Unveränderte Übergabepakete; noch keine Laufzeitintegration",
+  "files": [
+    {
+      "path": "docs/handover/stahlbau/v0.2/IFC_Quantity_Agent_Stahlbau_Arbeitsgrundlage_v0.2.zip",
+      "size_bytes": 50620,
+      "sha256": "7154502efe58970ed9827740c0d3c350ef9750c9ec0b59b04606d0b733c00398"
+    },
+    {
+      "path": "docs/handover/stahlbau/v0.2/IFC_Quantity_Agent_Stahlbau_Katalog_v0.2.xlsx",
+      "size_bytes": 34789,
+      "sha256": "53497f8cdf844767f9742c0b0bc9dc040a350f30af375af80578b71b0df4551e"
+    },
+    {
+      "path": "docs/handover/stahlbau/v0.2/IFC_Quantity_Agent_Stahlbau_Konzept_v0.2.md",
+      "size_bytes": 24165,
+      "sha256": "89fd288747aa72a0f97eee3551129bff5159c612b954f5fc894e09dc5b34bc93"
+    },
+    {
+      "path": "docs/handover/stahlbau/v0.2/IFC_Quantity_Agent_Stahlbau_Regeln_v0.2.json",
+      "size_bytes": 47423,
+      "sha256": "60dd4291ad7d51fde9c1b2d59f4fabec4b0bcc4831a2d181f9c3588e202d15f7"
+    },
+    {
+      "path": "docs/handover/stahlbau/v0.2/Stahlbau_Pruefvermerk_v0.2.json",
+      "size_bytes": 273,
+      "sha256": "51dce81dadbb99f0e2db7a1cee45ad1c94f6fd51c3726ee5ccaac1cd8bd94e62"
+    },
+    {
+      "path": "docs/handover/betonbau/v0.2/Betonbau_Pruefvermerk_v0.2.json",
+      "size_bytes": 273,
+      "sha256": "cde1945b6bbb22b74ca48ae3fbe4c5a4cb5feb2d9e51eda2e729469d5a8275f0"
+    },
+    {
+      "path": "docs/handover/betonbau/v0.2/IFC_Quantity_Agent_Betonbau_Arbeitsgrundlage_v0.2.zip",
+      "size_bytes": 73551,
+      "sha256": "38fcc9424b644d1d88b750dff0704703be170bb3a84fe4d7c15aa3b560734ec8"
+    },
+    {
+      "path": "docs/handover/betonbau/v0.2/IFC_Quantity_Agent_Betonbau_Katalog_v0.2.xlsx",
+      "size_bytes": 49877,
+      "sha256": "cc6f1435a931a78e789d8fecc5ac8c93380f97927818e3f2ec0c81082ca41ac5"
+    },
+    {
+      "path": "docs/handover/betonbau/v0.2/IFC_Quantity_Agent_Betonbau_Konzept_v0.2.md",
+      "size_bytes": 28807,
+      "sha256": "3875582b221ec5352609d6b0b4a26af278716aa126e1ac1948049af74d4ae7e2"
+    },
+    {
+      "path": "docs/handover/betonbau/v0.2/IFC_Quantity_Agent_Betonbau_Regeln_v0.2.json",
+      "size_bytes": 93893,
+      "sha256": "63909181a9ce3439613920849fb0b83d40d5fc94829b6df46bad1a51e8f33b45"
+    }
+  ]
+}

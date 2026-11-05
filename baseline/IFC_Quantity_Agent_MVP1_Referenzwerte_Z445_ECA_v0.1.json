@@ -1,0 +1,157 @@
+{
+  "document_version": "0.1",
+  "reference_date": "2026-10-21",
+  "basis": "IFC Quantity Agent Entwicklungskonzept v1.11",
+  "model": {
+    "file_name": "Z445_799_ECA_BM_801_3D.ifc",
+    "sha256": "1b8e679b9a43691b0574a0de5fd675c679f42bc4a05320703c64bdc527d72523",
+    "size_bytes": 1133708,
+    "schema": "IFC4",
+    "view_definition": "ReferenceView_V1.2",
+    "authoring_application": "SketchUp 2025",
+    "exporter": "IFC Manager for SketchUp 5.5.4",
+    "export_timestamp": "2026-10-05T16:39:23",
+    "model_type": {
+      "value": "ECA",
+      "source": "file_name",
+      "confidence": "medium",
+      "property_corroboration": false
+    }
+  },
+  "units": {
+    "length": "millimetre",
+    "area": "square_metre",
+    "volume": "cubic_metre"
+  },
+  "counts": {
+    "step_entities": 6966,
+    "ifc_products": 205,
+    "ifc_elements": 202,
+    "elements_with_representation": 166,
+    "elements_without_representation": 36,
+    "ifc_roots_with_global_id": 1465,
+    "duplicate_global_ids": 0,
+    "elements_with_one_spatial_containment": 175,
+    "elements_without_spatial_containment": 27
+  },
+  "spatial": {
+    "IfcSite": {"count": 1, "names": ["default site"]},
+    "IfcBuilding": {"count": 1, "names": ["default building"]},
+    "IfcBuildingStorey": {"count": 1, "names": ["default building storey"]},
+    "IfcSpace": {"count": 0, "names": []}
+  },
+  "ifc_class_counts": {
+    "IfcBuildingElementProxy": 77,
+    "IfcElementAssembly": 36,
+    "IfcColumn": 30,
+    "IfcFooting": 20,
+    "IfcWall": 14,
+    "IfcBeam": 11,
+    "IfcSlab": 11,
+    "IfcOpeningElement": 3
+  },
+  "property_set_coverage": {
+    "BASF_General": 87,
+    "QTO": 84,
+    "PropertySets": 66,
+    "BASF_General_GUID": 59,
+    "BIM_Core": 59,
+    "BASF_GCC": 45,
+    "Qto_ColumnBaseQuantities": 30,
+    "Pset_QuantityTakeOff": 29,
+    "Qto_WallBaseQuantities": 14,
+    "Qto_BeamBaseQuantities": 11,
+    "Qto_SlabBaseQuantities": 11,
+    "QuantityTakeOff": 3
+  },
+  "lv_ident": {
+    "property": "BASF_General.540_LV_Ident",
+    "populated": 81,
+    "missing_or_empty": 121,
+    "values": {
+      "Stütze": 30,
+      "Einzelfundament": 14,
+      "Unterzug": 11,
+      "Außenwand": 11,
+      "Decke": 7,
+      "Streifenfundament": 4,
+      "Innenwand": 3,
+      "Bodenplatte": 1
+    }
+  },
+  "key_field_coverage": {
+    "BASF_General.701_Bruttovolumen": {"present": 81, "missing_or_empty": 121},
+    "BASF_General.604_Bruttogewicht": {"present": 0, "missing_or_empty": 202},
+    "BASF_General.550_Baunummer": {"present": 0, "missing_or_empty": 202},
+    "BASF_General.504_Planungsstand": {"values": {"In_Planung": 86}, "missing_or_empty": 116},
+    "BIM_Core.IfcClass": {"present": 59, "missing_or_empty": 143},
+    "native.Name": {"present": 202, "missing_or_empty": 0},
+    "native.Description": {"present": 0, "missing_or_empty": 202},
+    "native.ObjectType": {"present": 0, "missing_or_empty": 202},
+    "native.Tag": {"present": 125, "missing_or_empty": 77}
+  },
+  "bim_core_ifc_class_values": {
+    "IfcColumn": 30,
+    "IfcBeam": 11,
+    "IfcSlab": 9,
+    "IfcWall": 5,
+    "IfcOpeningElement": 3,
+    "IfcFooting": 1
+  },
+  "material_assignments": {
+    "Stahlbeton": 113,
+    "HAUFF_WDF": 16,
+    "WDF": 8,
+    "#1E90FF": 8,
+    "Stahl_EBT": 7,
+    "RC0-32": 3,
+    "Stahlbeton_Sauberkeitsschicht": 3,
+    "Default": 2,
+    "Pumpensupf": 2,
+    "Farbe D07": 1
+  },
+  "assemblies": {
+    "count": 36,
+    "with_representation": 0,
+    "parent_relationships": 5,
+    "referenced_children": 27
+  },
+  "openings": {
+    "IfcOpeningElement": 3,
+    "IfcRelVoidsElement": 0,
+    "names": {"KÄLTE_WDF": 3}
+  },
+  "quantities": {
+    "objects_with_gross_701_and_net_volume": 66,
+    "gross_701_sum_m3": 392.64,
+    "net_volume_sum_m3": 347.30872463613315,
+    "gross_minus_net_m3": 45.33127536386684,
+    "gross_701_matches_custom_qto_where_both_present": true,
+    "lv_groups": {
+      "Außenwand": {"objects": 11, "gross_701_sum_m3": 122.13, "net_volume_sum_m3": 92.7828626900674},
+      "Bodenplatte": {"objects": 1, "gross_701_sum_m3": 3.19, "net_volume_sum_m3": 3.1875},
+      "Decke": {"objects": 7, "gross_701_sum_m3": 164.72, "net_volume_sum_m3": 153.5891736895249},
+      "Einzelfundament": {"objects": 14, "gross_701_objects": 11, "gross_701_sum_m3": 0.13, "net_volume_objects": 3, "net_volume_sum_m3": 0.04303960861053074},
+      "Innenwand": {"objects": 3, "gross_701_sum_m3": 57.64, "net_volume_sum_m3": 56.86524072082581},
+      "Streifenfundament": {"objects": 4, "gross_701_sum_m3": 9.41, "net_volume_objects": 0},
+      "Stütze": {"objects": 30, "gross_701_sum_m3": 9.85, "net_volume_sum_m3": 9.587506928863359},
+      "Unterzug": {"objects": 11, "gross_701_sum_m3": 35.06, "net_volume_sum_m3": 31.25340099824117}
+    }
+  },
+  "expected_review_findings": {
+    "building_element_proxies": 77,
+    "uncontained_elements": 27,
+    "opening_elements_without_void_relation": 3,
+    "slab_sockel_stuetze_with_lv_einzelfundament": 3,
+    "einzelfundament_without_gross_volume": 3,
+    "elements_without_baunummer": 202,
+    "elements_without_bruttogewicht": 202
+  },
+  "acceptance_invariants": [
+    "Do not overwrite native IFC class with BIM_Core.IfcClass.",
+    "Do not invent replacement values for missing or empty fields.",
+    "Keep gross and net quantities separate and show their sources.",
+    "Do not automatically reclassify proxy or review-candidate objects.",
+    "Every finding must retain object and source traceability."
+  ]
+}
