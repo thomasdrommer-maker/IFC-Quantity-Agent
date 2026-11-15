@@ -11,8 +11,9 @@ const server=http.createServer((req,res)=>{const name=new URL(req.url,'http://lo
  await page.goto(`http://127.0.0.1:${server.address().port}/`);
  await page.locator('#file-input').setInputFiles({name:'test_ECA_model.ifc',mimeType:'application/x-step',buffer:Buffer.from('fixture')});
  await page.locator('#model-chip').filter({hasText:'test_ECA_model.ifc'}).waitFor();
- await page.locator('[data-view="structure"]').click();
- await page.locator('[data-node="1"]').evaluate(el=>el.open=true);await page.locator('[data-node="2"]').waitFor();
+ await page.getByRole('button',{name:'Modellstruktur öffnen →'}).click();
+ assert.equal(await page.locator('[data-node="1"]').evaluate(el=>el.open),true);
+ await page.locator('[data-node="2"]').waitFor();
  await page.locator('[data-node="2"]').evaluate(el=>el.open=true);
  await page.locator('#structure-tree .tree-node [data-step-id="3"]').waitFor();
  assert.match(await page.locator('#structure-tree').innerText(),/IfcRelAggregates #11/);
@@ -23,8 +24,21 @@ const server=http.createServer((req,res)=>{const name=new URL(req.url,'http://lo
  await page.locator('#detail-panel').filter({hasText:'Unterzug Test'}).waitFor();
  assert.match(await page.locator('#detail-panel').innerText(),/STEP-ID/);
  assert.match(await page.locator('#detail-panel').innerText(),/nicht eindeutig/);
- await page.locator('[data-view="structure"]').click();await page.locator('#structure-search').fill('');await page.locator('#structure-material').selectOption('');await page.locator('#structure-mode').selectOption('lv');
+ await page.locator('[data-view="structure"]').click();await page.locator('#structure-search').fill('');await page.locator('#structure-material').selectOption('');await page.locator('[data-structure-mode="lv"]').click();
  assert.match(await page.locator('#structure-tree').innerText(),/Unterzug/);
+ await page.locator('[data-structure-mode="assemblies"]').click();
+ assert.equal(await page.locator('[data-structure-mode="assemblies"]').getAttribute('aria-pressed'),'true');
+ assert.match(await page.locator('#structure-tree').innerText(),/Baugruppe A/);
+ await page.evaluate(()=>{state.structure.nodes=state.structure.nodes.filter(n=>!n.is_assembly);state.structure.summary.assemblies=0;renderStructure();});
+ assert.match(await page.locator('#structure-tree').innerText(),/Keine Baugruppen im Modell vorhanden/);
+ for(const width of [1440,768,390]){
+  await page.setViewportSize({width,height:900});
+  for(const mode of ['native','assemblies','lv']){
+   const button=page.locator(`[data-structure-mode="${mode}"]`);
+   await button.click();assert.equal(await button.getAttribute('aria-pressed'),'true');
+   const box=await button.boundingBox();assert.ok(box.width>0&&box.x>=0&&box.x+box.width<=width,`Mode ${mode} reachable at ${width}`);
+  }
+ }
  assert.deepEqual(errors,[]);
  if(process.env.IQA_LAYOUT_SCREENSHOTS)await page.screenshot({path:path.join(process.env.IQA_LAYOUT_SCREENSHOTS,'model-structure-v037.png'),fullPage:true});
  console.log('Browser structure upload, lazy tree, filters, STEP drilldown and LV grouping passed.');

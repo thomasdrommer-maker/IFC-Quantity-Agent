@@ -95,3 +95,13 @@ MVP-1-UI anhand des Z445-Modells fachlich und visuell prüfen. Danach Mengenübe
 - Windows-Runner für native Imports, Umgebungslogik und Struktur-API ergänzt. Tatsächliche Installation auf Toms Firmenrechner, Z445-Struktur und Gesamt-MVP-1-Abnahme stehen aus.
 - [Konkreter Testplan v0.3.7](docs/acceptance/IFC_Quantity_Agent_MVP1_UI_v0.3.7_Testplan.md). Collector um zusätzliche Strukturinventur erweitert; aktive Regeln und Referenzbaseline unverändert.
 - Zusätzlich lokal Ende-zu-Ende im echten Browser geprüft: synthetische IFC-Datei hochladen → Struktur-API lesen → Objekt ohne GlobalId über STEP-ID öffnen.
+
+
+## UI v0.3.8 – Rückmeldung vom 15.11.2026 und Auffindbarkeit
+
+- Nutzer bestätigt Windows-Start (Punkt 1) und Modellstruktur funktional (Punkt 2) in v0.3.7. Auffindbarkeit und Erreichbarkeit wurden beanstandet.
+- Das aktuelle Modell enthält keine Baugruppen; 0 Assemblies ist laut Nutzer korrekt. Punkt 3 ist mit diesem Modell nicht prüfbar und bleibt für ein geeignetes Modell offen.
+- UI v0.3.8: direkter Einstieg aus der Projektübersicht, sichtbare Ansichtsbuttons für IFC-Struktur/Baugruppen/LV-Ident, automatisch geöffnete erste Baumebene, ausdrücklicher Leerzustand bei fehlenden Baugruppen.
+- Praktische Nutzerabnahme der Änderungen und Prüfpunkte 4/5 stehen aus. Die vollständige MVP-1-Abnahme ist weiterhin offen.
+
+Validierung v0.3.8: Python-Unittests erfolgreich (19 Tests, 2 Referenzprüfungen übersprungen); Node-Darstellungstests erfolgreich; Struktur-Browsertest mit Einstieg, Tabs, Leerzustand und drei Fensterbreiten erfolgreich; Scrollregression in fünf Fenstergrößen erfolgreich. Praktischer Windows-/Python-3.14-Test erfolgt beim Nutzer bzw. in CI.

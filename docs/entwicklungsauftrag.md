@@ -38,3 +38,7 @@ Für die MVP-1-Abnahme müssen die 32 Regeln gegen die vorgesehene Referenzrevis
 Nach Aufnahme dieses Standes in den Default Branch und Freigabe des Repos in den GitHub-Richtlinien kann der Cloud Agent einen klar abgegrenzten Auftrag aus einem Issue übernehmen. Bei Ausführung auf GitHub Actions bereitet der [Setup-Workflow](../.github/workflows/copilot-setup-steps.yml) Python 3.14, die fixierten Python-Abhängigkeiten und Node.js 22 vor. Die vollständigen PR-Prüfungen laufen über den CI-Workflow.
 
 Ein PR ist fachlich prüfbar, wenn er die Soll-Ergebnisse des Issues, die Regel- und Quellenbezüge und den Teststatus enthält. Mengen- oder Baseline-Änderungen und der Merge werden fachlich freigegeben.
+
+## Laufende UI-Nachbesserung v0.3.8
+
+Windows-Start und Modellstruktur in v0.3.7 sind vom Nutzer bestätigt. Die Auffindbarkeit wird mit v0.3.8 verbessert; siehe [Testplan v0.3.8](acceptance/IFC_Quantity_Agent_MVP1_UI_v0.3.8_Testplan.md). Baugruppen sind mit dem aktuellen Modell nicht prüfbar. Die Gesamtfreigabe bleibt offen.
