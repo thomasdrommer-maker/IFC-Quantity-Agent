@@ -1,4 +1,4 @@
-/* Native IFC relationship viewer, v0.3.8; 2026-11-15; OpenAI Codex. */
+/* Native IFC relationship viewer, v0.3.9; 2026-11-15; OpenAI Codex. */
 (function(root){
  'use strict';
  const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -9,9 +9,9 @@
   const info=relation?`<span class="tree-relation">${esc(relation)}</span>`:'';
   if(path.includes(id))return `<div class="tree-warning">Zyklischer Verweis: ${label(node)}${info}</div>`;
   if(!(graph.children.get(id)||[]).length)return `<div class="tree-leaf">${label(node)}${info}</div>`;
-  return `<details class="tree-node" ${path.length===0?'open':''} data-node="${esc(id)}" data-path="${esc(JSON.stringify([...path,id]))}"><summary>${label(node)}${info}<span class="tree-meta">${graph.children.get(id).length} direkte Beziehungen</span></summary><div class="tree-children"></div></details>`;
+  return `<details class="tree-node" ${path.length===0?'open':''} data-node="${esc(id)}" data-path="${esc(JSON.stringify([...path,id]))}"><summary>${label(node)}${info}<span class="tree-meta">${graph.children.get(id).length} direkte Beziehungen</span><button type="button" class="tree-collapse" data-collapse-children aria-label="Untergruppen zuklappen">Untergruppen zuklappen</button></summary><div class="tree-children"></div></details>`;
  }
- function section(title,body){return `<details class="tree-section" open><summary>${esc(title)}</summary>${body||'<p class="muted">Keine Einträge.</p>'}</details>`;}
+ function section(title,body){return `<details class="tree-section" open><summary>${esc(title)}<button type="button" class="tree-collapse" data-collapse-children aria-label="Untergruppen zuklappen">Untergruppen zuklappen</button></summary>${body||'<p class="muted">Keine Einträge.</p>'}</details>`;}
  function render(data,filters={}){
   const graph=index(data),all=[...graph.nodes.values()],q=(filters.query||'').toLowerCase();
   const filtered=all.filter(n=>(!q||[n.name,n.ifc_class,n.global_id,n.step_id,n.lv_ident].join(' ').toLowerCase().includes(q))&&(!filters.ifcClass||n.ifc_class===filters.ifcClass)&&(!filters.material||(n.materials||[]).includes(filters.material)));
@@ -27,7 +27,7 @@
   return {html,count:all.length};
  }
  function wire(container,data,onOpen){const graph=index(data);
-  container.onclick=event=>{const button=event.target.closest('[data-step-id]');if(button){event.preventDefault();event.stopPropagation();onOpen(Number(button.dataset.stepId));}};
+  container.onclick=event=>{const collapse=event.target.closest('[data-collapse-children]');if(collapse){event.preventDefault();event.stopPropagation();collapse.closest('details').querySelectorAll('details[open]').forEach(group=>group.open=false);return;}const button=event.target.closest('[data-step-id]');if(button){event.preventDefault();event.stopPropagation();onOpen(Number(button.dataset.stepId));}};
   container.ontoggle=null;
   // Capture is required because native toggle events do not bubble.
   if(container._treeToggle)container.removeEventListener('toggle',container._treeToggle,true);

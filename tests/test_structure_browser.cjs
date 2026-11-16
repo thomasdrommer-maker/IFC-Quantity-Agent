@@ -17,6 +17,16 @@ const server=http.createServer((req,res)=>{const name=new URL(req.url,'http://lo
  await page.locator('[data-node="2"]').evaluate(el=>el.open=true);
  await page.locator('#structure-tree .tree-node [data-step-id="3"]').waitFor();
  assert.match(await page.locator('#structure-tree').innerText(),/IfcRelAggregates #11/);
+ await page.locator('[data-node="1"] > summary [data-collapse-children]').click();
+ assert.equal(await page.locator('[data-node="1"]').evaluate(el=>el.open),true);
+ assert.equal(await page.locator('[data-node="2"]').evaluate(el=>el.open),false);
+ await page.locator('[data-node="2"] > summary').click();
+ await page.getByRole('button',{name:'Alle Gruppen zuklappen',exact:true}).click();
+ assert.equal(await page.locator('#structure-tree details[open]').count(),0);
+ await page.locator('.tree-section > summary').first().click();
+ await page.locator('[data-node="1"] > summary').click();
+ await page.locator('[data-node="2"] > summary').click();
+ await page.locator('#structure-tree .tree-node [data-step-id="3"]').waitFor();
  await page.locator('#structure-search').fill('Unterzug');
  assert.equal(await page.locator('#structure-tree [data-step-id]').count(),1);
  await page.locator('#structure-material').selectOption('Beton');

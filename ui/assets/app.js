@@ -74,3 +74,5 @@ $('#structure-search').addEventListener('input',()=>renderStructure());
 for(const selector of ['#structure-mode','#structure-class','#structure-material'])$(selector).addEventListener('change',()=>renderStructure());
 
 $$('[data-structure-mode]').forEach(button=>button.addEventListener('click',()=>{$('#structure-mode').value=button.dataset.structureMode;renderStructure();}));
+
+$('#structure-collapse-all').addEventListener('click',()=>{$$('#structure-tree details[open]').forEach(group=>group.open=false);});

@@ -4,14 +4,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>IFC Quantity Agent</title>
-  <link rel="stylesheet" href="/assets/styles.css?v=0.3.8">
+  <link rel="stylesheet" href="/assets/styles.css?v=0.3.9">
 </head>
 <body>
   <div class="app-shell">
     <aside class="sidebar">
       <div class="brand">
         <div class="brand-mark">IQ</div>
-        <div><strong>IFC Quantity</strong><span>Agent · MVP 1 · UI v0.3.8</span></div>
+        <div><strong>IFC Quantity</strong><span>Agent · MVP 1 · UI v0.3.9</span></div>
       </div>
       <nav id="main-nav" aria-label="Hauptnavigation">
         <button class="nav-item active" data-view="overview"><span>01</span>Projektübersicht</button>
@@ -104,6 +104,7 @@
           <p id="structure-summary" class="structure-summary"></p>
           <p class="detail-help">Ein Objekt kann über mehrere Beziehungen sichtbar sein. Kennzahlen zählen eindeutige STEP-IDs; Assemblies sind in der Elementzahl enthalten. Hier werden keine Mengen summiert. „Ohne direkte räumliche Zuordnung“ umfasst auch Einzelteile, die nur über eine Baugruppe zugeordnet sind.</p>
           <div class="structure-tabs segmented" role="group" aria-label="Strukturansicht"><button type="button" data-structure-mode="native" class="active" aria-pressed="true">IFC-Struktur</button><button type="button" data-structure-mode="assemblies" aria-pressed="false">Baugruppen</button><button type="button" data-structure-mode="lv" aria-pressed="false">LV-Ident-Gruppen</button></div>
+          <div class="structure-actions"><button type="button" id="structure-collapse-all" class="button secondary">Alle Gruppen zuklappen</button></div>
           <div class="structure-toolbar"><input id="structure-search" placeholder="Name, Klasse, GlobalId, STEP-ID oder LV-Ident suchen" aria-label="Modellstruktur durchsuchen"><select id="structure-mode" aria-label="Strukturansicht" hidden><option value="native">IFC-Struktur</option><option value="assemblies">Baugruppen</option><option value="lv">LV-Ident-Gruppen (Auswertung)</option></select><select id="structure-class" aria-label="IFC-Klasse filtern"></select><select id="structure-material" aria-label="Material filtern"></select></div>
           <p id="structure-count" class="muted"></p><div id="structure-tree" class="structure-tree"></div>
         </div>
@@ -113,8 +114,8 @@
       <section id="view-quality" class="view"><div class="empty-state roadmap"><span class="badge planned">NACH MVP‑1</span><h2>Model Quality Checker</h2><p>KI-Hinweise und verbindliche EIR-/AIA-Regelprüfungen bleiben klar getrennte Arbeitsbereiche.</p></div></section>
     </main>
   </div>
-  <script src="/assets/object-details.js?v=0.3.8" defer></script>
-  <script src="/assets/structure.js?v=0.3.8" defer></script>
-  <script src="/assets/app.js?v=0.3.8" defer></script>
+  <script src="/assets/object-details.js?v=0.3.9" defer></script>
+  <script src="/assets/structure.js?v=0.3.9" defer></script>
+  <script src="/assets/app.js?v=0.3.9" defer></script>
 </body>
 </html>

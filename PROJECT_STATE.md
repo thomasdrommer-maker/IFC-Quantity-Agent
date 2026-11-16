@@ -105,3 +105,9 @@ MVP-1-UI anhand des Z445-Modells fachlich und visuell prüfen. Danach Mengenübe
 - Praktische Nutzerabnahme der Änderungen und Prüfpunkte 4/5 stehen aus. Die vollständige MVP-1-Abnahme ist weiterhin offen.
 
 Validierung v0.3.8: Python-Unittests erfolgreich (19 Tests, 2 Referenzprüfungen übersprungen); Node-Darstellungstests erfolgreich; Struktur-Browsertest mit Einstieg, Tabs, Leerzustand und drei Fensterbreiten erfolgreich; Scrollregression in fünf Fenstergrößen erfolgreich. Praktischer Windows-/Python-3.14-Test erfolgt beim Nutzer bzw. in CI.
+
+## UI v0.3.9 – Gruppen schnell zuklappen (16.11.2026)
+
+Tom bestätigt UI v0.3.8 mit direktem Einstieg und sichtbaren Ansichtsbuttons. Neu: „Alle Gruppen zuklappen“ sowie „Untergruppen zuklappen“ je Strukturabschnitt und Baumzweig. Letzteres lässt die gewählte Gruppe geöffnet und schließt alle geladenen Untergruppen. Funktioniert auch in LV-Ident- und Baugruppenansicht. Nutzerabnahme v0.3.9 offen.
+
+Validierung v0.3.9: Python 19 Tests erfolgreich (2 Referenzprüfungen übersprungen), Struktur-Renderer und Browserprüfung inklusive Untergruppen/global zuklappen, Wiederöffnen und Drilldown erfolgreich; Scrollregression in fünf Fenstergrößen erfolgreich.

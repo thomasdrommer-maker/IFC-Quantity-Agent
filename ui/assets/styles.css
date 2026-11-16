@@ -81,3 +81,8 @@ body.object-view{height:100dvh;overflow:hidden}
 .structure-empty-message{padding:16px;font-size:14px;color:#405162}
 .structure-tabs button:focus-visible,.structure-entry button:focus-visible{outline:3px solid #396ca8;outline-offset:3px}
 .tree-node>summary{min-height:44px}.tree-section>summary{font-size:14px}
+
+/* v0.3.9: close all groups or descendants of a single branch. */
+.structure-actions{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.tree-collapse{margin:6px 0 2px 14px;padding:6px 10px;border:1px solid #92bdb8;border-radius:6px;background:white;color:#155e59;font:inherit;font-size:12px;cursor:pointer}
+.tree-collapse:hover{background:#def2ee}.tree-collapse:focus-visible{outline:3px solid #396ca8;outline-offset:2px}
