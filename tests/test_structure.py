@@ -58,6 +58,20 @@ class StructureTests(unittest.TestCase):
         self.assertEqual(edge['relation_type'], 'IfcRelAggregates')
         self.assertTrue(edge['relation_step_id'])
 
+    def test_native_identity_attributes(self):
+        self.beam.Description = 'Beschreibung <Test>'
+        self.beam.ObjectType = 'Sonderunterzug'
+        self.model.write(str(self.path))
+        nodes = collect(self.path)['model_structure']['nodes']
+        beam = next(n for n in nodes if n['step_id'] == self.beam.id())
+        self.assertEqual(beam['ifc_class'], 'IfcBeam')
+        self.assertEqual(beam['name'], 'Unterzug')
+        self.assertEqual(beam['description'], 'Beschreibung <Test>')
+        self.assertEqual(beam['object_type'], 'Sonderunterzug')
+        orphan = next(n for n in nodes if n['step_id'] == self.orphan.id())
+        self.assertIsNone(orphan['description'])
+        self.assertIsNone(orphan['object_type'])
+
     def test_cyclic_component_remains_visible(self):
         a = self.model.create_entity('IfcElementAssembly', GlobalId=new(), Name='A')
         b = self.model.create_entity('IfcElementAssembly', GlobalId=new(), Name='B')

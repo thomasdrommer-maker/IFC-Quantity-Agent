@@ -111,3 +111,9 @@ Validierung v0.3.8: Python-Unittests erfolgreich (19 Tests, 2 Referenzprüfungen
 Tom bestätigt UI v0.3.8 mit direktem Einstieg und sichtbaren Ansichtsbuttons. Neu: „Alle Gruppen zuklappen“ sowie „Untergruppen zuklappen“ je Strukturabschnitt und Baumzweig. Letzteres lässt die gewählte Gruppe geöffnet und schließt alle geladenen Untergruppen. Funktioniert auch in LV-Ident- und Baugruppenansicht. Nutzerabnahme v0.3.9 offen.
 
 Validierung v0.3.9: Python 19 Tests erfolgreich (2 Referenzprüfungen übersprungen), Struktur-Renderer und Browserprüfung inklusive Untergruppen/global zuklappen, Wiederöffnen und Drilldown erfolgreich; Scrollregression in fünf Fenstergrößen erfolgreich.
+
+## UI v0.3.10 – Allgemeiner Einstieg und IFC-Identität
+
+16.11.2026: Einstieg „IFC-Modell öffnen und prüfen“; Modellstruktur zeigt native IfcClass (Entity-Klasse), IfcName, IfcDescription und IfcObjectType. Letzte zwei Felder sind ausblendbar; alle vier werden durchsucht. Fehlende Werte bleiben sichtbar als „Nicht angegeben“. Kein Rückgriff auf BIM_Core.IfcClass, keine Klassifizierung oder Mengenregeln verändert. Konsolen-Startbanner korrigiert.
+
+Validierung: 20 Python-Tests erfolgreich (2 Referenzprüfungen ohne Original-IFC übersprungen), Renderer- und Browserprüfung inklusive Suche nach Description/ObjectType sowie Ausblenden erfolgreich, Scrollregression in fünf Fenstergrößen erfolgreich. OpenAPI neu erzeugt, unverändert (offenes Dict-Schema). Nutzerabnahme offen.

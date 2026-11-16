@@ -4,7 +4,7 @@ const root=path.resolve(__dirname,'../ui');
 const server=http.createServer((req,res)=>{const name=new URL(req.url,'http://localhost').pathname;const file=path.resolve(root,'.'+(name==='/'?'/index.html':name));if(!file.startsWith(root+path.sep)){res.writeHead(403).end();return}try{res.setHeader('Content-Type',file.endsWith('.js')?'text/javascript':file.endsWith('.css')?'text/css':'text/html');res.end(fs.readFileSync(file))}catch{res.writeHead(404).end()}});
 (async()=>{await new Promise(r=>server.listen(0,'127.0.0.1',r));const browser=await chromium.launch();try{
  const page=await browser.newPage({viewport:{width:1440,height:900}}),errors=[];page.on('pageerror',e=>errors.push(e.message));
- const nodes=[{node_id:'1',step_id:1,ifc_class:'IfcProject',name:'Testprojekt',is_spatial:true},{node_id:'2',step_id:2,ifc_class:'IfcElementAssembly',name:'Baugruppe A',is_element:true,is_assembly:true,global_id:'assembly'}, {node_id:'3',step_id:3,ifc_class:'IfcBeam',name:'Unterzug Test',is_element:true,global_id:null,lv_ident:'Unterzug',materials:['Beton']}];
+ const nodes=[{node_id:'1',step_id:1,ifc_class:'IfcProject',name:'Testprojekt',is_spatial:true},{node_id:'2',step_id:2,ifc_class:'IfcElementAssembly',name:'Baugruppe A',is_element:true,is_assembly:true,global_id:'assembly'}, {node_id:'3',step_id:3,ifc_class:'IfcBeam',name:'Unterzug Test',description:'Beschreibung <Test>',object_type:'Sonderunterzug',is_element:true,global_id:null,lv_ident:'Unterzug',materials:['Beton']}];
  const structure={nodes,edges:[{parent:'1',child:'2',relation_type:'IfcRelAggregates',relation_step_id:10},{parent:'2',child:'3',relation_type:'IfcRelAggregates',relation_step_id:11}],roots:['1'],cycle_roots:[],uncontained_elements:['3'],summary:{elements:2,assemblies:1,relations:2,missing_global_ids:1,duplicate_global_ids:0}};
  const overview={counts:{ifc_elements:2},summary:{total:32,passed:8,failed:24},model:{schema:'IFC4'},lv_ident:{}};
  await page.route('**/api/**',route=>{const url=new URL(route.request().url());let json={items:[]};if(url.pathname.endsWith('/health'))json={api_version:'1.1.0',rule_package:{rule_count:32}};else if(url.pathname.endsWith('/analyses'))json={analysis_id:'fixture'};else if(url.pathname.endsWith('/overview'))json=overview;else if(url.pathname.endsWith('/structure'))json=structure;else if(url.pathname.includes('/objects/by-step/'))json={object:{...nodes[2],property_sets:{Test:{Value:7}},quantities:{net_volume:{value:7,unit:'m3',source:'Qto_Test.NetVolume'}},findings:[],finding_identity_ambiguous:true}};return route.fulfill({json})});
@@ -27,6 +27,14 @@ const server=http.createServer((req,res)=>{const name=new URL(req.url,'http://lo
  await page.locator('[data-node="1"] > summary').click();
  await page.locator('[data-node="2"] > summary').click();
  await page.locator('#structure-tree .tree-node [data-step-id="3"]').waitFor();
+ assert.match(await page.locator('#structure-tree').innerText(),/IfcDescription: Beschreibung <Test>/);
+ await page.locator('#structure-show-attributes').uncheck();
+ assert.equal(await page.locator('#structure-tree .tree-attributes:visible').count(),0);
+ await page.locator('#structure-show-attributes').check();
+ await page.locator('#structure-search').fill('Beschreibung <Test>');
+ assert.equal(await page.locator('#structure-tree [data-step-id]').count(),1);
+ await page.locator('#structure-search').fill('Sonderunterzug');
+ assert.equal(await page.locator('#structure-tree [data-step-id]').count(),1);
  await page.locator('#structure-search').fill('Unterzug');
  assert.equal(await page.locator('#structure-tree [data-step-id]').count(),1);
  await page.locator('#structure-material').selectOption('Beton');

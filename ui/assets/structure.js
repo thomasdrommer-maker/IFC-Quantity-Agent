@@ -1,9 +1,13 @@
-/* Native IFC relationship viewer, v0.3.9; 2026-11-15; OpenAI Codex. */
+/* Native IFC relationship viewer, v0.3.10; 2026-11-15; OpenAI Codex. */
 (function(root){
  'use strict';
  const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
  function index(data){const nodes=new Map((data.nodes||[]).map(n=>[n.node_id,n])),children=new Map();for(const edge of data.edges||[]){if(!children.has(edge.parent))children.set(edge.parent,[]);children.get(edge.parent).push(edge)}return {nodes,children};}
- function label(node){const name=node.name||'Unbenannt';return `${node.is_element?`<button type="button" class="tree-object" data-step-id="${node.step_id}">${esc(name)}</button>`:`<strong>${esc(name)}</strong>`}<span class="tree-meta">${esc(node.ifc_class)} · #${node.step_id}${node.global_id?' · '+esc(node.global_id):' · GlobalId fehlt'}</span>`;}
+ function label(node){
+  const field=v=>v===null||v===undefined||v===''?'<em class="detail-missing">Nicht angegeben</em>':esc(v);
+
+  return `<span class="tree-field-label">IfcName: </span>${node.is_element?`<button type="button" class="tree-object" data-step-id="${node.step_id}">${field(node.name)}</button>`:`<strong>${field(node.name)}</strong>`}<span class="tree-meta">IfcClass: ${esc(node.ifc_class)} · #${node.step_id}${node.global_id?' · '+esc(node.global_id):' · GlobalId fehlt'}</span><span class="tree-attributes"><span><b>IfcDescription:</b> ${field(node.description)}</span><span><b>IfcObjectType:</b> ${field(node.object_type)}</span></span>`;
+ }
  function nodeHtml(id,graph,path=[],relation=''){
   const node=graph.nodes.get(id);if(!node)return '';
   const info=relation?`<span class="tree-relation">${esc(relation)}</span>`:'';
@@ -14,7 +18,7 @@
  function section(title,body){return `<details class="tree-section" open><summary>${esc(title)}<button type="button" class="tree-collapse" data-collapse-children aria-label="Untergruppen zuklappen">Untergruppen zuklappen</button></summary>${body||'<p class="muted">Keine Einträge.</p>'}</details>`;}
  function render(data,filters={}){
   const graph=index(data),all=[...graph.nodes.values()],q=(filters.query||'').toLowerCase();
-  const filtered=all.filter(n=>(!q||[n.name,n.ifc_class,n.global_id,n.step_id,n.lv_ident].join(' ').toLowerCase().includes(q))&&(!filters.ifcClass||n.ifc_class===filters.ifcClass)&&(!filters.material||(n.materials||[]).includes(filters.material)));
+  const filtered=all.filter(n=>(!q||[n.name,n.ifc_class,n.description,n.object_type,n.global_id,n.step_id,n.lv_ident].join(' ').toLowerCase().includes(q))&&(!filters.ifcClass||n.ifc_class===filters.ifcClass)&&(!filters.material||(n.materials||[]).includes(filters.material)));
   if(q||filters.ifcClass||filters.material)return {html:section(`Such-/Filterergebnis (${filtered.length} Objekte)`,filtered.map(n=>`<div class="tree-leaf">${label(n)}</div>`).join('')),count:filtered.length};
   if(filters.mode==='lv'){
    const groups=new Map();for(const n of all.filter(n=>n.is_element)){const key=n.lv_ident||'(LV-Ident leer)';if(!groups.has(key))groups.set(key,[]);groups.get(key).push(n)}
