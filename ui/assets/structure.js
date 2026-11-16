@@ -1,12 +1,19 @@
-/* Native IFC relationship viewer, v0.3.10; 2026-11-15; OpenAI Codex. */
+/* Native IFC relationship viewer, v0.3.11; 2026-11-15; OpenAI Codex. */
 (function(root){
  'use strict';
  const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
  function index(data){const nodes=new Map((data.nodes||[]).map(n=>[n.node_id,n])),children=new Map();for(const edge of data.edges||[]){if(!children.has(edge.parent))children.set(edge.parent,[]);children.get(edge.parent).push(edge)}return {nodes,children};}
  function label(node){
-  const field=v=>v===null||v===undefined||v===''?'<em class="detail-missing">Nicht angegeben</em>':esc(v);
-
-  return `<span class="tree-field-label">IfcName: </span>${node.is_element?`<button type="button" class="tree-object" data-step-id="${node.step_id}">${field(node.name)}</button>`:`<strong>${field(node.name)}</strong>`}<span class="tree-meta">IfcClass: ${esc(node.ifc_class)} · #${node.step_id}${node.global_id?' · '+esc(node.global_id):' · GlobalId fehlt'}</span><span class="tree-attributes"><span><b>IfcDescription:</b> ${field(node.description)}</span><span><b>IfcObjectType:</b> ${field(node.object_type)}</span></span>`;
+  const present=v=>v!==null&&v!==undefined&&v!=='';
+  const field=v=>present(v)?esc(v):'<em class="detail-missing">Nicht angegeben</em>';
+  const core=node.bim_core||{};
+  const attribute=(key,native)=>{
+   if(present(native))return `<span><b>${key}:</b> ${field(native)} <small>(natives IFC-Attribut)</small>${present(core[key])&&String(core[key])!==String(native)?`<span class="tree-source-difference">BIM_Core.${key}: ${field(core[key])} · abweichender PSet-Wert</span>`:''}</span>`;
+   if(present(core[key]))return `<span><b>${key}:</b> ${field(core[key])} <small>(Quelle: BIM_Core.${key}; natives IFC-Attribut leer)</small></span>`;
+   return `<span><b>${key}:</b> ${field(native)} <small>(nativ und in BIM_Core)</small></span>`;
+  };
+  const differences=[['IfcName',node.name],['IfcClass',node.ifc_class]].filter(([key,native])=>present(core[key])&&String(core[key])!==String(native??'')).map(([key])=>`<span class="tree-source-difference">BIM_Core.${key}: ${field(core[key])} · ${key==='IfcClass'?'abweichende PSet-Angabe; native Klasse bleibt maßgeblich':'abweichender PSet-Wert'}</span>`).join('');
+  return `<span class="tree-field-label">IfcName (nativ): </span>${node.is_element?`<button type="button" class="tree-object" data-step-id="${node.step_id}">${field(node.name)}</button>`:`<strong>${field(node.name)}</strong>`}<span class="tree-meta">IfcClass (nativ): ${esc(node.ifc_class)} · #${node.step_id}${node.global_id?' · '+esc(node.global_id):' · GlobalId fehlt'}</span><span class="tree-attributes">${differences}${attribute('IfcDescription',node.description)}${attribute('IfcObjectType',node.object_type)}</span>`;
  }
  function nodeHtml(id,graph,path=[],relation=''){
   const node=graph.nodes.get(id);if(!node)return '';
@@ -18,7 +25,7 @@
  function section(title,body){return `<details class="tree-section" open><summary>${esc(title)}<button type="button" class="tree-collapse" data-collapse-children aria-label="Untergruppen zuklappen">Untergruppen zuklappen</button></summary>${body||'<p class="muted">Keine Einträge.</p>'}</details>`;}
  function render(data,filters={}){
   const graph=index(data),all=[...graph.nodes.values()],q=(filters.query||'').toLowerCase();
-  const filtered=all.filter(n=>(!q||[n.name,n.ifc_class,n.description,n.object_type,n.global_id,n.step_id,n.lv_ident].join(' ').toLowerCase().includes(q))&&(!filters.ifcClass||n.ifc_class===filters.ifcClass)&&(!filters.material||(n.materials||[]).includes(filters.material)));
+  const filtered=all.filter(n=>(!q||[n.name,n.ifc_class,n.description,n.object_type,n.global_id,n.step_id,n.lv_ident,...Object.values(n.bim_core||{})].join(' ').toLowerCase().includes(q))&&(!filters.ifcClass||n.ifc_class===filters.ifcClass)&&(!filters.material||(n.materials||[]).includes(filters.material)));
   if(q||filters.ifcClass||filters.material)return {html:section(`Such-/Filterergebnis (${filtered.length} Objekte)`,filtered.map(n=>`<div class="tree-leaf">${label(n)}</div>`).join('')),count:filtered.length};
   if(filters.mode==='lv'){
    const groups=new Map();for(const n of all.filter(n=>n.is_element)){const key=n.lv_ident||'(LV-Ident leer)';if(!groups.has(key))groups.set(key,[]);groups.get(key).push(n)}

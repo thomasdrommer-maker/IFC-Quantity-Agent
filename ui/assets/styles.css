@@ -92,3 +92,5 @@ body.object-view{height:100dvh;overflow:hidden}
 .tree-attributes{display:block;margin-top:7px;font-size:12px;color:#405162;line-height:1.6;overflow-wrap:anywhere}
 .tree-attributes>span{display:block}.tree-attributes b{font-weight:600}
 .structure-tree.hide-attributes .tree-attributes{display:none}
+
+.tree-source-difference{display:block;color:#78500f;background:#fff8ed;padding:3px 7px;border-left:2px solid #d6aa60;margin:4px 0}.tree-attributes small{color:#526172;font-size:11px}

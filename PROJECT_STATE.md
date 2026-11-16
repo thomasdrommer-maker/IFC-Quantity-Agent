@@ -117,3 +117,11 @@ Validierung v0.3.9: Python 19 Tests erfolgreich (2 Referenzprüfungen übersprun
 16.11.2026: Einstieg „IFC-Modell öffnen und prüfen“; Modellstruktur zeigt native IfcClass (Entity-Klasse), IfcName, IfcDescription und IfcObjectType. Letzte zwei Felder sind ausblendbar; alle vier werden durchsucht. Fehlende Werte bleiben sichtbar als „Nicht angegeben“. Kein Rückgriff auf BIM_Core.IfcClass, keine Klassifizierung oder Mengenregeln verändert. Konsolen-Startbanner korrigiert.
 
 Validierung: 20 Python-Tests erfolgreich (2 Referenzprüfungen ohne Original-IFC übersprungen), Renderer- und Browserprüfung inklusive Suche nach Description/ObjectType sowie Ausblenden erfolgreich, Scrollregression in fünf Fenstergrößen erfolgreich. OpenAPI neu erzeugt, unverändert (offenes Dict-Schema). Nutzerabnahme offen.
+
+## UI v0.3.11 – BIM_Core-Quellen in der Modellstruktur
+
+16.11.2026: Nutzerbeleg zeigt Werte in BIM_Core (Description=Betonunterzug_b30, ObjectType=Stahlbetonunterzug), während der native ObjectType im IQA leer ist. Ursache der Meldung „Nicht angegeben“: Strukturansicht las nur native Attribute.
+
+Neu: separate BIM_Core-Angaben im Strukturpayload. Bei leerem nativem Description/ObjectType wird vorhandener BIM_Core-Wert mit exakter Quelle und Leerhinweis zum nativen Attribut angezeigt. Bei Abweichung werden beide Werte dargestellt. Native Klasse und Name bleiben unverändert; abweichende BIM_Core-Angaben werden daneben ausgewiesen. Suche umfasst beide Quellen. Keine Modelländerung oder Umklassifizierung.
+
+Validierung: 21 Python-Tests erfolgreich (2 Referenzprüfungen mangels Original-IFC übersprungen); Rendererprüfung für leere native Werte, Quellen, Konflikte, Escaping und Suche erfolgreich; Struktur-Browserprüfung und Scrollregression in fünf Fenstergrößen erfolgreich. Originalmodell ist noch nicht verfügbar; praktische Nutzerprüfung offen.
