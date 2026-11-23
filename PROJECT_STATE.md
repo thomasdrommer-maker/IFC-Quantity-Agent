@@ -125,3 +125,9 @@ Validierung: 20 Python-Tests erfolgreich (2 Referenzprüfungen ohne Original-IFC
 Neu: separate BIM_Core-Angaben im Strukturpayload. Bei leerem nativem Description/ObjectType wird vorhandener BIM_Core-Wert mit exakter Quelle und Leerhinweis zum nativen Attribut angezeigt. Bei Abweichung werden beide Werte dargestellt. Native Klasse und Name bleiben unverändert; abweichende BIM_Core-Angaben werden daneben ausgewiesen. Suche umfasst beide Quellen. Keine Modelländerung oder Umklassifizierung.
 
 Validierung: 21 Python-Tests erfolgreich (2 Referenzprüfungen mangels Original-IFC übersprungen); Rendererprüfung für leere native Werte, Quellen, Konflikte, Escaping und Suche erfolgreich; Struktur-Browserprüfung und Scrollregression in fünf Fenstergrößen erfolgreich. Originalmodell ist noch nicht verfügbar; praktische Nutzerprüfung offen.
+
+## Nutzerabnahme UI v0.3.8–v0.3.11 (23.11.2026)
+
+Prüfer TD hat die [Prüfcheckliste](docs/acceptance/IFC_Quantity_Agent_MVP1_UI_v0.3.11_Pruefcheckliste.md) am 23.11.2026 am Z445-Modell (Python 3.14) ausgefüllt. UI v0.3.8, v0.3.9, v0.3.10 und v0.3.11 sind praktisch bestätigt; keine Befunde.
+
+Offen bleibt nur Punkt 5.1 (Baugruppen und Zählung, v0.3.7 Punkt 3): n/a, kein geeignetes Modell mit Baugruppen verfügbar. Punkt 5.6 (Gesamt-MVP-1-Abnahme) ist in der Checkliste angekreuzt, 5.1 bleibt aber ungeprüft; eine vollständige MVP-1-Freigabe wird hier nicht behauptet. Code, Regeln und Baseline unverändert.
