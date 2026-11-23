@@ -23,10 +23,12 @@ Bei Änderungen am API-Vertrag `python export_openapi.py` ausführen und den Dif
 
 ### Fachlicher Referenzlauf
 
-Die [Z445-ECA-Abnahmebasis](acceptance/IFC_Quantity_Agent_MVP1_Abnahmebasis_Z445_ECA_v0.1.md) und die [JSON-Sollwerte](../baseline/IFC_Quantity_Agent_MVP1_Referenzwerte_Z445_ECA_v0.1.json) sind versioniert. Die Original-IFC liegt in der freigegebenen Projektumgebung. Dort den Referenzlauf mit dem unveränderten Dateinamen ausführen.
+Aktuelle Referenz ist `Z445_799_ECA_BM-801-3D.ifc` (Referenz v0.2, SHA-256 `EA051785…C1BE`, fachlich freigegeben durch Tom am 23.11.2026). Grundlage sind die [Z445-ECA-Abnahmebasis v0.2](acceptance/IFC_Quantity_Agent_MVP1_Abnahmebasis_Z445_ECA_v0.2.md), die [JSON-Sollwerte v0.2](../baseline/IFC_Quantity_Agent_MVP1_Referenzwerte_Z445_ECA_v0.2.json) und das Regelpaket `rules/mvp1_rules_v0.2.json` (Standard in CLI, API und Service). Die Regeln `IQA-M1-ASM-001` und `IQA-M1-OPEN-001` sind an diesem Modell nicht prüfbar. Ein späterer Re-Export ist eine neue Referenz v0.3. Die Original-IFC liegt in der freigegebenen Projektumgebung und wird nie committet.
+
+Die Dateien v0.1 (Abnahmebasis, Baseline, Regeln) bleiben für das ursprüngliche, nicht mehr auffindbare Modell erhalten und sind mit `--baseline` und `--rules` weiter nutzbar. Der Referenztest `tests/test_reference_model.py` wählt die Baseline anhand der SHA-256 des Modells.
 
 ```bash
-export IFC_MVP1_REFERENCE_MODEL="/freigegebener/pfad/Z445_799_ECA_BM_801_3D.ifc"
+export IFC_MVP1_REFERENCE_MODEL="/freigegebener/pfad/Z445_799_ECA_BM-801-3D.ifc"
 python -m unittest discover -s tests -v
 python run_regression.py --ifc "$IFC_MVP1_REFERENCE_MODEL" --output-dir reports
 ```

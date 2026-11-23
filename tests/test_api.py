@@ -1,4 +1,5 @@
 from pathlib import Path
+import os
 import sys
 import unittest
 import warnings
@@ -17,8 +18,8 @@ class ApiContractTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         service = AnalysisService(
-            ROOT / "baseline" / "IFC_Quantity_Agent_MVP1_Referenzwerte_Z445_ECA_v0.1.json",
-            ROOT / "rules" / "mvp1_rules_v0.1.json",
+            ROOT / "baseline" / "IFC_Quantity_Agent_MVP1_Referenzwerte_Z445_ECA_v0.2.json",
+            ROOT / "rules" / "mvp1_rules_v0.2.json",
         )
         cls.client = TestClient(create_app(service))
 
@@ -58,12 +59,13 @@ class ApiContractTests(unittest.TestCase):
 class ApiReferenceModelTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        reference = Path("/workspace/scratch/5ab184777645/upload/Z445_799_ECA_BM_801_3D.ifc")
-        if not reference.exists():
-            raise unittest.SkipTest("Z445-Referenzmodell ist nicht verfügbar")
+        env_path = os.environ.get("IFC_MVP1_REFERENCE_MODEL")
+        if not env_path or not Path(env_path).exists():
+            raise unittest.SkipTest("IFC_MVP1_REFERENCE_MODEL ist nicht gesetzt oder nicht verfügbar")
+        reference = Path(env_path)
         service = AnalysisService(
-            ROOT / "baseline" / "IFC_Quantity_Agent_MVP1_Referenzwerte_Z445_ECA_v0.1.json",
-            ROOT / "rules" / "mvp1_rules_v0.1.json",
+            ROOT / "baseline" / "IFC_Quantity_Agent_MVP1_Referenzwerte_Z445_ECA_v0.2.json",
+            ROOT / "rules" / "mvp1_rules_v0.2.json",
         )
         cls.client = TestClient(create_app(service))
         with reference.open("rb") as handle:
@@ -86,8 +88,8 @@ class ApiReferenceModelTests(unittest.TestCase):
         response = self.client.get(f"/api/v1/analyses/{self.analysis_id}/overview")
         self.assertEqual(response.status_code, 200)
         overview = response.json()
-        self.assertEqual(overview["counts"]["ifc_elements"], 202)
-        self.assertEqual(overview["lv_ident"]["missing_or_empty"], 121)
+        self.assertEqual(overview["counts"]["ifc_elements"], 86)
+        self.assertEqual(overview["lv_ident"]["missing_or_empty"], 2)
         self.assertEqual(overview["model"]["model_type"]["value"], "ECA")
         self.assertNotIn("ifc_path", overview)
 
@@ -102,13 +104,13 @@ class ApiReferenceModelTests(unittest.TestCase):
     def test_findings_are_object_traceable(self):
         response = self.client.get(
             f"/api/v1/analyses/{self.analysis_id}/findings",
-            params={"finding_type": "einzelfundament_without_gross_volume"},
+            params={"finding_type": "elements_without_baunummer"},
         )
         self.assertEqual(response.status_code, 200)
         payload = response.json()
-        self.assertEqual(payload["total"], 3)
+        self.assertEqual(payload["total"], 86)
         self.assertTrue(all(item["global_id"] for item in payload["items"]))
-        self.assertTrue(all(item["source_rule_id"] == "IQA-M1-QTY-006" for item in payload["items"]))
+        self.assertTrue(all(item["source_rule_id"] == "IQA-M1-FIELD-002" for item in payload["items"]))
 
     def test_object_list_and_drilldown(self):
         response = self.client.get(
@@ -117,7 +119,7 @@ class ApiReferenceModelTests(unittest.TestCase):
         )
         self.assertEqual(response.status_code, 200)
         payload = response.json()
-        self.assertEqual(payload["total"], 121)
+        self.assertEqual(payload["total"], 2)
         global_id = payload["items"][0]["global_id"]
         detail = self.client.get(f"/api/v1/analyses/{self.analysis_id}/objects/{global_id}")
         self.assertEqual(detail.status_code, 200)

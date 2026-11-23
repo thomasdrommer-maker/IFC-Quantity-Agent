@@ -84,8 +84,8 @@ class ObjectDetailResponse(ApiModel):
 def default_service() -> AnalysisService:
     package_root = Path(__file__).resolve().parents[2]
     return AnalysisService(
-        package_root / "baseline" / "IFC_Quantity_Agent_MVP1_Referenzwerte_Z445_ECA_v0.1.json",
-        package_root / "rules" / "mvp1_rules_v0.1.json",
+        package_root / "baseline" / "IFC_Quantity_Agent_MVP1_Referenzwerte_Z445_ECA_v0.2.json",
+        package_root / "rules" / "mvp1_rules_v0.2.json",
     )
 
 

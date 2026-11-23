@@ -99,7 +99,7 @@ class StructureTests(unittest.TestCase):
         self.assertIn(str(a.id()), {n['node_id'] for n in tree['nodes']})
 
     def test_upload_structure_and_step_drilldown(self):
-        service = AnalysisService(ROOT/'baseline/IFC_Quantity_Agent_MVP1_Referenzwerte_Z445_ECA_v0.1.json', ROOT/'rules/mvp1_rules_v0.1.json')
+        service = AnalysisService(ROOT/'baseline/IFC_Quantity_Agent_MVP1_Referenzwerte_Z445_ECA_v0.2.json', ROOT/'rules/mvp1_rules_v0.2.json')
         client = TestClient(create_app(service))
         response = client.post('/api/v1/analyses', files={'file':('test_ECA_model.ifc',self.path.read_bytes(),'application/x-step')})
         self.assertEqual(response.status_code,201,response.text)

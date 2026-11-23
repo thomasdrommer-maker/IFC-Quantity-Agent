@@ -10,10 +10,12 @@ from ifc_quantity_agent_mvp1.regression import evaluate_rules
 
 
 class BaselineAndRuleTests(unittest.TestCase):
+    VERSION = "0.2"
+
     @classmethod
     def setUpClass(cls):
-        cls.baseline = json.loads((ROOT / "baseline" / "IFC_Quantity_Agent_MVP1_Referenzwerte_Z445_ECA_v0.1.json").read_text(encoding="utf-8"))
-        cls.catalog = json.loads((ROOT / "rules" / "mvp1_rules_v0.1.json").read_text(encoding="utf-8"))
+        cls.baseline = json.loads((ROOT / "baseline" / f"IFC_Quantity_Agent_MVP1_Referenzwerte_Z445_ECA_v{cls.VERSION}.json").read_text(encoding="utf-8"))
+        cls.catalog = json.loads((ROOT / "rules" / f"mvp1_rules_v{cls.VERSION}.json").read_text(encoding="utf-8"))
 
     def test_class_counts_equal_element_count(self):
         self.assertEqual(sum(self.baseline["ifc_class_counts"].values()), self.baseline["counts"]["ifc_elements"])
@@ -39,6 +41,20 @@ class BaselineAndRuleTests(unittest.TestCase):
         results = evaluate_rules(changed, self.baseline, self.catalog)
         result = next(item for item in results if item.rule_id == "IQA-M1-ELEM-002")
         self.assertEqual(result.status, "failed")
+
+
+class BaselineAndRuleTestsV01(BaselineAndRuleTests):
+    VERSION = "0.1"
+
+
+class RulePackageV02Tests(unittest.TestCase):
+    def test_v02_keeps_v01_rule_ids_and_references_baseline_v02(self):
+        v01 = json.loads((ROOT / "rules" / "mvp1_rules_v0.1.json").read_text(encoding="utf-8"))
+        v02 = json.loads((ROOT / "rules" / "mvp1_rules_v0.2.json").read_text(encoding="utf-8"))
+        self.assertEqual([r["id"] for r in v01["rules"]], [r["id"] for r in v02["rules"]])
+        self.assertEqual(v02["baseline_version"], "0.2")
+        self.assertNotEqual(v01["package_version"], v02["package_version"])
+        self.assertTrue(all(a["version"] != b["version"] for a, b in zip(v01["rules"], v02["rules"])))
 
 
 if __name__ == "__main__":
