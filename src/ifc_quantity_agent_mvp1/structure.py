@@ -24,9 +24,13 @@ def collect_structure(model, elements, object_records):
         record = records.get(step_id, {})
         nodes.append({'node_id': str(step_id), 'step_id': step_id,
                       'global_id': getattr(entity, 'GlobalId', None), 'ifc_class': entity.is_a(),
-                      'name': getattr(entity, 'Name', None), 'is_element': entity.is_a('IfcElement'),
+                      'name': getattr(entity, 'Name', None),
+                      'description': getattr(entity, 'Description', None),
+                      'object_type': getattr(entity, 'ObjectType', None), 'is_element': entity.is_a('IfcElement'),
                       'is_assembly': entity.is_a('IfcElementAssembly'),
                       'is_spatial': entity.is_a(spatial_class) or entity.is_a('IfcProject'),
+                      'bim_core': {key: record.get('property_sets', {}).get('BIM_Core', {}).get(key)
+                                   for key in ('IfcClass', 'IfcName', 'IfcDescription', 'IfcObjectType')},
                       'lv_ident': record.get('lv_ident'), 'materials': record.get('materials', [])})
     incoming = {e['child'] for e in relations}
     roots = [n['node_id'] for n in nodes if n['node_id'] not in incoming]

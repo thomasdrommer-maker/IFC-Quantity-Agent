@@ -95,3 +95,39 @@ MVP-1-UI anhand des Z445-Modells fachlich und visuell prüfen. Danach Mengenübe
 - Windows-Runner für native Imports, Umgebungslogik und Struktur-API ergänzt. Tatsächliche Installation auf Toms Firmenrechner, Z445-Struktur und Gesamt-MVP-1-Abnahme stehen aus.
 - [Konkreter Testplan v0.3.7](docs/acceptance/IFC_Quantity_Agent_MVP1_UI_v0.3.7_Testplan.md). Collector um zusätzliche Strukturinventur erweitert; aktive Regeln und Referenzbaseline unverändert.
 - Zusätzlich lokal Ende-zu-Ende im echten Browser geprüft: synthetische IFC-Datei hochladen → Struktur-API lesen → Objekt ohne GlobalId über STEP-ID öffnen.
+
+
+## UI v0.3.8 – Rückmeldung vom 15.11.2026 und Auffindbarkeit
+
+- Nutzer bestätigt Windows-Start (Punkt 1) und Modellstruktur funktional (Punkt 2) in v0.3.7. Auffindbarkeit und Erreichbarkeit wurden beanstandet.
+- Das aktuelle Modell enthält keine Baugruppen; 0 Assemblies ist laut Nutzer korrekt. Punkt 3 ist mit diesem Modell nicht prüfbar und bleibt für ein geeignetes Modell offen.
+- UI v0.3.8: direkter Einstieg aus der Projektübersicht, sichtbare Ansichtsbuttons für IFC-Struktur/Baugruppen/LV-Ident, automatisch geöffnete erste Baumebene, ausdrücklicher Leerzustand bei fehlenden Baugruppen.
+- Praktische Nutzerabnahme der Änderungen und Prüfpunkte 4/5 stehen aus. Die vollständige MVP-1-Abnahme ist weiterhin offen.
+
+Validierung v0.3.8: Python-Unittests erfolgreich (19 Tests, 2 Referenzprüfungen übersprungen); Node-Darstellungstests erfolgreich; Struktur-Browsertest mit Einstieg, Tabs, Leerzustand und drei Fensterbreiten erfolgreich; Scrollregression in fünf Fenstergrößen erfolgreich. Praktischer Windows-/Python-3.14-Test erfolgt beim Nutzer bzw. in CI.
+
+## UI v0.3.9 – Gruppen schnell zuklappen (16.11.2026)
+
+Tom bestätigt UI v0.3.8 mit direktem Einstieg und sichtbaren Ansichtsbuttons. Neu: „Alle Gruppen zuklappen“ sowie „Untergruppen zuklappen“ je Strukturabschnitt und Baumzweig. Letzteres lässt die gewählte Gruppe geöffnet und schließt alle geladenen Untergruppen. Funktioniert auch in LV-Ident- und Baugruppenansicht. Nutzerabnahme v0.3.9 offen.
+
+Validierung v0.3.9: Python 19 Tests erfolgreich (2 Referenzprüfungen übersprungen), Struktur-Renderer und Browserprüfung inklusive Untergruppen/global zuklappen, Wiederöffnen und Drilldown erfolgreich; Scrollregression in fünf Fenstergrößen erfolgreich.
+
+## UI v0.3.10 – Allgemeiner Einstieg und IFC-Identität
+
+16.11.2026: Einstieg „IFC-Modell öffnen und prüfen“; Modellstruktur zeigt native IfcClass (Entity-Klasse), IfcName, IfcDescription und IfcObjectType. Letzte zwei Felder sind ausblendbar; alle vier werden durchsucht. Fehlende Werte bleiben sichtbar als „Nicht angegeben“. Kein Rückgriff auf BIM_Core.IfcClass, keine Klassifizierung oder Mengenregeln verändert. Konsolen-Startbanner korrigiert.
+
+Validierung: 20 Python-Tests erfolgreich (2 Referenzprüfungen ohne Original-IFC übersprungen), Renderer- und Browserprüfung inklusive Suche nach Description/ObjectType sowie Ausblenden erfolgreich, Scrollregression in fünf Fenstergrößen erfolgreich. OpenAPI neu erzeugt, unverändert (offenes Dict-Schema). Nutzerabnahme offen.
+
+## UI v0.3.11 – BIM_Core-Quellen in der Modellstruktur
+
+16.11.2026: Nutzerbeleg zeigt Werte in BIM_Core (Description=Betonunterzug_b30, ObjectType=Stahlbetonunterzug), während der native ObjectType im IQA leer ist. Ursache der Meldung „Nicht angegeben“: Strukturansicht las nur native Attribute.
+
+Neu: separate BIM_Core-Angaben im Strukturpayload. Bei leerem nativem Description/ObjectType wird vorhandener BIM_Core-Wert mit exakter Quelle und Leerhinweis zum nativen Attribut angezeigt. Bei Abweichung werden beide Werte dargestellt. Native Klasse und Name bleiben unverändert; abweichende BIM_Core-Angaben werden daneben ausgewiesen. Suche umfasst beide Quellen. Keine Modelländerung oder Umklassifizierung.
+
+Validierung: 21 Python-Tests erfolgreich (2 Referenzprüfungen mangels Original-IFC übersprungen); Rendererprüfung für leere native Werte, Quellen, Konflikte, Escaping und Suche erfolgreich; Struktur-Browserprüfung und Scrollregression in fünf Fenstergrößen erfolgreich. Originalmodell ist noch nicht verfügbar; praktische Nutzerprüfung offen.
+
+## Nutzerabnahme UI v0.3.8–v0.3.11 (23.11.2026)
+
+Prüfer TD hat die [Prüfcheckliste](docs/acceptance/IFC_Quantity_Agent_MVP1_UI_v0.3.11_Pruefcheckliste.md) am 23.11.2026 am Z445-Modell (Python 3.14) ausgefüllt. UI v0.3.8, v0.3.9, v0.3.10 und v0.3.11 sind praktisch bestätigt; keine Befunde.
+
+Offen bleibt nur Punkt 5.1 (Baugruppen und Zählung, v0.3.7 Punkt 3): n/a, kein geeignetes Modell mit Baugruppen verfügbar. Punkt 5.6 (Gesamt-MVP-1-Abnahme) ist in der Checkliste angekreuzt, 5.1 bleibt aber ungeprüft; eine vollständige MVP-1-Freigabe wird hier nicht behauptet. Code, Regeln und Baseline unverändert.

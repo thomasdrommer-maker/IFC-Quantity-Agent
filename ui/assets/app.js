@@ -17,6 +17,8 @@ async function checkHealth(){try{const h=await api('/api/v1/health');$('#api-ver
 function activateView(name){document.body.classList.toggle('object-view',name==='objects');$$('.nav-item').forEach(b=>b.classList.toggle('active',b.dataset.view===name));$$('.view').forEach(v=>v.classList.toggle('active',v.id===`view-${name}`));const button=$(`.nav-item[data-view="${name}"]`);$('#page-title').textContent=button?button.textContent.replace(/^\d+/,'').trim():'IFC Quantity Agent'}
 $$('.nav-item').forEach(b=>b.addEventListener('click',()=>activateView(b.dataset.view)));
 
+$('#overview-structure').addEventListener('click',()=>activateView('structure'));
+
 function openPicker(){$('#file-input').click()}$('#upload-trigger').addEventListener('click',openPicker);$('#upload-panel-trigger').addEventListener('click',openPicker);
 $('#file-input').addEventListener('change',e=>{const file=e.target.files[0];if(file)analyse(file)});
 async function analyse(file){$('#error-banner').classList.add('hidden');$('#loading').classList.remove('hidden');try{const form=new FormData();form.append('file',file);const created=await api('/api/v1/analyses',{method:'POST',body:form});state.analysisId=created.analysis_id;const base=`/api/v1/analyses/${state.analysisId}`;const [overview,rules,findings,objects,structure]=await Promise.all([api(`${base}/overview`),api(`${base}/rule-results?include_evidence=true`),api(`${base}/findings?limit=1000`),api(`${base}/objects?limit=1000`),api(`${base}/structure`)]);Object.assign(state,{overview,structure,rules:rules.items,findings:findings.items,objects:objects.items});state.selected.clear();$('#model-chip').textContent=file.name;$('#model-chip').classList.remove('muted');$('#upload-panel').classList.add('loaded');renderAll();activateView('overview')}catch(error){$('#error-banner').textContent=`Analyse nicht möglich: ${error.message}`;$('#error-banner').classList.remove('hidden')}finally{$('#loading').classList.add('hidden');$('#file-input').value=''}}
@@ -63,9 +65,16 @@ function renderStructure(reset=false){
   for(const [selector,values,label] of [['#structure-class',[...new Set(data.nodes.map(n=>n.ifc_class))].sort(),'Alle IFC-Klassen'],['#structure-material',[...new Set(data.nodes.flatMap(n=>n.materials||[]))].sort(),'Alle Materialien']])$(selector).innerHTML='<option value="">'+label+'</option>'+values.map(v=>`<option value="${esc(v)}">${esc(v)}</option>`).join('');
   $('#structure-search').value='';$('#structure-mode').value='native';
  }
+ $$('[data-structure-mode]').forEach(button=>{const active=button.dataset.structureMode===$('#structure-mode').value;button.classList.toggle('active',active);button.setAttribute('aria-pressed',String(active));});
  const result=IqaStructure.render(data,{query:$('#structure-search').value,mode:$('#structure-mode').value,ifcClass:$('#structure-class').value,material:$('#structure-material').value});
  $('#structure-tree').innerHTML=result.html;$('#structure-count').textContent=`${data.nodes.length} eindeutige Objekte im Modell. ${result.count} Knoten in der Auswahl; Beziehungen können weitere Verweise zeigen. Auf Objektname klicken, um Details zu öffnen.`;
  IqaStructure.wire($('#structure-tree'),data,stepId=>{const node=data.nodes.find(n=>n.step_id===stepId);openObject(node?.global_id&&data.nodes.filter(n=>n.global_id===node.global_id).length===1?node.global_id:null,stepId)});
 }
 $('#structure-search').addEventListener('input',()=>renderStructure());
 for(const selector of ['#structure-mode','#structure-class','#structure-material'])$(selector).addEventListener('change',()=>renderStructure());
+
+$$('[data-structure-mode]').forEach(button=>button.addEventListener('click',()=>{$('#structure-mode').value=button.dataset.structureMode;renderStructure();}));
+
+$('#structure-collapse-all').addEventListener('click',()=>{$$('#structure-tree details[open]').forEach(group=>group.open=false);});
+
+$('#structure-show-attributes').addEventListener('change',event=>$('#structure-tree').classList.toggle('hide-attributes',!event.target.checked));

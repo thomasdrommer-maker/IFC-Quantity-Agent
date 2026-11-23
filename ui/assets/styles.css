@@ -73,3 +73,24 @@ body.object-view{height:100dvh;overflow:hidden}
 .structure-summary{padding:14px 16px;background:#edf5f4;border:1px solid var(--line);border-radius:8px;font-weight:650}
 .structure-toolbar{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}.structure-toolbar input,.structure-toolbar select{padding:10px;border:1px solid var(--line);border-radius:6px;max-width:100%;background:white}.structure-toolbar input{flex:1 1 280px}
 .structure-tree{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px}.tree-section{margin-bottom:14px}.tree-section>summary{padding:12px;background:#edf5f4;font-weight:650;cursor:pointer}.tree-node{margin:7px 0 7px 15px;border-left:2px solid #c8dfdc}.tree-node>summary{padding:9px;cursor:pointer;overflow-wrap:anywhere}.tree-children{padding-left:14px}.tree-leaf,.tree-warning{padding:9px 12px;border-bottom:1px solid #edf0f3;overflow-wrap:anywhere}.tree-warning{background:#fff0d8}.tree-object{border:0;background:transparent;color:var(--teal);font-weight:650;text-align:left;padding:0;cursor:pointer;text-decoration:underline;text-underline-offset:3px}.tree-meta,.tree-relation{display:block;color:var(--muted);font-size:11px;margin-top:3px}.tree-relation{color:#526172}
+
+/* v0.3.8: visible entry points and structure modes. */
+.structure-entry{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:18px 20px;margin-bottom:16px;border:2px solid var(--teal);border-radius:11px;background:#edf9f7}
+.structure-entry strong{font-size:17px}.structure-entry p{margin:6px 0 0;color:#405b60}
+.structure-tabs{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0}.structure-tabs button{min-height:44px;font-size:14px;font-weight:650;padding:10px 16px;color:#405162}
+.structure-empty-message{padding:16px;font-size:14px;color:#405162}
+.structure-tabs button:focus-visible,.structure-entry button:focus-visible{outline:3px solid #396ca8;outline-offset:3px}
+.tree-node>summary{min-height:44px}.tree-section>summary{font-size:14px}
+
+/* v0.3.9: close all groups or descendants of a single branch. */
+.structure-actions{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.tree-collapse{margin:6px 0 2px 14px;padding:6px 10px;border:1px solid #92bdb8;border-radius:6px;background:white;color:#155e59;font:inherit;font-size:12px;cursor:pointer}
+.tree-collapse:hover{background:#def2ee}.tree-collapse:focus-visible{outline:3px solid #396ca8;outline-offset:2px}
+
+/* Native IFC identity fields, UI v0.3.10. */
+.tree-field-label{font-size:12px;color:#526172;font-weight:500}
+.tree-attributes{display:block;margin-top:7px;font-size:12px;color:#405162;line-height:1.6;overflow-wrap:anywhere}
+.tree-attributes>span{display:block}.tree-attributes b{font-weight:600}
+.structure-tree.hide-attributes .tree-attributes{display:none}
+
+.tree-source-difference{display:block;color:#78500f;background:#fff8ed;padding:3px 7px;border-left:2px solid #d6aa60;margin:4px 0}.tree-attributes small{color:#526172;font-size:11px}

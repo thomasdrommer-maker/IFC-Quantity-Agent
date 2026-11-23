@@ -58,6 +58,36 @@ class StructureTests(unittest.TestCase):
         self.assertEqual(edge['relation_type'], 'IfcRelAggregates')
         self.assertTrue(edge['relation_step_id'])
 
+    def test_native_identity_attributes(self):
+        self.beam.Description = 'Beschreibung <Test>'
+        self.beam.ObjectType = 'Sonderunterzug'
+        self.model.write(str(self.path))
+        nodes = collect(self.path)['model_structure']['nodes']
+        beam = next(n for n in nodes if n['step_id'] == self.beam.id())
+        self.assertEqual(beam['ifc_class'], 'IfcBeam')
+        self.assertEqual(beam['name'], 'Unterzug')
+        self.assertEqual(beam['description'], 'Beschreibung <Test>')
+        self.assertEqual(beam['object_type'], 'Sonderunterzug')
+        orphan = next(n for n in nodes if n['step_id'] == self.orphan.id())
+        self.assertIsNone(orphan['description'])
+        self.assertIsNone(orphan['object_type'])
+
+    def test_bim_core_values_preserved_without_overwriting_native(self):
+        from ifcopenshell.api.pset.add_pset import add_pset
+        from ifcopenshell.api.pset.edit_pset import edit_pset
+        pset = add_pset(self.model, product=self.beam, name='BIM_Core')
+        edit_pset(self.model, pset=pset, properties={
+            'IfcClass': 'IfcWall', 'IfcName': 'Unterzug_b30',
+            'IfcDescription': 'Betonunterzug_b30', 'IfcObjectType': 'Stahlbetonunterzug'})
+        self.model.write(str(self.path))
+        node = next(n for n in collect(self.path)['model_structure']['nodes'] if n['step_id'] == self.beam.id())
+        self.assertEqual(node['ifc_class'], 'IfcBeam')
+        self.assertEqual(node['name'], 'Unterzug')
+        self.assertIsNone(node['description'])
+        self.assertIsNone(node['object_type'])
+        self.assertEqual(node['bim_core']['IfcDescription'], 'Betonunterzug_b30')
+        self.assertEqual(node['bim_core']['IfcObjectType'], 'Stahlbetonunterzug')
+
     def test_cyclic_component_remains_visible(self):
         a = self.model.create_entity('IfcElementAssembly', GlobalId=new(), Name='A')
         b = self.model.create_entity('IfcElementAssembly', GlobalId=new(), Name='B')
