@@ -4,7 +4,7 @@
 **Entwicklungskonzept:** [v1.12](docs/concept/IFC_Quantity_Agent_Entwicklungskonzept_v1.12.md)  
 **Implementierungspaket:** v0.3.7  
 **API-Vertrag:** v1.1.0  
-**Regelpaket:** IQA-M1-Z445-ECA v0.1.0
+**Regelpaket:** IQA-M1-Z445-ECA v0.2.0 (Referenz v0.2; v0.1.0 bleibt erhalten)
 
 ## Fertiggestellt
 
@@ -43,7 +43,9 @@ MVP-1-UI anhand des Z445-Modells fachlich und visuell prüfen. Danach Mengenübe
 
 ## Referenzmodell
 
-`Z445_799_ECA_BM_801_3D.ifc` wird nicht im Repository gespeichert. Für den lokalen End-to-End-Test wird der Pfad über `IFC_MVP1_REFERENCE_MODEL` gesetzt.
+**Referenz v0.2 (23.11.2026, fachlich freigegeben durch Tom):** `Z445_799_ECA_BM-801-3D.ifc` (SHA-256 `EA051785859FC96B918E53ADD7495E6C257B7EE6A559BEDCB77732C061C7C1BE`, 784.536 Byte, FILE_NAME 2026-11-23T20:10:34, IFC4; 86 Elemente: 38 IfcColumn, 16 IfcWall, 12 IfcBeam, 11 IfcSlab, 9 IfcFooting). [Abnahmebasis v0.2](docs/acceptance/IFC_Quantity_Agent_MVP1_Abnahmebasis_Z445_ECA_v0.2.md), Baseline `baseline/IFC_Quantity_Agent_MVP1_Referenzwerte_Z445_ECA_v0.2.json`, Regelpaket `rules/mvp1_rules_v0.2.json` (Paket 0.2.0, Regel-IDs unverändert, Regelversionen 1.1.0). Standard in CLI/API/Service ist v0.2; v0.1-Dateien bleiben unverändert erhalten. Referenzlauf: 32/32 Regeln, 32 Python-Tests mit Referenzmodell bestanden. ASM-001 und OPEN-001 sind am Modell nicht prüfbar (keine Baugruppen/Öffnungen). Die zwei leeren LV-Idents (IfcBeam „Konsole“) bleiben bewusster Prüffall; ein Re-Export ist eine neue Referenz v0.3.
+
+Das ursprüngliche Modell `Z445_799_ECA_BM_801_3D.ifc` (v0.1) wird nicht im Repository gespeichert. Für den lokalen End-to-End-Test wird der Pfad über `IFC_MVP1_REFERENCE_MODEL` gesetzt.
 
 
 ## UI v0.3.4 – Aktualisierung eindeutig erkennen

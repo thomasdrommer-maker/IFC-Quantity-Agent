@@ -1,7 +1,7 @@
-# IFC Quantity Agent – MVP-1-Abnahmebasis Z445 ECA v0.2 (ENTWURF)
+# IFC Quantity Agent – MVP-1-Abnahmebasis Z445 ECA v0.2
 
-> **Status: Prüfvorschlag, fachliche Freigabe durch Tom ausstehend.**
-> Kein Wert in diesem Dokument ist als Sollwert freigegeben. Alle Zahlen sind lesend mit dem unveränderten Collector (`collect()`) und der unveränderten Regelengine (`run_regression.py`) am neuen Referenzmodell ermittelt. Es wurde weder eine neue Baseline-JSON angelegt noch wurden Regeln, Collector oder die Baseline v0.1 geändert. Die IFC-Datei ist nicht im Repository abgelegt.
+> **Status: fachlich freigegeben durch Tom (Nutzer) am 23.11.2026.**
+> Das Modell `Z445_799_ECA_BM-801-3D.ifc` (SHA-256 `EA051785859FC96B918E53ADD7495E6C257B7EE6A559BEDCB77732C061C7C1BE`) ist die Referenz v0.2. Die Werte sind lesend mit dem Collector (`collect()`) und der Regelengine ermittelt und stehen als Sollwerte in `baseline/IFC_Quantity_Agent_MVP1_Referenzwerte_Z445_ECA_v0.2.json`; das Regelpaket liegt in `rules/mvp1_rules_v0.2.json` (Paket 0.2.0, Regel-IDs unverändert). Die Dateien v0.1 bleiben unverändert erhalten. Die IFC-Datei ist nicht im Repository abgelegt. Ein späterer Re-Export des Modells ist eine neue Referenz v0.3.
 
 ## 1. Anlass
 
@@ -12,7 +12,7 @@ Das ursprüngliche Z445-Referenzmodell (SHA-256 `1b8e679b…`, Export 2026-10-05
 | Merkmal | Wert |
 | --- | --- |
 | Dateiname im Modell (FILE_NAME) | `Z445_799_ECA_BM-801-3D.ifc` |
-| Dateiname im Referenzlauf | `Z445_799_ECA_BM_801_3D.ifc` (Kopie im Temp-Ordner, Unterstriche wie in Baseline v0.1, damit die Modelltyp-Ableitung ECA identisch greift) |
+| Dateiname im Referenzlauf | `Z445_799_ECA_BM-801-3D.ifc` (Originalname mit Bindestrichen; die Modelltyp-Ableitung ECA erkennt „ECA“ als eigenständiges Namenstoken und funktioniert auch ohne Unterstrich-Variante) |
 | Größe | 784.536 Byte |
 | SHA-256 | `EA051785859FC96B918E53ADD7495E6C257B7EE6A559BEDCB77732C061C7C1BE` |
 | Schema | IFC4 |
@@ -190,7 +190,7 @@ Doppelzählung Baugruppen/Einzelteile: nicht prüfbar, keine IfcElementAssembly 
 
 ## 11. Vergleich mit Baseline v0.1
 
-Alle Werte stammen aus `baseline/IFC_Quantity_Agent_MVP1_Referenzwerte_Z445_ECA_v0.1.json` (Soll v0.1) und dem Lauf am neuen Modell (Ist). Nichts davon ist freigegebener Sollwert für das neue Modell.
+Alle Werte stammen aus `baseline/IFC_Quantity_Agent_MVP1_Referenzwerte_Z445_ECA_v0.1.json` (Soll v0.1) und dem Lauf am neuen Modell (Ist). Die Spalte „Neues Modell“ ist seit der Freigabe vom 23.11.2026 der Sollwert v0.2.
 
 | Merkmal | Baseline v0.1 | Neues Modell |
 | --- | --- | --- |
@@ -242,7 +242,7 @@ Die LV-Gruppenmengen sind wegen des neuen LV-Vokabulars nicht 1:1 vergleichbar (
 
 ## 12. Referenzlauf (`run_regression.py`)
 
-Aufruf in einem temporären Ordner außerhalb des Repos (Python 3.14.6, IfcOpenShell 0.8.4.post1), Regelpaket `IQA-M1-Z445-ECA` 0.1.0, Baseline v0.1 unverändert:
+Entwurfslauf (historisch, vor Einführung von v0.2) in einem temporären Ordner außerhalb des Repos (Python 3.14.6, IfcOpenShell 0.8.4.post1), Regelpaket `IQA-M1-Z445-ECA` 0.1.0, Baseline v0.1 unverändert:
 
 ```
 python run_regression.py --ifc <temp>\Z445_799_ECA_BM_801_3D.ifc --output-dir <temp>\out
@@ -285,12 +285,23 @@ Bestanden (7): FILE-003, FILE-004, FILE-006, UNIT-001, SPAT-001, GUID-002, QTY-0
 
 Fazit: Alle Fehlschläge sind erwartbare Soll-/Ist-Abweichungen zwischen dem alten und dem neuen Modell; es gibt keine Laufzeitfehler (0 Error). Die Baseline v0.1 ist am neuen Modell nicht anwendbar.
 
-## 13. Offene Fachfragen / Freigabe
+### Referenzlauf mit Regelpaket v0.2
 
-1. Freigabe des neuen Modells als Referenz und der daraus abzuleitenden Sollwerte durch Tom (ausstehend).
-2. Einordnung der zwei leeren LV-Idents (IfcBeam „Konsole“).
-3. Umgang mit fehlendem nativem NetVolume der 9 IfcFooting.
-4. Fehlendes `BIM_Core` und leere Baunummer/Bruttogewicht: erwartet oder zu liefern?
-5. ASM-001 und OPEN-001 bleiben mit diesem Modell ungeprüft; Referenzmodell mit Baugruppen/Öffnungen nötig.
-6. Neues LV-Vokabular `Stb_*` und seine Gruppenmengen fachlich bestätigen.
-7. Auswirkung auf Regelversion/Baseline nach Freigabe als eigener Schritt (neue Baseline-JSON, Regelversion, Tests).
+```
+python run_regression.py --ifc <pfad>\Z445_799_ECA_BM-801-3D.ifc --output-dir <temp>\out
+MVP-1 Regression: 32/32 bestanden, 0 fehlgeschlagen, 0 Fehler
+```
+
+Zusätzlich bestanden alle 32 Python-Tests inklusive der Referenzmodell-Tests (`IFC_MVP1_REFERENCE_MODEL` gesetzt). Der Referenztest wählt die Baseline anhand der SHA-256 des Modells (v0.2 bzw. v0.1).
+
+## 13. Freigabeentscheidungen (Tom, 23.11.2026)
+
+1. Neues Modell als Referenz v0.2 freigegeben; Dateiidentität und Objektzahlen (86 Elemente: 38 IfcColumn, 16 IfcWall, 12 IfcBeam, 11 IfcSlab, 9 IfcFooting) stimmen.
+2. Ein Standardgeschoss und ausschließlich das Material Stahlbeton sind akzeptabel.
+3. Die zwei leeren LV-Idents (IfcBeam „Konsole“, Tags TR-101 und TR-126) bleiben leer und gelten als bewusster Prüffall der Baseline; keine automatische Zuordnung.
+4. Fehlendes natives NetVolume/Qto der 9 IfcFooting ist für diese Referenz akzeptabel; Brutto und Netto bleiben getrennt.
+5. Fehlendes `BIM_Core`-PSet ist für diese Referenz akzeptabel; leere Baunummer und Bruttogewicht bleiben dokumentierte Befunde.
+6. Das LV-Vokabular `Stb_*` und die Mengen (Brutto 701 gesamt 538,66 m³; 77 Objekte mit Brutto 529,40 und Netto 529,31 m³) sind plausibel.
+7. `IQA-M1-ASM-001` und `IQA-M1-OPEN-001` sind am Modell **nicht prüfbar** (keine IfcElementAssembly, keine IfcOpeningElement). Ihr Bestehen (Sollwert 0) ist kein fachlicher Nachweis; ein Referenzmodell mit Baugruppen und Öffnungen ist dafür nötig. Das Regelpaket v0.2 vermerkt dies an beiden Regeln.
+8. Auffälligkeiten A1–A16 bleiben als dokumentierte Befunde bestehen.
+9. Umsetzung: Baseline `..._Referenzwerte_Z445_ECA_v0.2.json`, Regelpaket `mvp1_rules_v0.2.json` (Regelversionen 1.1.0, Regel-IDs stabil); Standard in CLI, API und Service ist v0.2.

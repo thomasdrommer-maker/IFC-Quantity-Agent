@@ -1,3 +1,4 @@
+from hashlib import sha256
 from pathlib import Path
 import json
 import os
@@ -15,8 +16,14 @@ class ReferenceModelRegressionTest(unittest.TestCase):
     @unittest.skipUnless(os.environ.get("IFC_MVP1_REFERENCE_MODEL"), "IFC_MVP1_REFERENCE_MODEL ist nicht gesetzt")
     def test_z445_reference_model(self):
         model = Path(os.environ["IFC_MVP1_REFERENCE_MODEL"])
-        baseline = json.loads((ROOT / "baseline" / "IFC_Quantity_Agent_MVP1_Referenzwerte_Z445_ECA_v0.1.json").read_text(encoding="utf-8"))
-        catalog = json.loads((ROOT / "rules" / "mvp1_rules_v0.1.json").read_text(encoding="utf-8"))
+        sha = sha256(model.read_bytes()).hexdigest()
+        for version in ("0.2", "0.1"):
+            baseline = json.loads((ROOT / "baseline" / f"IFC_Quantity_Agent_MVP1_Referenzwerte_Z445_ECA_v{version}.json").read_text(encoding="utf-8"))
+            if baseline["model"]["sha256"] == sha:
+                catalog = json.loads((ROOT / "rules" / f"mvp1_rules_v{version}.json").read_text(encoding="utf-8"))
+                break
+        else:
+            self.fail(f"Keine Baseline für SHA-256 {sha} vorhanden")
         results = evaluate_rules(collect(model), baseline, catalog)
         failures = [f"{r.rule_id}: {r.message} expected={r.expected!r} actual={r.actual!r}" for r in results if r.status != "passed"]
         self.assertFalse(failures, "\n".join(failures))

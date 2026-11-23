@@ -12,8 +12,8 @@ Die neuen Vorgaben umfassen benutzerdefinierte Kategorieprofile, besonders für 
 
 ## Inhalt
 
-- `rules/mvp1_rules_v0.1.json`: freigegebener Regelkatalog mit stabilen IDs
-- `baseline/IFC_Quantity_Agent_MVP1_Referenzwerte_Z445_ECA_v0.1.json`: Sollwerte
+- `rules/mvp1_rules_v0.2.json`: aktueller Regelkatalog (Standard) mit stabilen IDs; `mvp1_rules_v0.1.json` bleibt für das ursprüngliche Modell erhalten
+- `baseline/IFC_Quantity_Agent_MVP1_Referenzwerte_Z445_ECA_v0.2.json`: aktuelle Sollwerte (Referenzmodell `Z445_799_ECA_BM-801-3D.ifc`); v0.1 bleibt erhalten und ist per `--baseline`/`--rules` nutzbar
 - `src/ifc_quantity_agent_mvp1/collector.py`: IFC-Inventuradapter
 - `src/ifc_quantity_agent_mvp1/regression.py`: Regel- und Vergleichsengine
 - `src/ifc_quantity_agent_mvp1/cli.py`: Kommandozeilenlauf mit JSON- und JUnit-Ausgabe

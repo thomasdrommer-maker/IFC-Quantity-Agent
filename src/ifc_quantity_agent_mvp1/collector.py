@@ -3,6 +3,7 @@ from __future__ import annotations
 from collections import Counter, defaultdict
 from hashlib import sha256
 from pathlib import Path
+import re
 from typing import Any
 
 import ifcopenshell
@@ -337,7 +338,7 @@ def collect(ifc_path: str | Path, model_file_name: str | None = None) -> dict[st
 
     header = _header_metadata(model)
     file_name_upper = logical_file_name.upper()
-    model_type = "ECA" if "_ECA_" in file_name_upper else None
+    model_type = "ECA" if re.search(r"(?<![A-Z0-9])ECA(?![A-Z0-9])", file_name_upper) else None
     actual = {
         "model": {
             "file_name": logical_file_name,

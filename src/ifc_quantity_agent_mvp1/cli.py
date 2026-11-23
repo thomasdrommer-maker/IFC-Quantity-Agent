@@ -12,8 +12,10 @@ def _parser() -> argparse.ArgumentParser:
     root = Path(__file__).resolve().parents[2]
     parser = argparse.ArgumentParser(description="IFC Quantity Agent MVP-1 Regression")
     parser.add_argument("--ifc", required=True, help="Pfad zur IFC-Referenzdatei")
-    parser.add_argument("--baseline", default=str(root / "baseline" / "IFC_Quantity_Agent_MVP1_Referenzwerte_Z445_ECA_v0.1.json"))
-    parser.add_argument("--rules", default=str(root / "rules" / "mvp1_rules_v0.1.json"))
+    parser.add_argument("--baseline", default=str(root / "baseline" / "IFC_Quantity_Agent_MVP1_Referenzwerte_Z445_ECA_v0.2.json"),
+                        help="Standard: Referenz v0.2; für das ursprüngliche Modell die v0.1-Baseline angeben")
+    parser.add_argument("--rules", default=str(root / "rules" / "mvp1_rules_v0.2.json"),
+                        help="Standard: Regelpaket v0.2; für das ursprüngliche Modell mvp1_rules_v0.1.json angeben")
     parser.add_argument("--output-dir", default=str(root / "reports"))
     return parser
 
