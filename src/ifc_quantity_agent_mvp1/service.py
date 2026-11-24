@@ -15,22 +15,22 @@ from .regression import evaluate_rules, read_json
 FINDING_DEFINITIONS = {
     "building_element_proxies": {
         "source_rule_id": "IQA-M1-REVIEW-001",
-        "title": "IfcBuildingElementProxy fachlich prüfen",
+        "title": "IfcBuildingElementProxy fachlich prÃ¼fen",
         "severity": "warning",
     },
     "uncontained_elements": {
         "source_rule_id": "IQA-M1-SPAT-003",
-        "title": "Element ohne räumliche Zuordnung",
+        "title": "Element ohne rÃ¤umliche Zuordnung",
         "severity": "warning",
     },
     "opening_elements_without_void_relation": {
         "source_rule_id": "IQA-M1-OPEN-001",
-        "title": "Öffnung ohne IfcRelVoidsElement-Beziehung",
+        "title": "Ã–ffnung ohne IfcRelVoidsElement-Beziehung",
         "severity": "warning",
     },
     "slab_sockel_stuetze_with_lv_einzelfundament": {
         "source_rule_id": "IQA-M1-REVIEW-001",
-        "title": "IfcSlab Sockel_Stütze mit LV-Ident Einzelfundament prüfen",
+        "title": "IfcSlab Sockel_StÃ¼tze mit LV-Ident Einzelfundament prÃ¼fen",
         "severity": "warning",
     },
     "einzelfundament_without_gross_volume": {
@@ -74,7 +74,7 @@ class AnalysisService:
         return {
             "status": "ok",
             "service": "ifc-quantity-agent-mvp1-api",
-            "api_version": "1.1.0",
+            "api_version": "1.2.0",
             "rule_package": {
                 "id": self.catalog["package_id"],
                 "version": self.catalog["package_version"],
@@ -249,6 +249,7 @@ class AnalysisService:
         lv_ident: str | None = None,
         missing_lv_ident: bool | None = None,
         has_findings: bool | None = None,
+        missing_net_volume: bool | None = None,
         offset: int = 0,
         limit: int = 100,
     ) -> dict[str, Any]:
@@ -257,15 +258,21 @@ class AnalysisService:
             row for row in rows
             if (ifc_class is None or row["ifc_class"] == ifc_class)
             and (lv_ident is None or row["lv_ident"] == lv_ident)
-            and (missing_lv_ident is None or (row["lv_ident"] is None) == missing_lv_ident)
+            and (missing_lv_ident is None or (not row["lv_ident"]) == missing_lv_ident)
             and (has_findings is None or (row["finding_count"] > 0) == has_findings)
+            and (missing_net_volume is None or (row["quantities"]["net_volume"]["value"] is None) == missing_net_volume)
         ]
         summaries = [{
-            key: row[key]
-            for key in (
-                "global_id", "step_id", "ifc_class", "name", "object_type", "tag",
-                "has_representation", "lv_ident", "materials", "review_flags", "finding_count",
-            )
+            **{
+                key: row[key]
+                for key in (
+                    "global_id", "step_id", "ifc_class", "name", "object_type", "tag",
+                    "has_representation", "lv_ident", "materials", "review_flags", "finding_count",
+                )
+            },
+            "gross_701": row["quantities"]["gross_volume_701"]["value"],
+            "custom_qto": row["quantities"]["custom_gross_volume"]["value"],
+            "net_volume": row["quantities"]["net_volume"]["value"],
         } for row in filtered[offset:offset + limit]]
         return {"analysis_id": analysis_id, "total": len(filtered), "offset": offset, "limit": limit, "items": summaries}
 
@@ -278,6 +285,96 @@ class AnalysisService:
         row["findings"] = [item for item in record["findings"] if item["global_id"] == global_id]
         return {"analysis_id": analysis_id, "object": row}
 
+
+    QUANTITY_SOURCES = (
+        ("gross_701", "gross_volume_701"),
+        ("custom_qto", "custom_gross_volume"),
+        ("net_volume", "net_volume"),
+    )
+
+    def quantity_summary(self, analysis_id: str, *, group_by: str = "lv_ident", material: str | None = None) -> dict[str, Any]:
+        """Aggregate volumes per group. Sources stay separate; missing values are counted, never replaced."""
+        if group_by not in ("lv_ident", "ifc_class"):
+            raise ValueError(f"Unbekannte Gruppierung: {group_by}")
+        rows = list(self._get(analysis_id)["objects_by_step"].values())
+        if material is not None:
+            rows = [row for row in rows if material in (row.get("materials") or [])]
+
+        def new_bucket() -> dict[str, Any]:
+            bucket: dict[str, Any] = {"object_count": 0, "finding_count": 0, "materials": {}, "step_ids": []}
+            for source, _ in self.QUANTITY_SOURCES:
+                bucket[source] = {"sum": 0.0, "objects_with_value": 0, "objects_missing": 0}
+            return bucket
+
+        buckets: dict[str, dict[str, Any]] = {}
+        totals = new_bucket()
+        unit = "m3"
+        for row in rows:
+            key = (row.get("lv_ident") or None) if group_by == "lv_ident" else row.get("ifc_class")
+            key = key or ""
+            for bucket in (buckets.setdefault(key, new_bucket()), totals):
+                bucket["object_count"] += 1
+                bucket["finding_count"] += row.get("finding_count", 0)
+                for name in row.get("materials") or ["(ohne Material)"]:
+                    bucket["materials"][name] = bucket["materials"].get(name, 0) + 1
+                for source, quantity_key in self.QUANTITY_SOURCES:
+                    value = row["quantities"][quantity_key]["value"]
+                    if value is None:
+                        bucket[source]["objects_missing"] += 1
+                    else:
+                        bucket[source]["sum"] += value
+                        bucket[source]["objects_with_value"] += 1
+            buckets[key]["step_ids"].append(row["step_id"])
+
+        source_paths = {
+            "gross_701": "BASF_General.701_Bruttovolumen",
+            "custom_qto": "QTO.QTO.01_Bruttovolumen_m3",
+            "net_volume": "Qto_*BaseQuantities.NetVolume",
+        }
+
+        def finish(bucket: dict[str, Any]) -> dict[str, Any]:
+            out = {k: v for k, v in bucket.items() if k not in {s for s, _ in self.QUANTITY_SOURCES}}
+            out["materials"] = [{"name": n, "objects": c} for n, c in sorted(bucket["materials"].items())]
+            for source, _ in self.QUANTITY_SOURCES:
+                entry = dict(bucket[source])
+                entry["sum"] = entry["sum"] if entry["objects_with_value"] else None
+                entry["source_path"] = source_paths[source]
+                out[source] = entry
+            return out
+
+        groups = []
+        for key in sorted(buckets, key=lambda k: (k == "", k)):
+            item = finish(buckets[key])
+            item["key"] = key or None
+            item["label"] = key or ("ohne LV-Ident" if group_by == "lv_ident" else "ohne IFC-Klasse")
+            item["unassigned"] = key == ""
+            groups.append(item)
+        total = finish(totals)
+        warnings = []
+        for source, text in (("net_volume", "Netto-Volumen"), ("gross_701", "Bruttovolumen 701"), ("custom_qto", "QTO-Bruttovolumen")):
+            if total[source]["objects_missing"]:
+                warnings.append({"code": f"{source}_missing", "message": f"{total[source]['objects_missing']} Objekte ohne {text}", "objects": total[source]["objects_missing"]})
+        unassigned = next((g for g in groups if g["unassigned"]), None)
+        if unassigned and group_by == "lv_ident":
+            warnings.append({"code": "lv_ident_missing", "message": f"{unassigned['object_count']} Objekte ohne LV-Ident", "objects": unassigned["object_count"]})
+        reconciliation = {
+            source: abs(sum(g[source]["sum"] or 0.0 for g in groups) - (total[source]["sum"] or 0.0)) < 1e-9
+            and sum(g[source]["objects_with_value"] for g in groups) == total[source]["objects_with_value"]
+            for source, _ in self.QUANTITY_SOURCES
+        }
+        reconciliation["object_count"] = sum(g["object_count"] for g in groups) == total["object_count"]
+        total.pop("step_ids", None)
+        return {
+            "analysis_id": analysis_id,
+            "group_by": group_by,
+            "unit": unit,
+            "material_filter": material,
+            "basis": {"rule_package": self.catalog["package_version"], "baseline_version": self.baseline.get("document_version")},
+            "groups": groups,
+            "totals": total,
+            "reconciliation": reconciliation,
+            "warnings": warnings,
+        }
 
     def structure(self, analysis_id: str) -> dict[str, Any]:
         return {"analysis_id": analysis_id, **self._get(analysis_id)["structure"]}

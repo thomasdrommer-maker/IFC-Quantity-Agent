@@ -39,7 +39,7 @@
 
 ## Nächster Schritt
 
-MVP-1-UI anhand des Z445-Modells fachlich und visuell prüfen. Danach Mengenübersicht und 3D-Viewer-Adapter über die vorbereitete GlobalId-Selektion ergänzen.
+MVP-1-UI anhand des Z445-Modells fachlich und visuell prüfen. Mengenübersicht ist umgesetzt (API `quantity-summary`, CLI `--quantity-summary`, UI-Ansicht 04; Sollwerte in `baseline/IFC_Quantity_Agent_MVP1_Mengenuebersicht_Sollwerte_Z445_ECA_v0.3.json`, freigegeben 24.11.2026) und muss visuell am Z445 geprüft werden. Danach 3D-Viewer-Adapter über die vorbereitete GlobalId-Selektion ergänzen.
 
 ## Referenzmodell
 

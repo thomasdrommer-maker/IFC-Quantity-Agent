@@ -2,14 +2,14 @@
   "openapi": "3.1.0",
   "info": {
     "title": "IFC Quantity Agent MVP-1 API",
-    "description": "Plattformneutrale REST-API für IFC-Inventur, reproduzierbare MVP-1-Regelergebnisse, Prüfbericht und Objekt-Drilldown.",
+    "description": "Plattformneutrale REST-API fÃ¼r IFC-Inventur, reproduzierbare MVP-1-Regelergebnisse, PrÃ¼fbericht und Objekt-Drilldown.",
     "contact": {
       "name": "IFC Quantity Agent"
     },
     "license": {
       "name": "Internal project artifact"
     },
-    "version": "1.1.0"
+    "version": "1.2.0"
   },
   "paths": {
     "/api/v1/health": {
@@ -469,6 +469,22 @@
             }
           },
           {
+            "name": "missing_net_volume",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Missing Net Volume"
+            }
+          },
+          {
             "name": "offset",
             "in": "query",
             "required": false,
@@ -499,6 +515,78 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/CollectionResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/analyses/{analysis_id}/quantity-summary": {
+      "get": {
+        "tags": [
+          "Quantities"
+        ],
+        "summary": "Quantity Summary",
+        "operationId": "quantity_summary_api_v1_analyses__analysis_id__quantity_summary_get",
+        "parameters": [
+          {
+            "name": "analysis_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Analysis Id"
+            }
+          },
+          {
+            "name": "group_by",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "enum": [
+                "lv_ident",
+                "ifc_class"
+              ],
+              "type": "string",
+              "default": "lv_ident",
+              "title": "Group By"
+            }
+          },
+          {
+            "name": "material",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Material"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QuantitySummaryResponse"
                 }
               }
             }
@@ -956,6 +1044,83 @@
           "quantities"
         ],
         "title": "OverviewResponse"
+      },
+      "QuantitySummaryResponse": {
+        "properties": {
+          "analysis_id": {
+            "type": "string",
+            "title": "Analysis Id"
+          },
+          "group_by": {
+            "type": "string",
+            "enum": [
+              "lv_ident",
+              "ifc_class"
+            ],
+            "title": "Group By"
+          },
+          "unit": {
+            "type": "string",
+            "title": "Unit"
+          },
+          "material_filter": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Material Filter"
+          },
+          "basis": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Basis"
+          },
+          "groups": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Groups"
+          },
+          "totals": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Totals"
+          },
+          "reconciliation": {
+            "additionalProperties": {
+              "type": "boolean"
+            },
+            "type": "object",
+            "title": "Reconciliation"
+          },
+          "warnings": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Warnings"
+          }
+        },
+        "additionalProperties": true,
+        "type": "object",
+        "required": [
+          "analysis_id",
+          "group_by",
+          "unit",
+          "basis",
+          "groups",
+          "totals",
+          "reconciliation",
+          "warnings"
+        ],
+        "title": "QuantitySummaryResponse"
       },
       "RulePackageResponse": {
         "properties": {

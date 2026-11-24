@@ -1,0 +1,49 @@
+{
+  "document_version": "0.3",
+  "status": "freigegeben durch Tom am 2026-11-24",
+  "approved_on": "2026-11-24",
+  "reference_date": "2026-11-24",
+  "basis": "Messung am Z445 ECA v0.2 (SHA-256 ea051785859fc96b918e53add7495e6c257b7ee6a559bedcb77732c061c7c1be) mit dem Collector; ergaenzt Baseline v0.2 (unveraendert) um Mengenuebersicht-Sollwerte",
+  "unit": "m3",
+  "rounding": {"display_decimals": 2, "internal": "ungerundet"},
+  "rules": {
+    "missing_net_volume": "fehlt (null), kein Ersatz durch Brutto, nicht 0",
+    "sources": ["BASF_General.701_Bruttovolumen", "QTO.QTO.01_Bruttovolumen_m3", "Qto_*BaseQuantities.NetVolume"],
+    "sources_are_never_mixed": true
+  },
+  "object_count": 86,
+  "totals": {
+    "gross_701_m3": 538.6600000000001,
+    "gross_701_objects": 86,
+    "custom_qto_m3": 538.6600000000001,
+    "custom_qto_objects": 86,
+    "net_volume_m3": 529.3064097829564,
+    "net_volume_objects": 77,
+    "net_volume_missing_objects": 9
+  },
+  "by_lv_ident": {
+    "Stb_Unterzug": {"objects": 10, "gross_701_m3": 28.17, "custom_qto_m3": 28.17, "net_volume_m3": 28.146150998241428, "net_volume_objects": 10},
+    "Stb_Fertigteil_Stuetze": {"objects": 20, "gross_701_m3": 5.78, "custom_qto_m3": 5.78, "net_volume_m3": 5.73749999999989, "net_volume_objects": 20},
+    "Stb_Stuetze": {"objects": 18, "gross_701_m3": 22.319999999999993, "custom_qto_m3": 22.319999999999993, "net_volume_m3": 22.275000000006262, "net_volume_objects": 18},
+    "Stb_Streifenfundament": {"objects": 4, "gross_701_m3": 8.790000000000003, "custom_qto_m3": 8.790000000000003, "net_volume_m3": null, "net_volume_objects": 0},
+    "Stb_Einzelfundament": {"objects": 5, "gross_701_m3": 0.47, "custom_qto_m3": 0.47, "net_volume_m3": null, "net_volume_objects": 0},
+    "Stb_Bodenplatte": {"objects": 1, "gross_701_m3": 212.96, "custom_qto_m3": 212.96, "net_volume_m3": 212.9582500000008, "net_volume_objects": 1},
+    "Stb_Sockel": {"objects": 4, "gross_701_m3": 0.060000000000000005, "custom_qto_m3": 0.060000000000000005, "net_volume_m3": 0.06280624674098553, "net_volume_objects": 4},
+    "Stb_Decke": {"objects": 6, "gross_701_m3": 106.15, "custom_qto_m3": 106.15, "net_volume_m3": 106.15165622559488, "net_volume_objects": 6},
+    "Stb_Wand": {"objects": 3, "gross_701_m3": 57.45, "custom_qto_m3": 57.45, "net_volume_m3": 57.44547570281943, "net_volume_objects": 3},
+    "Stb_Fertigteil_Wand": {"objects": 13, "gross_701_m3": 95.38999999999999, "custom_qto_m3": 95.38999999999999, "net_volume_m3": 95.41357060955272, "net_volume_objects": 13},
+    "(ohne LV-Ident)": {"objects": 2, "gross_701_m3": 1.12, "custom_qto_m3": 1.12, "net_volume_m3": 1.115999999999957, "net_volume_objects": 2}
+  },
+  "by_ifc_class": {
+    "IfcBeam": {"objects": 12, "gross_701_m3": 29.29, "custom_qto_m3": 29.29, "net_volume_m3": 29.262150998241385, "net_volume_objects": 12},
+    "IfcColumn": {"objects": 38, "gross_701_m3": 28.099999999999987, "custom_qto_m3": 28.099999999999987, "net_volume_m3": 28.012500000006156, "net_volume_objects": 38},
+    "IfcFooting": {"objects": 9, "gross_701_m3": 9.260000000000002, "custom_qto_m3": 9.260000000000002, "net_volume_m3": null, "net_volume_objects": 0},
+    "IfcSlab": {"objects": 11, "gross_701_m3": 319.1700000000001, "custom_qto_m3": 319.1700000000001, "net_volume_m3": 319.17271247233657, "net_volume_objects": 11},
+    "IfcWall": {"objects": 16, "gross_701_m3": 152.84, "custom_qto_m3": 152.84, "net_volume_m3": 152.8590463123721, "net_volume_objects": 16}
+  },
+  "reconciliation": {
+    "lv_groups_sum_equals_class_groups_sum": true,
+    "net_volume_sum_matches_baseline_v0.2_net_volume_sum_m3": true,
+    "gross_701_equals_custom_qto_for_all_86": true
+  }
+}
