@@ -17,11 +17,41 @@ def _parser() -> argparse.ArgumentParser:
     parser.add_argument("--rules", default=str(root / "rules" / "mvp1_rules_v0.2.json"),
                         help="Standard: Regelpaket v0.2; für das ursprüngliche Modell mvp1_rules_v0.1.json angeben")
     parser.add_argument("--output-dir", default=str(root / "reports"))
+    parser.add_argument("--quantity-summary", choices=["lv_ident", "ifc_class"],
+                        help="Mengenübersicht (m³) nach LV-Ident oder IFC-Klasse ausgeben, aus demselben Service wie die API")
     return parser
+
+
+def _fmt(entry: dict) -> str:
+    total = entry["objects_with_value"] + entry["objects_missing"]
+    if entry["sum"] is None:
+        return f"fehlt (0 von {total})"
+    suffix = f" ({entry['objects_with_value']} von {total})" if entry["objects_missing"] else ""
+    return f"{entry['sum']:.2f}{suffix}"
+
+
+def _print_quantity_summary(args) -> int:
+    from .service import AnalysisService
+
+    try:
+        service = AnalysisService(args.baseline, args.rules)
+        analysis_id = service.run_analysis(args.ifc)["analysis_id"]
+        summary = service.quantity_summary(analysis_id, group_by=args.quantity_summary)
+    except Exception as exc:
+        print(f"FEHLER: Mengenübersicht nicht möglich: {exc}", file=sys.stderr)
+        return 2
+    print(f"Mengenübersicht nach {args.quantity_summary} ({summary['unit']}); Brutto 701 | QTO-Brutto | Netto")
+    for group in summary["groups"] + [{**summary["totals"], "label": "Gesamt"}]:
+        print(f"{group['label']:32} {group['object_count']:4} Obj.  {_fmt(group['gross_701'])} | {_fmt(group['custom_qto'])} | {_fmt(group['net_volume'])}")
+    for warning in summary["warnings"]:
+        print(f"HINWEIS: {warning['message']}")
+    return 0
 
 
 def main(argv: list[str] | None = None) -> int:
     args = _parser().parse_args(argv)
+    if args.quantity_summary:
+        return _print_quantity_summary(args)
     try:
         baseline = read_json(args.baseline)
         catalog = read_json(args.rules)

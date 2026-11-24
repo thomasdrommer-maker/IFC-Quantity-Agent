@@ -96,7 +96,21 @@
         </div>
       </section>
 
-      <section id="view-quantities" class="view"><div class="empty-state roadmap"><span class="badge planned">MVP‑1 AUSBAU</span><h2>Mengenübersicht</h2><p>Die Navigation ist vorbereitet. Als nächstes werden die API-Mengen nach Bauteilgruppe, Material und Einheit ohne Doppelzählung aggregiert.</p></div></section>
+      <section id="view-quantities" class="view">
+        <div class="section-head"><div><span class="kicker">BRUTTO, QTO UND NETTO GETRENNT</span><h2>Mengenübersicht</h2></div><div class="segmented" role="group" aria-label="Gruppierung"><button class="active" data-qty-group="lv_ident" aria-pressed="true">LV-Ident</button><button data-qty-group="ifc_class" aria-pressed="false">IFC-Klasse</button></div></div>
+        <div id="qty-empty" class="empty-state"><h2>Noch keine Mengen</h2><p>Nach dem IFC-Upload werden die Volumina (m³) aus den vorhandenen IFC-Werten aufsummiert. Fehlende Werte werden ausgewiesen, nie ersetzt.</p></div>
+        <div id="qty-content" class="hidden">
+          <div id="qty-warnings"></div>
+          <article class="panel table-panel">
+            <div class="table-toolbar"><div class="search-wrap"><span>⌕</span><input id="qty-search" placeholder="Gruppe suchen …"></div><select id="qty-material" aria-label="Material filtern"><option value="">Alle Materialien</option></select><label class="check-filter"><input id="qty-only-warnings" type="checkbox"> Nur Zeilen mit Hinweisen</label><span id="qty-count" class="result-count"></span></div>
+            <div class="table-scroll"><table><thead id="qty-head"></thead><tbody id="qty-body"></tbody><tfoot id="qty-foot"></tfoot></table></div>
+          </article>
+          <article id="qty-drill" class="panel table-panel hidden">
+            <div class="table-toolbar"><strong id="qty-drill-title"></strong><span id="qty-drill-count" class="result-count"></span></div>
+            <div class="table-scroll"><table><thead><tr><th>IFC-Klasse</th><th>Name</th><th>GlobalId</th><th>LV-Ident</th><th>Brutto 701 (m³)</th><th>QTO-Brutto (m³)</th><th>Netto (m³)</th></tr></thead><tbody id="qty-drill-body"></tbody></table></div>
+          </article>
+        </div>
+      </section>
       <section id="view-structure" class="view">
         <div class="section-head"><div><span class="kicker">TATSÄCHLICHE IFC-BEZIEHUNGEN</span><h2>Modellstruktur</h2></div></div>
         <div id="structure-empty" class="empty-state"><h2>Noch kein Modell geladen</h2><p>Nach dem IFC-Upload erscheinen räumliche Struktur, Baugruppen und Objektverknüpfungen.</p></div>
@@ -116,6 +130,7 @@
   </div>
   <script src="/assets/object-details.js?v=0.3.11" defer></script>
   <script src="/assets/structure.js?v=0.3.11" defer></script>
+  <script src="/assets/quantities.js?v=0.4.0" defer></script>
   <script src="/assets/app.js?v=0.3.11" defer></script>
 </body>
 </html>

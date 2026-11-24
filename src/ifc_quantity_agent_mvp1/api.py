@@ -76,6 +76,18 @@ class CollectionResponse(ApiModel):
     limit: int | None = None
 
 
+class QuantitySummaryResponse(ApiModel):
+    analysis_id: str
+    group_by: Literal["lv_ident", "ifc_class"]
+    unit: str
+    material_filter: str | None = None
+    basis: dict[str, Any]
+    groups: list[dict[str, Any]]
+    totals: dict[str, Any]
+    reconciliation: dict[str, bool]
+    warnings: list[dict[str, Any]]
+
+
 class ObjectDetailResponse(ApiModel):
     analysis_id: str
     object: dict[str, Any]
@@ -95,10 +107,10 @@ def create_app(service: AnalysisService | None = None) -> FastAPI:
     ui_root = package_root / "ui"
     app = FastAPI(
         title="IFC Quantity Agent MVP-1 API",
-        version="1.1.0",
+        version="1.2.0",
         description=(
-            "Plattformneutrale REST-API für IFC-Inventur, reproduzierbare "
-            "MVP-1-Regelergebnisse, Prüfbericht und Objekt-Drilldown."
+            "Plattformneutrale REST-API fÃ¼r IFC-Inventur, reproduzierbare "
+            "MVP-1-Regelergebnisse, PrÃ¼fbericht und Objekt-Drilldown."
         ),
         contact={"name": "IFC Quantity Agent"},
         license_info={"name": "Internal project artifact"},
@@ -140,7 +152,7 @@ def create_app(service: AnalysisService | None = None) -> FastAPI:
                 while chunk := await file.read(1024 * 1024):
                     size += len(chunk)
                     if size > max_bytes:
-                        raise HTTPException(status_code=413, detail=f"IFC-Datei überschreitet das Limit von {max_bytes} Byte.")
+                        raise HTTPException(status_code=413, detail=f"IFC-Datei Ã¼berschreitet das Limit von {max_bytes} Byte.")
                     handle.write(chunk)
             try:
                 return analysis_service.run_analysis(temp_path, display_name=file_name)
@@ -211,6 +223,7 @@ def create_app(service: AnalysisService | None = None) -> FastAPI:
         lv_ident: str | None = None,
         missing_lv_ident: bool | None = None,
         has_findings: bool | None = None,
+        missing_net_volume: bool | None = None,
         offset: int = Query(0, ge=0),
         limit: int = Query(100, ge=1, le=1000),
     ) -> dict[str, Any]:
@@ -221,9 +234,21 @@ def create_app(service: AnalysisService | None = None) -> FastAPI:
                 lv_ident=lv_ident,
                 missing_lv_ident=missing_lv_ident,
                 has_findings=has_findings,
+                missing_net_volume=missing_net_volume,
                 offset=offset,
                 limit=limit,
             )
+        except AnalysisNotFound:
+            raise HTTPException(status_code=404, detail="Analyse nicht gefunden.")
+
+    @app.get("/api/v1/analyses/{analysis_id}/quantity-summary", response_model=QuantitySummaryResponse, tags=["Quantities"])
+    def quantity_summary(
+        analysis_id: str,
+        group_by: Literal["lv_ident", "ifc_class"] = "lv_ident",
+        material: str | None = None,
+    ) -> dict[str, Any]:
+        try:
+            return analysis_service.quantity_summary(analysis_id, group_by=group_by, material=material)
         except AnalysisNotFound:
             raise HTTPException(status_code=404, detail="Analyse nicht gefunden.")
 
